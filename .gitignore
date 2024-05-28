@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 
 .env
+/docs/feedback/
+/docs/Отчет.aux
+/docs/Отчет.synctex.gz
