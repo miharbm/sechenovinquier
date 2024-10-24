@@ -20,6 +20,7 @@
     "@mui/material": "^5.15.16",
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "@mui/system": "^5.15.15",
+    "@reduxjs/toolkit": "^2.3.0",
     "normalize.css": "^8.0.1",
     "react-router-dom": "^6.23.0",
     "sass": "^1.66.1",

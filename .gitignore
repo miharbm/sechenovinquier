@@ -1,4 +1,5 @@
-# Logs
+\usepackage{amssymb}
+\usepackage{amssymb}\usepackage{amssymb}# Logs
 logs
 *.log
 npm-debug.log*
@@ -19,7 +20,7 @@ dist-ssr
 .DS_Store
 *.suo
 *.ntvs*
-*.njsproj
+*.njsproj\divideontimes\amalg\amalg\otimes\otimes\oplus\boxminus\boxdot\ominus\oplus\ominus\oplus
 *.sln
 *.sw?
 
