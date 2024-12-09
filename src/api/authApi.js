@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const baseUrl = `http://${import.meta.env.VITE_API_BASE}:${import.meta.env.VITE_API_PORT}`
+// const baseUrl = `http://${import.meta.env.VITE_API_BASE}:${import.meta.env.VITE_API_PORT}`
+const baseUrl = `http://localhost:3010/api`
 
 
 export const authApi = createApi({
@@ -17,10 +18,13 @@ export const authApi = createApi({
             }),
         }),
         login: builder.mutation({
-            query: (data) => ({
+            query: ({username, password}) => ({
                 url: '/login',
                 method: 'POST',
-                body: data,
+                body: {
+                    username,
+                    password,
+                },
             }),
         }),
         logout: builder.mutation({
