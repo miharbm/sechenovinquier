@@ -4,37 +4,42 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import {useRegisterMutation} from "../../api/authApi.js";
+import {useNavigate} from "react-router-dom";
+import "./register.scss"
+import {useAuth} from "../../context/AuthContext.jsx";
+import {useEffect} from "react";
+
 
 const Register = () => {
-    const [registerApi, {
-        error,
-        isLoading,
-        isSuccess,
-    }] = useRegisterMutation();
+    const {register, isAuthenticated} = useAuth()
+    const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate('/');
+        }
+    }, [isAuthenticated, navigate]);
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
-        const data = {
-            firstName: formData.get("first_name"),
-            lastName: formData.get("last_name"),
-            email: formData.get("email"),
-            password: formData.get("password"),
-            confirmPassword: formData.get("confirm_password"),
-        };
+        formData.append("snils", `${Math.floor(Math.random() * 1000000000)}`);
 
-        if (data.password !== data.confirmPassword) {
+        if (formData.get("password") !== formData.get("password")) {
             alert("Пароли не совпадают!");
             return;
         }
 
-        console.log("Данные формы:", data);
-        registerApi(formData)
+        const formObject = {};
+        formData.forEach((value, key) => {
+            formObject[key] = value;
+        });
+
+        await register(formObject)
     };
 
     return (
-        <Container>
+        <Container maxWidth="sm" className={"register-container"}>
             <Box sx={{ mt: 4 }}>
                 <Typography variant="h4" gutterBottom>
                     Регистрация
@@ -73,6 +78,16 @@ const Register = () => {
                             <TextField
                                 required
                                 fullWidth
+                                type="username"
+                                id="username"
+                                name="username"
+                                label="Имя пользователя"
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                required
+                                fullWidth
                                 type="password"
                                 id="password"
                                 name="password"
@@ -85,8 +100,8 @@ const Register = () => {
                                 required
                                 fullWidth
                                 type="password"
-                                id="confirm_password"
-                                name="confirm_password"
+                                id="password_confirm"
+                                name="password_confirm"
                                 label="Подтверждение пароля"
                             />
                         </Grid>

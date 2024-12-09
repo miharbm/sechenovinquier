@@ -2,17 +2,12 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { styled } from '@mui/system';
 import {useAuth} from "../../context/AuthContext.jsx";
-import {useLoginMutation} from "../../api/authApi.js";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
+import Container from "@mui/material/Container";
+import "./login.scss"
+import Typography from "@mui/material/Typography";
 
-const LoginContainer = styled('div')({
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '100vh',
-});
 
 const LoginForm = styled('form')({
     display: 'flex',
@@ -24,31 +19,27 @@ const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    const {login} = useAuth()
+    const {login, isLoading, isAuthenticated} = useAuth()
     const navigate = useNavigate();
 
 
-    const [loginApi, {
-        isLoading,
-        error
-    }] = useLoginMutation();
-
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate('/');
+        }
+    }, [isAuthenticated, navigate]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        loginApi({username, password})
-            .then(({data}) => {
-                login(data.userId)
-             })
-            .then(() => {
-                navigate('/');
-            })
+        await login({username, password})
     }
 
 
     return (
-        <LoginContainer>
-            <h2>Авторизация</h2>
+        <Container maxWidth="sm" className={"login-container"}>
+            <Typography variant="h4" gutterBottom>
+                Авторизация
+            </Typography>
             <LoginForm onSubmit={handleSubmit} >
                 <TextField label="Имя пользователя"
                            variant="outlined"
@@ -64,12 +55,18 @@ const Login = () => {
                 <Button variant="contained"
                         color="primary"
                         type={"submit"}
-                        onClick={handleSubmit}
                 >
-                    Войти
+                    {isLoading ? "Вход..." : "Войти"}
+                </Button>
+                <Button variant="outlined"
+                        color="primary"
+                        type="button"
+                        onClick={() => navigate('/registration')}
+                >
+                    Зарегистрироваться
                 </Button>
             </LoginForm>
-        </LoginContainer>
+        </Container>
     )
 }
 export default Login
