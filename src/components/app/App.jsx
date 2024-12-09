@@ -11,17 +11,18 @@ import LoginPage from "../pages/LoginPage.jsx";
 import PatientRegistrationPage from "../pages/PatientRegistrationPage.jsx";
 import RegistrationPage from "../pages/RegistrationPage.jsx";
 import ProtectedRoute from "../../protectedroute/ProtectedRoute.jsx";
+import {useAuth} from "../../context/AuthContext.jsx";
 
 
 const  App = () => {
-
+    const { user } = useAuth();
 
 
     return (
         <Router>
             <main className={"app"}>
                 <div className={"content"}>
-                    <AppHeader doctorName={"Александр Александров"}/>
+                    {user && <AppHeader doctorName={"Александр Александров"}/>}
                     <Routes>
                         <Route path={"/auth"} element={<LoginPage/>}/>
                         <Route path={"/login"} element={<LoginPage/>}/>

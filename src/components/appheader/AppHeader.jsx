@@ -6,8 +6,16 @@ import IconButton from '@mui/material/IconButton';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Box from "@mui/material/Box";
-const AppHeader = ({doctorName}) => {
+import {useAuth} from "../../context/AuthContext.jsx";
 
+
+const AppHeader = ({doctorName}) => {
+    const { logout } = useAuth();
+
+
+    const handleClickLogout = () => {
+        logout()
+    }
 
     return (
         <AppBar position="static">
@@ -27,7 +35,7 @@ const AppHeader = ({doctorName}) => {
                 <IconButton color="inherit">
                     <AccountCircleIcon />
                 </IconButton>
-                <IconButton color="inherit">
+                <IconButton color="inherit" onClick={handleClickLogout}>
                     <ExitToAppIcon />
                 </IconButton>
             </Toolbar>
