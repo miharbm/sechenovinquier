@@ -1,6 +1,5 @@
 import {createContext, useState, useContext, useEffect} from 'react';
 import {useLoginMutation, useRegisterMutation} from "../api/authApi.js";
-import {useNavigate} from "react-router-dom";
 
 const AuthContext = createContext(undefined);
 
@@ -10,6 +9,7 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
     const initialCredentials = {username: null, password: null, userId: null}
+
     const [credentials, setCredentials] = useState(initialCredentials);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [error, setError] = useState(null);
@@ -42,7 +42,6 @@ export const AuthProvider = ({ children }) => {
 
         try {
             const response = await loginApi({ username, password }).unwrap();
-            console.log(response)
 
             setCredentials({
                 username,
@@ -66,7 +65,6 @@ export const AuthProvider = ({ children }) => {
 
         try {
             await registerApi(formData).unwrap();
-            console.log("taktaktak")
             await login({
                 username: formData.username,
                 password: formData.password,
@@ -79,7 +77,15 @@ export const AuthProvider = ({ children }) => {
 
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, login, logout, register, error, isLoading }}>
+        <AuthContext.Provider value={{
+            isAuthenticated,
+            login,
+            logout,
+            register,
+            error,
+            isLoading,
+            username: credentials.username
+        }}>
             {children}
         </AuthContext.Provider>
     );

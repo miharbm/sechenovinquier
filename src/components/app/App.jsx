@@ -12,14 +12,14 @@ import {useAuth} from "../../context/AuthContext.jsx";
 
 
 const  App = () => {
-    const { isAuthenticated } = useAuth();
+    const { isAuthenticated, username } = useAuth();
 
 
     return (
         <Router>
             <main className={"app"}>
                 <div className={"content"}>
-                    {isAuthenticated && <AppHeader doctorName={"Александр Александров"}/>}
+                    {isAuthenticated && <AppHeader doctorName={username}/>}
                     <Routes>
                         <Route path={"/auth"} element={<LoginPage/>}/>
                         <Route path={"/login"} element={<LoginPage/>}/>
