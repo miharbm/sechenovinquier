@@ -7,6 +7,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import {Link} from "@mui/material";
+import { Link as RouterLink } from 'react-router-dom';
 
 const rows = [
     { id: 1, date: '2024-04-25 16:00', name: 'Иванов Иван', result: 'Положительный' },
@@ -44,7 +45,7 @@ function TestResultsTable() {
                                 style={{ color: row.result === "Отрицательный" ? "red" : row.result === "С подозрением" ? "orange" : "inherit"}}
                             >{row.result}</TableCell>
                             <TableCell>
-                                <Link to={`/inquirer/${row.id}`} href={`/inquirer/${row.id}`}>Подробнее</Link>
+                                <Link to={`/inquirer/${row.id}`} component={RouterLink} >Подробнее</Link>
                             </TableCell>
                         </TableRow>
                     ))}

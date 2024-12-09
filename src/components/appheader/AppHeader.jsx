@@ -24,7 +24,7 @@ const AppHeader = ({doctorName}) => {
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     <Link to="/">Главная</Link>
                     <Box width={20} display="inline-block" />
-                    <Link to="/registration">Регистрация пациента</Link>
+                    <Link to="/patient-registration">Регистрация пациента</Link>
 
                 </Typography>
                 {/*<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>*/}

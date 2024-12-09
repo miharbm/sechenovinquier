@@ -1,9 +1,6 @@
 import './app.scss'
 import AppHeader from "../appheader/AppHeader.jsx";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
-import Login from "../login/Login.jsx";
-import RegisterPatient from "../register/RegisterPatient.jsx";
-import Summary from "../summary/Summary.jsx";
 import InquierItem from "../InquierItem/InquierItem.jsx";
 import "../../styles/index.scss"
 import MainPage from "../pages/MainPage.jsx";
@@ -27,7 +24,7 @@ const  App = () => {
                         <Route path={"/auth"} element={<LoginPage/>}/>
                         <Route path={"/login"} element={<LoginPage/>}/>
                         <Route path={"/registration"} element={<RegistrationPage/>}/>
-                        <Route path={"/patient-registration"} element={<PatientRegistrationPage/>}/>
+                        <Route path={"/patient-registration"} element={<ProtectedRoute> <PatientRegistrationPage/> </ProtectedRoute>}/>
                         <Route path={"/"} element={<ProtectedRoute> <MainPage/> </ProtectedRoute>}/>
                         <Route path={"/inquirer/:id"} element={<ProtectedRoute> <InquierItem/> </ProtectedRoute>}/>
                     </Routes>
