@@ -1,5 +1,9 @@
 import {createContext, useState, useContext, useEffect} from 'react';
 import {useLoginMutation, useRegisterMutation} from "../api/authApi.js";
+import {useDispatch} from "react-redux";
+import {clearCredentials, setCredentials} from "../reducers/authSlice.js";
+import { useSelector } from 'react-redux';
+
 
 const AuthContext = createContext(undefined);
 
@@ -8,9 +12,9 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
-    const initialCredentials = {username: null, password: null, userId: null}
+    const dispatch = useDispatch();
+    const credentials = useSelector((state) => state.auth.credentials);
 
-    const [credentials, setCredentials] = useState(initialCredentials);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -43,11 +47,7 @@ export const AuthProvider = ({ children }) => {
         try {
             const response = await loginApi({ username, password }).unwrap();
 
-            setCredentials({
-                username,
-                password,
-                userId: response.userId,
-            });
+            dispatch(setCredentials({ username, password, userId: response.userId }));
 
             setError(null);
         } catch (error) {
@@ -57,7 +57,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     const logout = () => {
-        setCredentials(initialCredentials);
+        dispatch(clearCredentials());
         setError(null);
     };
 
@@ -70,7 +70,7 @@ export const AuthProvider = ({ children }) => {
                 password: formData.password,
             });
         } catch (error) {
-            setError(error); // Установка ошибки
+            setError(error);
             console.error("Ошибка регистрации:", error);
         }
     }
