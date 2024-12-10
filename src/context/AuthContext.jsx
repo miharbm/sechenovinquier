@@ -1,7 +1,7 @@
 import {createContext, useState, useContext, useEffect} from 'react';
 import {useLoginMutation, useRegisterMutation} from "../api/authApi.js";
 import {useDispatch} from "react-redux";
-import {clearCredentials, setCredentials} from "../reducers/authSlice.js";
+import {clearCredentials, setCredentials, selectCredentials} from "../reducers/authSlice.js";
 import { useSelector } from 'react-redux';
 
 
@@ -13,7 +13,7 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
     const dispatch = useDispatch();
-    const credentials = useSelector((state) => state.auth.credentials);
+    const credentials = useSelector(selectCredentials);
 
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [error, setError] = useState(null);
