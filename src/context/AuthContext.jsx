@@ -37,8 +37,29 @@ export const AuthProvider = ({ children }) => {
     }, [credentials]);
 
     useEffect(() => {
-        setIsLoading(isLoadingRegister + isLoadingLogin)
+        setIsLoading(isLoadingRegister || isLoadingLogin)
     }, [isLoadingLogin, isLoadingRegister])
+
+    useEffect(() => {
+        const savedCredentials = localStorage.getItem('authCredentials');
+        if (savedCredentials) {
+            try {
+                const parsedCredentials = JSON.parse(savedCredentials);
+                dispatch(setCredentials(parsedCredentials));
+            } catch (error) {
+                console.error("Ошибка при парсинге данных из localStorage:", error);
+            }
+        }
+    }, [dispatch]);
+
+    useEffect(() => {
+        if (credentials.username && credentials.password && credentials.userId) {
+            localStorage.setItem('authCredentials', JSON.stringify(credentials));
+        } else {
+            localStorage.removeItem('authCredentials');
+        }
+    }, [credentials]);
+
 
 
 
