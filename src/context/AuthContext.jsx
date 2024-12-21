@@ -1,5 +1,5 @@
 import {createContext, useState, useContext, useEffect} from 'react';
-import {useLoginMutation, useRegisterMutation} from "../api/authApi.js";
+import {useLoginMutation, useRegisterAdminMutation} from "../api/authApi.js";
 import {useDispatch} from "react-redux";
 import {clearCredentials, setCredentials, selectCredentials} from "../reducers/authSlice.js";
 import { useSelector } from 'react-redux';
@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
 
     const [registerApi, {
         isLoadingRegister,
-    }] = useRegisterMutation();
+    }] = useRegisterAdminMutation();
 
 
     useEffect(() => {
