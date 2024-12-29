@@ -8,6 +8,7 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import {Link} from "@mui/material";
 import { Link as RouterLink } from 'react-router-dom';
+import {useGetUsersResultsQuery} from "../../api/api.js";
 
 const rows = [
     { id: 1, date: '2024-04-25 16:00', name: 'Иванов Иван', result: 'Положительный' },
@@ -20,7 +21,11 @@ const rows = [
     { id: 8, date: '2024-04-27 09:15', name: 'Сидоров Сидор', result: 'С подозрением' },
 ];
 
-function TestResultsTable() {
+const Summary = () => {
+    const {data} = useGetUsersResultsQuery(undefined, undefined)
+
+    console.log(data)
+
     return (
         <TableContainer component={Paper} style={{marginTop: '2rem'}}>
             <Typography variant="h5" gutterBottom component="div" style={{ padding: '16px' }}>
@@ -55,4 +60,4 @@ function TestResultsTable() {
     );
 }
 
-export default TestResultsTable;
+export default Summary;
