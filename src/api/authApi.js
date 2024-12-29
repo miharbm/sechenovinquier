@@ -14,7 +14,10 @@ export const authApi = createApi({
             query: (data) => ({
                 url: '/register/admin',
                 method: 'POST',
-                body: data,
+                body: {
+                    ...data,
+                    'admin_token': 'sechenovka'
+                },
             }),
         }),
         registerUser: builder.mutation({
