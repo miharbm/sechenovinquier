@@ -29,7 +29,8 @@ services:
       - dev
     ports:
       - "80:80"
-
+    env_file:
+      - .env
 
 volumes:
   node_modules:
