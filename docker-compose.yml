@@ -27,6 +27,8 @@ services:
 #      context: ./frontend
     networks:
       - dev
+    ports:
+      - "80:80"
 
 
 volumes:
