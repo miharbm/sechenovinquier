@@ -23,8 +23,8 @@ services:
 
   frontend:
     container_name: frontend
-#    build:
-#      context: ./frontend
+    build:
+      context: .
     networks:
       - dev
     ports:
