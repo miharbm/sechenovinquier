@@ -57,7 +57,9 @@ const Summary = () => {
                                     {status}
                                 </TableCell>
                                 <TableCell>
-                                    <Link to={`/inquirer/${result.user_id}`} component={RouterLink}>
+                                    <Link to={`/inquirer?userId=${result.user_id}&passnum=${result.pass_num}`}
+                                          component={RouterLink}
+                                    >
                                         Подробнее
                                     </Link>
                                 </TableCell>

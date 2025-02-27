@@ -1,9 +1,10 @@
-import { useParams } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
+import {useGetInquierItemQuery} from "../../api/api.js";
 
-function InvestigationDetailsPage() {
-    const { id } = useParams();
+const  InquierItem = ({userId, passNum}) => {
+    const {data} = useGetInquierItemQuery({userId, passNum})
 
+    console.log(data)
     // Здесь можно использовать id для получения данных об исследовании из API или другого источника данных
     // Предположим, что investigation является объектом с данными об исследовании
     const investigation = {
@@ -21,7 +22,7 @@ function InvestigationDetailsPage() {
     return (
         <div style={{ padding: '16px', marginTop: '2rem', marginLeft: '3rem' }}>
             <Typography variant="h4" gutterBottom>
-                Детали исследования №{id}
+                Детали исследования №{userId}
             </Typography>
             <Typography variant="subtitle1" gutterBottom>
                 Дата: {investigation.date}
@@ -48,4 +49,4 @@ function InvestigationDetailsPage() {
     );
 }
 
-export default InvestigationDetailsPage;
+export default InquierItem;
