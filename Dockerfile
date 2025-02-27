@@ -1,45 +1,32 @@
-#FROM node:latest AS build
-#WORKDIR /dist
-#
-#COPY package.json package.json
-#COPY package-lock.json package-lock.json
-#RUN npm ci
-#
-#COPY public/ public
-#COPY src/ src
-#RUN npm run build
-#
-#FROM httpd:latest
-#WORKDIR /var/www/html
-#COPY --from=build /build/build/ /usr/local/apache2/htdocs/
-#
-#
-
-# Используем базовый образ с Apache и Node.js
+# Stage 1: Build the React app
 FROM node:latest AS build
 
-# Устанавливаем рабочую директорию
+# Set working directory
 WORKDIR /app
 
-# Копируем файлы package.json и package-lock.json
+# Copy package.json and package-lock.json
 COPY package.json package-lock.json ./
 
-# Устанавливаем зависимости
+# Install dependencies
 RUN npm install
 
-# Копируем остальные файлы проекта
+# Copy the rest of the application code
 COPY . .
 
-# Собираем проект
+# Build the React app
 RUN npm run build
 
-# Новый образ с Apache
-FROM httpd:latest
+# Stage 2: Serve the app with Nginx
+FROM nginx:alpine
 
-# Копируем собранные файлы из предыдущего образа в директорию Apache
-COPY --from=build /app/dist/ /usr/local/apache2/htdocs/
+# Copy the built React app from the previous stage
+COPY --from=build /app/dist /usr/share/nginx/html
 
-EXPOSE 3006
+# Copy the Nginx configuration file
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
+# Expose port 80
+EXPOSE 80
 
-
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;"]
