@@ -28,10 +28,18 @@ export const api = createApi({
                 },
             }),
         }),
+        registerUser: builder.mutation({
+            query: (data) => ({
+                url: '/auth/register/user',
+                method: 'POST',
+                body: data,
+            }),
+        }),
     }),
 });
 
 export const {
     useGetUsersResultsQuery,
     useGetInquierItemQuery,
+    useRegisterUserMutation,
 } = api;
