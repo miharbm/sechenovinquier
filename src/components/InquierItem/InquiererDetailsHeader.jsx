@@ -7,7 +7,7 @@ const InquiererDetailsHeader = ({userId, passNum}) => {
 
     return (
         <Typography variant="h5" gutterBottom>
-            Детали исследования № {passNum} пациента {data.last_name} {data.first_name}
+            Детали исследования № {passNum} пациента {data?.last_name} {data?.first_name}
         </Typography>
     )
 }
