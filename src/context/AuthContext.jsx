@@ -105,7 +105,8 @@ export const AuthProvider = ({ children }) => {
             register,
             error,
             isLoading,
-            username: credentials.username
+            username: credentials.username,
+            doctorId: credentials.userId,
         }}>
             {children}
         </AuthContext.Provider>

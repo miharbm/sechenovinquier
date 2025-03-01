@@ -35,7 +35,7 @@ export const api = createApi({
                 body: data,
             }),
         }),
-        getPatientInfo: builder.query({
+        getUserInfo: builder.query({
             query: ({userId}) => ({
                 url: "/user/info/get",
                 method: 'GET',
@@ -51,5 +51,5 @@ export const {
     useGetUsersResultsQuery,
     useGetInquierItemQuery,
     useRegisterUserMutation,
-    useGetPatientInfoQuery,
+    useGetUserInfoQuery,
 } = api;

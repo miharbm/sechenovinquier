@@ -1,9 +1,9 @@
 import Typography from "@mui/material/Typography";
-import {useGetPatientInfoQuery} from "../../api/api.js";
+import {useGetUserInfoQuery} from "../../api/api.js";
 
 const InquiererDetailsHeader = ({userId, passNum}) => {
-    const {data} = useGetPatientInfoQuery({userId})
-    console.log(data)
+    const {data} = useGetUserInfoQuery({userId})
+
 
     return (
         <Typography variant="h5" gutterBottom>

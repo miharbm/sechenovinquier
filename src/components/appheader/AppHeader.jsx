@@ -7,16 +7,18 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Box from "@mui/material/Box";
 import {useAuth} from "../../context/AuthContext.jsx";
+import {useGetUserInfoQuery} from "../../api/api.js";
 
 
-const AppHeader = ({doctorName}) => {
+const AppHeader = ({doctorId, doctorUsername}) => {
     const { logout } = useAuth();
-
+    const {data} = useGetUserInfoQuery({userId: doctorId})
 
     const handleClickLogout = () => {
         logout()
     }
 
+    console.log(data)
     return (
         <AppBar position="static">
             <Toolbar>
@@ -30,7 +32,7 @@ const AppHeader = ({doctorName}) => {
                 {/*<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>*/}
                 {/*</Typography>*/}
                 <Typography variant="h6" component="div" sx={{ marginRight: 2 }}>
-                    {doctorName}
+                    {data !== null && data?.first_name !== "" ? `${data?.first_name} ${data?.last_name}` : doctorUsername}
                 </Typography>
                 <IconButton color="inherit">
                     <AccountCircleIcon />
