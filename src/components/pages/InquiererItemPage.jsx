@@ -1,6 +1,6 @@
 import {useSearchParams} from 'react-router-dom';
 import InquierDetailsTable from "../InquierItem/InquierDetailsTable.jsx";
-import Typography from "@mui/material/Typography";
+import InquiererDetailsHeader from "../InquierItem/InquiererDetailsHeader.jsx";
 
 const  InquiererItemPage = () => {
     const [searchParams] = useSearchParams();
@@ -9,9 +9,7 @@ const  InquiererItemPage = () => {
 
     return (
         <div style={{ padding: '16px', marginTop: '2rem', marginLeft: '3rem' }}>
-            <Typography variant="h4" gutterBottom>
-                Детали исследования № {passNum} пациента
-            </Typography>
+            <InquiererDetailsHeader userId={userId} passNum={passNum} />
             <InquierDetailsTable userId={userId} passNum={passNum} />
         </div>
     );
