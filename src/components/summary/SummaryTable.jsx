@@ -17,7 +17,7 @@ const getResultStatus = (isFailed, score) => {
     return "Отрицательный";
 };
 
-const Summary = () => {
+const SummaryTable = () => {
     const { data } = useGetUsersResultsQuery(undefined, {
         skip: false, // Загружаем данные сразу
     });
@@ -72,4 +72,4 @@ const Summary = () => {
     );
 };
 
-export default Summary;
+export default SummaryTable;

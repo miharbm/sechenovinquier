@@ -1,8 +1,8 @@
-import Summary from "../summary/Summary.jsx";
+import SummaryTable from "../summary/SummaryTable.jsx";
 
 const MainPage = () => {
     return (
-        <Summary/>
+        <SummaryTable/>
     )
 }
 
