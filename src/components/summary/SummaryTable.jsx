@@ -1,28 +1,20 @@
 import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import { Link } from "@mui/material";
-import { Link as RouterLink } from 'react-router-dom';
 import { useGetUsersResultsQuery } from "../../api/api.js";
-import dayjs from 'dayjs';
+import SummaryTableBody from "./SummaryTableBody.jsx";
+import SummaryTableBodySkeleton from "./SummaryTableBodySkeleton.jsx";
 
-const getResultStatus = (isFailed, score) => {
-    if (isFailed) return "Положительный";
-    if (score > 0) return "С подозрением";
-    return "Отрицательный";
-};
 
 const SummaryTable = () => {
-    const { data } = useGetUsersResultsQuery(undefined, {
+    const { data, isLoading } = useGetUsersResultsQuery(undefined, {
         skip: false, // Загружаем данные сразу
     });
 
-    if (!data) return <Typography>Загрузка...</Typography>;
 
     return (
         <TableContainer component={Paper} style={{ marginTop: '2rem' }}>
@@ -39,34 +31,8 @@ const SummaryTable = () => {
                         <TableCell sx={{ fontWeight: "bold" }}>Детали</TableCell>
                     </TableRow>
                 </TableHead>
-                <TableBody>
-                    {data.user_results.map((result, index) => {
-                        const formattedDate = dayjs(result.pass_time).format("DD.MM.YYYY HH:mm");
-                        const status = getResultStatus(result.is_failed, result.user_score);
-
-                        return (
-                            <TableRow key={index}>
-                                <TableCell>{index + 1}</TableCell>
-                                <TableCell>{formattedDate}</TableCell>
-                                <TableCell>{`${result.last_name} ${result.first_name}`}</TableCell>
-                                <TableCell
-                                    style={{
-                                        color: status === "Отрицательный" ? "red" : status === "С подозрением" ? "orange" : "inherit",
-                                    }}
-                                >
-                                    {status}
-                                </TableCell>
-                                <TableCell>
-                                    <Link to={`/inquirer?userId=${result.user_id}&passnum=${result.pass_num}`}
-                                          component={RouterLink}
-                                    >
-                                        Подробнее
-                                    </Link>
-                                </TableCell>
-                            </TableRow>
-                        );
-                    })}
-                </TableBody>
+                {data && <SummaryTableBody data={data} />}
+                {isLoading && <SummaryTableBodySkeleton/>}
             </Table>
         </TableContainer>
     );
