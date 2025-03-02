@@ -9,6 +9,7 @@ import RegistrationPage from "../pages/RegistrationPage.jsx";
 import ProtectedRoute from "../../protectedroute/ProtectedRoute.jsx";
 import {useAuth} from "../../context/AuthContext.jsx";
 import InquiererItemPage from "../pages/InquiererItemPage.jsx";
+import PatientPage from "../pages/PatientPage.jsx";
 
 
 const  App = () => {
@@ -27,6 +28,7 @@ const  App = () => {
                         <Route path={"/patient-registration"} element={<ProtectedRoute> <PatientRegistrationPage/> </ProtectedRoute>}/>
                         <Route path={"/"} element={<ProtectedRoute> <MainPage/> </ProtectedRoute>}/>
                         <Route path={"/inquirer"} element={<ProtectedRoute> <InquiererItemPage/> </ProtectedRoute>}/>
+                        <Route path={"/patient"} element={<ProtectedRoute> <PatientPage/> </ProtectedRoute>}/>
                         {/*<Route path={"/inquirer/:id"} element={<ProtectedRoute> <InquierItem/> </ProtectedRoute>}/>*/}
                     </Routes>
                 </div>

@@ -22,7 +22,19 @@ const SummaryTable = () => {
     const columns = [
         { field: 'id', headerName: 'ID', flex: 1 },
         { field: 'date', headerName: 'Дата', flex: 2 },
-        { field: 'patient', headerName: 'Имя пациента', flex: 2 },
+        {
+            field: 'patient',
+            headerName: 'Имя пациента',
+            flex: 2,
+            renderCell: (params) => (
+                <Link
+                    to={`/patient?userId=${params.row.userId}`}
+                    component={RouterLink}
+                >
+                    {params.row.patient}
+                </Link>
+            )
+        },
         {
             field: 'result',
             headerName: 'Результат',
