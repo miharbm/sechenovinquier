@@ -37,6 +37,10 @@ const SummaryTable = () => {
             field: 'details',
             headerName: 'Детали',
             flex: 1,
+            disableColumnFilter: true,
+            disableColumnMenu: true,
+            filterable: false,
+            sortable: false,
             renderCell: (params) => (
                 <Link to={`/inquirer?userId=${params.row.userId}&passnum=${params.row.passNum}`} component={RouterLink}>
                     Подробнее
