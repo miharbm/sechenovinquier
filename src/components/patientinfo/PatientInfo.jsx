@@ -47,7 +47,7 @@ const PatientInfo = ({ patientId }) => {
                         sx={{ cursor: 'pointer' }}
                     />
                     <CardContent>
-                        <Typography variant="h6">{`${first_name} ${middle_name} ${last_name}`}</Typography>
+                        <Typography variant="h6">{`${last_name} ${first_name} ${middle_name}`}</Typography>
                         <Typography variant="body2" color="text.secondary">
                             <strong>СНИЛС:</strong> {snils}
                         </Typography>
