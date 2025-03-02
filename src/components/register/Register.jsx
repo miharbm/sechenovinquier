@@ -40,7 +40,7 @@ const Register = () => {
 
     return (
         <Container maxWidth="sm" className={"register-container"}>
-            <Box sx={{ mt: 4 }}>
+            <Box sx={{ pt: 4 }}>
                 <Typography variant="h4" gutterBottom>
                     Регистрация
                 </Typography>
@@ -107,8 +107,21 @@ const Register = () => {
                         </Grid>
                     </Grid>
 
-                    <Button type="submit" variant="contained" sx={{ mt: 2 }}>
+                    <Button type="submit"
+                            variant="contained"
+                            sx={{ mt: 2 }}
+                            fullWidth
+                    >
                         Зарегистрироваться
+                    </Button>
+                    <Button variant="outlined"
+                            color="primary"
+                            type="button"
+                            fullWidth
+                            onClick={() => navigate('/login')}
+                            sx={{ mt: 2 }}
+                    >
+                        Авторизоваться
                     </Button>
                 </form>
             </Box>
