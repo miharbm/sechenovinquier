@@ -40,7 +40,7 @@ const SummaryTable = () => {
             headerName: 'Результат',
             flex: 2,
             renderCell: (params) => (
-                <span style={{ color: params.value === "Отрицательный" ? "red" : params.value === "С подозрением" ? "orange" : "inherit" }}>
+                <span style={{ color: params.value === "Отрицательный" ? "red" : params.value === "С подозрением" ? "orange" : "green" }}>
                     {params.value}
                 </span>
             )
