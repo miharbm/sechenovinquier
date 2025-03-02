@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 import { Link } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import SummaryTableBodySkeleton from "./SummaryTableBodySkeleton.jsx";
+import { ruRU } from '@mui/x-data-grid/locales';
 
 const getResultStatus = (isFailed, score) => {
     if (isFailed) return "Положительный";
@@ -72,6 +73,7 @@ const SummaryTable = () => {
                         },
                     }}
                     disableSelectionOnClick
+                    localeText={ruRU.components.MuiDataGrid.defaultProps.localeText}
                 />
             )}
         </Paper>
