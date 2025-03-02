@@ -1,5 +1,5 @@
 import {useSearchParams} from "react-router-dom";
-import PatientInfo from "../PatientInfo.jsx";
+import PatientInfo from "../patientinfo/PatientInfo.jsx";
 
 const PatientPage = () => {
     const [searchParams] = useSearchParams();
@@ -7,7 +7,9 @@ const PatientPage = () => {
 
 
     return (
-        <PatientInfo patientId={userId} />
+        <div style={{ padding: 32}}>
+            <PatientInfo patientId={userId} />
+        </div>
     )
 }
 
