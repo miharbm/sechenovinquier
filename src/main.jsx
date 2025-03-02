@@ -13,11 +13,14 @@ const theme = createTheme({
     palette: {
         mode: 'light', // Установите режим светлой темы
         primary: {
-            main: '#2196f3', // Основной цвет
+            main: '#3d7df5', // Основной цвет
         },
         secondary: {
             main: '#f50057', // Вторичный цвет
         },
+        text: {
+            primary: "#393939"
+        }
     },
 });
 

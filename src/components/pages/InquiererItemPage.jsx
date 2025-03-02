@@ -1,6 +1,7 @@
 import {useSearchParams} from 'react-router-dom';
 import InquierDetailsTable from "../InquierItem/InquierDetailsTable.jsx";
 import InquiererDetailsHeader from "../InquierItem/InquiererDetailsHeader.jsx";
+import Paper from "@mui/material/Paper";
 
 const  InquiererItemPage = () => {
     const [searchParams] = useSearchParams();
@@ -8,10 +9,10 @@ const  InquiererItemPage = () => {
     const userId = searchParams.get('userId');
 
     return (
-        <div style={{ padding: '16px', marginTop: '2rem', marginLeft: '3rem' }}>
+        <Paper elevation={0} style={{ padding: '16px', marginTop: '2rem', marginLeft: '3rem' }}>
             <InquiererDetailsHeader userId={userId} passNum={passNum} />
             <InquierDetailsTable userId={userId} passNum={passNum} />
-        </div>
+        </Paper>
     );
 }
 
