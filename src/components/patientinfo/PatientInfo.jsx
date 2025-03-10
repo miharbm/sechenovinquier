@@ -3,12 +3,16 @@ import { useGetUserInfoQuery } from "../../api/api.js";
 import { useState } from 'react';
 import LightBox from "../../lightbox/LightBox.jsx";
 import PatientInfoSkeleton from "./PatientInfoSkeleton.jsx";
+import defaultAvatar from "../../assets/default_avatar.png";
+const apiUrl = import.meta.env.VITE_API_URL
+
 
 const PatientInfo = ({ patientId }) => {
     const { data, isLoading, isError } = useGetUserInfoQuery({ userId: patientId });
 
     const [openLightbox, setOpenLightbox] = useState(false);
     const [selectedImage, setSelectedImage] = useState('');
+    const [avatarSrc, setAvatarSrc] = useState(null);
 
     const handleClickOpen = (image) => {
         setSelectedImage(image);
@@ -31,7 +35,7 @@ const PatientInfo = ({ patientId }) => {
         avatar
     } = data || {};
 
-    const avatarUrl = avatar ? `http://185.72.145.208:8080/public/avatars/${avatar}` : '';
+    const avatarUrl = avatar ? `${apiUrl}/static/public/avatars/${avatar}` : defaultAvatar;
 
     return (
         <>
@@ -41,10 +45,11 @@ const PatientInfo = ({ patientId }) => {
                     <CardMedia
                         component="img"
                         height="150"
-                        image={avatarUrl}
+                        image={avatarSrc || avatarUrl}
                         alt={`${first_name} ${last_name} Avatar`}
-                        onClick={() => handleClickOpen(avatarUrl)}
+                        onClick={() => handleClickOpen(avatarSrc || avatarUrl)}
                         sx={{ cursor: 'pointer' }}
+                        onError={() => setAvatarSrc(defaultAvatar)}
                     />
                     <CardContent>
                         <Typography variant="h6">{`${last_name} ${first_name} ${middle_name}`}</Typography>
