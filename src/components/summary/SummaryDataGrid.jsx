@@ -54,7 +54,7 @@ const SummaryTable = () => {
             filterable: false,
             sortable: false,
             renderCell: (params) => (
-                <Link to={`/inquirer?userId=${params.row.userId}&passnum=${params.row.passNum}`} component={RouterLink}>
+                <Link to={`/inquirer?userId=${params.row.userId}&passnum=${params.row.passNum}&quizId=${params.row.quizId}`} component={RouterLink}>
                     Подробнее
                 </Link>
             )
@@ -67,7 +67,8 @@ const SummaryTable = () => {
         patient: `${result.last_name} ${result.first_name}`,
         result: getResultStatus(result.is_failed, result.user_score),
         userId: result.user_id,
-        passNum: result.pass_num
+        passNum: result.pass_num,
+        quizId: result.quiz_id,
     })) : [];
 
     return (

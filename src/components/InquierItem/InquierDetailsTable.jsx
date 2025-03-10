@@ -9,8 +9,8 @@ import Paper from '@mui/material/Paper';
 import InquiererDetailsTableBody from "./InquiererDetailsTableBody.jsx";
 import InquiererDetailsTableBodySkeleton from "./InquiererDetailsTableBodySkeleton.jsx";
 
-const InquierDetailsTable = ({ userId, passNum }) => {
-    const { data, isLoading, error } = useGetInquierItemQuery({ userId, passNum });
+const InquierDetailsTable = ({ userId, passNum, quizId }) => {
+    const { data, isLoading, error } = useGetInquierItemQuery({ userId, passNum, quizId });
 
     if (error) return <Typography>Ошибка загрузки данных</Typography>;
 

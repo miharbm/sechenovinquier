@@ -7,11 +7,12 @@ const  InquiererItemPage = () => {
     const [searchParams] = useSearchParams();
     const passNum = searchParams.get('passnum');
     const userId = searchParams.get('userId');
+    const quizId = searchParams.get('quizId');
 
     return (
         <Paper elevation={0} style={{ padding: '16px', marginTop: '2rem', marginLeft: '3rem' }}>
-            <InquiererDetailsHeader userId={userId} passNum={passNum} />
-            <InquierDetailsTable userId={userId} passNum={passNum} />
+            <InquiererDetailsHeader userId={userId} passNum={passNum} quizId={quizId} />
+            <InquierDetailsTable userId={userId} passNum={passNum} quizId={quizId} />
         </Paper>
     );
 }

@@ -19,12 +19,13 @@ export const api = createApi({
             }),
         }),
         getInquierItem: builder.query({
-            query: ({userId, passNum }) => ({
+            query: ({userId, passNum, quizId }) => ({
                 url: '/user/response/get',
                 method: 'GET',
                 params: {
                     UserId: userId,
                     PassNum: passNum,
+                    QuizId: quizId,
                 },
             }),
         }),
