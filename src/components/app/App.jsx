@@ -10,6 +10,7 @@ import ProtectedRoute from "../../protectedroute/ProtectedRoute.jsx";
 import {useAuth} from "../../context/AuthContext.jsx";
 import InquiererItemPage from "../pages/InquiererItemPage.jsx";
 import PatientPage from "../pages/PatientPage.jsx";
+import NotFoundPage from "../pages/NotFoundPage.jsx";
 
 
 const  App = () => {
@@ -29,7 +30,7 @@ const  App = () => {
                         <Route path={"/"} element={<ProtectedRoute> <MainPage/> </ProtectedRoute>}/>
                         <Route path={"/inquirer"} element={<ProtectedRoute> <InquiererItemPage/> </ProtectedRoute>}/>
                         <Route path={"/patient"} element={<ProtectedRoute> <PatientPage/> </ProtectedRoute>}/>
-                        {/*<Route path={"/inquirer/:id"} element={<ProtectedRoute> <InquierItem/> </ProtectedRoute>}/>*/}
+                        <Route path={"*"} element={<ProtectedRoute> <NotFoundPage/> </ProtectedRoute>} />
                     </Routes>
                 </div>
             </main>
