@@ -48,7 +48,7 @@ const PatientRegistrationForm = () => {
     return (
         <Container>
             <Box sx={{ mt: 4 }}>
-                <Typography variant="h4" gutterBottom>
+                <Typography variant="h4" gutterBottom color="textPrimary" >
                     Регистрация пациента
                 </Typography>
                 <form onSubmit={handleSubmit}>
@@ -156,7 +156,7 @@ const PatientRegistrationForm = () => {
                             />
                         </Grid>
                     </Grid>
-                    <Button type="submit" variant="contained" sx={{ mt: 2 }}>
+                    <Button type="submit" variant="contained" sx={{ mt: 2 }} fullWidth={true}>
                         Зарегистрировать
                     </Button>
                 </form>
