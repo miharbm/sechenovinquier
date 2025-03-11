@@ -5,6 +5,8 @@ import {clearCredentials, setCredentials, selectCredentials} from "../reducers/a
 import { useSelector } from 'react-redux';
 
 
+const authCredentialsLocalStorageName = "authCredentials"
+
 const AuthContext = createContext(undefined);
 
 export const useAuth = () => {
@@ -17,7 +19,7 @@ export const AuthProvider = ({ children }) => {
 
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [error, setError] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const [loginApi, {
         isLoadingLogin,
@@ -29,7 +31,7 @@ export const AuthProvider = ({ children }) => {
 
 
     useEffect(() => {
-        setIsAuthenticated(credentials.username && credentials.password && credentials.userId);
+        setIsAuthenticated(Boolean(credentials.username && credentials.password && credentials.userId));
     }, [credentials]);
 
     useEffect(() => {
@@ -37,7 +39,7 @@ export const AuthProvider = ({ children }) => {
     }, [isLoadingLogin, isLoadingRegister])
 
     useEffect(() => {
-        const savedCredentials = localStorage.getItem('authCredentials');
+        const savedCredentials = localStorage.getItem(authCredentialsLocalStorageName);
         if (savedCredentials) {
             try {
                 const parsedCredentials = JSON.parse(savedCredentials);
@@ -46,13 +48,14 @@ export const AuthProvider = ({ children }) => {
                 console.error("Ошибка при парсинге данных из localStorage:", error);
             }
         }
+        setIsLoading(false);
     }, [dispatch]);
 
     useEffect(() => {
         if (credentials.username && credentials.password && credentials.userId) {
-            localStorage.setItem('authCredentials', JSON.stringify(credentials));
+            localStorage.setItem(authCredentialsLocalStorageName, JSON.stringify(credentials));
         } else {
-            localStorage.removeItem('authCredentials');
+            localStorage.removeItem(authCredentialsLocalStorageName);
         }
     }, [credentials]);
 
@@ -73,6 +76,7 @@ export const AuthProvider = ({ children }) => {
 
     const logout = () => {
         dispatch(clearCredentials());
+        localStorage.removeItem(authCredentialsLocalStorageName);
         setError(null);
     };
 
