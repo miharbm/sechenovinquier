@@ -19,10 +19,6 @@ export const AuthProvider = ({ children }) => {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
-    console.log("isAuthenticated", isAuthenticated);
-    console.log("credentials", credentials);
-
-
     const [loginApi, {
         isLoadingLogin,
     }] = useLoginMutation();
@@ -59,8 +55,6 @@ export const AuthProvider = ({ children }) => {
             localStorage.removeItem('authCredentials');
         }
     }, [credentials]);
-
-
 
 
     const login = async ({username, password}) => {

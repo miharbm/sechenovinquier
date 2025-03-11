@@ -14,11 +14,12 @@ const AppHeader = ({doctorId, doctorUsername}) => {
     const { logout } = useAuth();
     const {data} = useGetUserInfoQuery({userId: doctorId})
 
+
     const handleClickLogout = () => {
         logout()
     }
 
-    console.log(data)
+
     return (
         <AppBar position="static">
             <Toolbar>
@@ -29,8 +30,6 @@ const AppHeader = ({doctorId, doctorUsername}) => {
                     <Link to="/patient-registration">Регистрация пациента</Link>
 
                 </Typography>
-                {/*<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>*/}
-                {/*</Typography>*/}
                 <Typography variant="h6" component="div" sx={{ marginRight: 2 }}>
                     {data !== null && data?.first_name !== "" ? `${data?.first_name} ${data?.last_name}` : doctorUsername}
                 </Typography>
