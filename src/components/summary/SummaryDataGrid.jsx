@@ -3,10 +3,14 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import { useGetUsersResultsQuery } from "../../api/api.js";
 import dayjs from "dayjs";
-import { Link } from "@mui/material";
+import {CircularProgress, Link} from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import SummaryTableBodySkeleton from "./SummaryTableBodySkeleton.jsx";
 import { ruRU } from '@mui/x-data-grid/locales';
+import Box from "@mui/material/Box";
+import RefreshIcon from '@mui/icons-material/Refresh';
+import IconButton from "@mui/material/IconButton";
+
 
 const getResultStatus = (isFailed, score) => {
     if (isFailed) return "Положительный";
@@ -15,9 +19,18 @@ const getResultStatus = (isFailed, score) => {
 };
 
 const SummaryTable = () => {
-    const { data, isLoading } = useGetUsersResultsQuery(undefined, {
+    const {
+        data,
+        isLoading,
+        refetch,
+        isFetching,
+    } = useGetUsersResultsQuery(undefined, {
         skip: false,
     });
+
+    const handleRefresh = () => {
+        refetch();
+    }
 
     const columns = [
         { field: 'id', headerName: 'ID', flex: 1 },
@@ -73,9 +86,18 @@ const SummaryTable = () => {
 
     return (
         <Paper style={{ marginTop: '2rem', padding: '16px' }}>
-            <Typography variant="h5" gutterBottom>
-                Результаты тестирований
-            </Typography>
+            <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
+                <Typography variant="h5" gutterBottom>
+                    Результаты тестирований
+                </Typography>
+                <IconButton onClick={handleRefresh}
+                            loading={isFetching}
+                            color="primary"
+                >
+                    {isFetching ? <CircularProgress size={24} color="inherit" /> : <RefreshIcon />}
+                </IconButton>
+            </Box>
+
             {isLoading && <SummaryTableBodySkeleton/>}
             {rows.length > 0 && (
                 <DataGrid
