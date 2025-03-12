@@ -4,15 +4,25 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import {useNavigate} from "react-router-dom";
-import "./register.scss"
-import {useAuth} from "../../context/AuthContext.jsx";
-import {useEffect} from "react";
-
+import { useNavigate } from "react-router-dom";
+import "./register.scss";
+import { useAuth } from "../../context/AuthContext.jsx";
+import { useEffect, useState } from "react";
+import { validateEmail } from "../../util/util.js";
 
 const Register = () => {
-    const {register, isAuthenticated} = useAuth()
+    const { register, isAuthenticated } = useAuth();
     const navigate = useNavigate();
+    const [formData, setFormData] = useState({
+        first_name: "",
+        middle_name: "",
+        last_name: "",
+        email: "",
+        username: "",
+        password: "",
+        password_confirm: ""
+    });
+
 
     useEffect(() => {
         if (isAuthenticated) {
@@ -20,23 +30,35 @@ const Register = () => {
         }
     }, [isAuthenticated, navigate]);
 
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+
+        if (name === "username" && !/^[a-zA-Z0-9_-]*$/.test(value)) return;
+        if (["first_name", "middle_name", "last_name"].includes(name) && !/^[а-яА-ЯёЁ]*$/.test(value)) return;
+
+        setFormData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const formData = new FormData(e.target);
-        formData.append("snils", `${Math.floor(Math.random() * 1000000000)}`);
 
-        if (formData.get("password") !== formData.get("password")) {
+        if (!validateEmail(formData.email)) {
+            alert("Некорректный email!");
+            return;
+        }
+
+        if (formData.password !== formData.password_confirm) {
             alert("Пароли не совпадают!");
             return;
         }
 
-        const formObject = {};
-        formData.forEach((value, key) => {
-            formObject[key] = value;
-        });
-
-        await register(formObject)
+        await register(formData);
     };
+
 
     return (
         <Container maxWidth="sm" className={"register-container"}>
@@ -50,9 +72,11 @@ const Register = () => {
                             <TextField
                                 required
                                 fullWidth
-                                id="first_name"
-                                name="first_name"
-                                label="Имя"
+                                id="username"
+                                name="username"
+                                label="Имя пользователя"
+                                value={formData.username}
+                                onChange={handleChange}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -62,6 +86,30 @@ const Register = () => {
                                 id="last_name"
                                 name="last_name"
                                 label="Фамилия"
+                                value={formData.last_name}
+                                onChange={handleChange}
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                                required
+                                fullWidth
+                                id="first_name"
+                                name="first_name"
+                                label="Имя"
+                                value={formData.first_name}
+                                onChange={handleChange}
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                                required
+                                fullWidth
+                                id="middle_name"
+                                name="middle_name"
+                                label="Отчество"
+                                value={formData.middle_name}
+                                onChange={handleChange}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -72,19 +120,11 @@ const Register = () => {
                                 id="email"
                                 name="email"
                                 label="Электронная почта"
+                                value={formData.email}
+                                onChange={handleChange}
                             />
                         </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                required
-                                fullWidth
-                                type="username"
-                                id="username"
-                                name="username"
-                                label="Имя пользователя"
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
+                        <Grid item xs={12} sm={6}>
                             <TextField
                                 required
                                 fullWidth
@@ -93,9 +133,11 @@ const Register = () => {
                                 name="password"
                                 label="Пароль"
                                 inputProps={{ minLength: 6 }}
+                                value={formData.password}
+                                onChange={handleChange}
                             />
                         </Grid>
-                        <Grid item xs={12}>
+                        <Grid item xs={12} sm={6}>
                             <TextField
                                 required
                                 fullWidth
@@ -103,15 +145,15 @@ const Register = () => {
                                 id="password_confirm"
                                 name="password_confirm"
                                 label="Подтверждение пароля"
+                                value={formData.password_confirm}
+                                onChange={handleChange}
                             />
                         </Grid>
                     </Grid>
-
                     <Button type="submit"
                             variant="contained"
                             sx={{ mt: 2 }}
-                            fullWidth
-                    >
+                            fullWidth>
                         Зарегистрироваться
                     </Button>
                     <Button variant="outlined"
@@ -119,14 +161,13 @@ const Register = () => {
                             type="button"
                             fullWidth
                             onClick={() => navigate('/login')}
-                            sx={{ mt: 2 }}
-                    >
+                            sx={{ mt: 2 }}>
                         Авторизоваться
                     </Button>
                 </form>
             </Box>
         </Container>
     );
-}
+};
 
-export default Register
+export default Register;

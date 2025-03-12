@@ -6,6 +6,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 import {useRegisterUserMutation} from "../../api/api.js";
+import {validateEmail} from "../../util/util.js";
 
 const PatientRegistrationForm = () => {
     const [sendForm] = useRegisterUserMutation();
@@ -16,21 +17,46 @@ const PatientRegistrationForm = () => {
         last_name: "",
         phone: "",
         email: "",
-        snils: "",
         password: "",
         password_confirm: ""
     });
 
+
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
+
+        // Валидация логина (только латиница + цифры)
+        if (name === "username" && !/^[a-zA-Z0-9_-]*$/.test(value)) return;
+
+        // Валидация ФИО (только кириллица)
+        if (["first_name", "middle_name", "last_name"].includes(name) && !/^[а-яА-ЯёЁ]*$/.test(value)) return;
+
+        // Валидация телефона с автоформатированием
+        if (name === "phone") {
+            let cleaned = value.replace(/\D/g, ""); // Удаляем всё, кроме цифр
+            if (cleaned.length > 11) cleaned = cleaned.slice(0, 11);
+
+            let formatted = "+7";
+            if (cleaned.length > 1) formatted += ` (${cleaned.slice(1, 4)}`;
+            if (cleaned.length > 4) formatted += `) ${cleaned.slice(4, 7)}`;
+            if (cleaned.length > 7) formatted += `-${cleaned.slice(7, 9)}`;
+            if (cleaned.length > 9) formatted += `-${cleaned.slice(9, 11)}`;
+
+            setFormData(prevState => ({ ...prevState, [name]: formatted }));
+            return;
+        }
+
+        setFormData(prevState => ({ ...prevState, [name]: value }));
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (!validateEmail(formData.email)) {
+            alert("Некорректный email!");
+            return;
+        }
+
         if (formData.password !== formData.password_confirm) {
             alert("Пароли не совпадают!");
             return;
@@ -117,17 +143,6 @@ const PatientRegistrationForm = () => {
                                 label="Email"
                                 type="email"
                                 value={formData.email}
-                                onChange={handleChange}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                required
-                                fullWidth
-                                id="snils"
-                                name="snils"
-                                label="СНИЛС"
-                                value={formData.snils}
                                 onChange={handleChange}
                             />
                         </Grid>
