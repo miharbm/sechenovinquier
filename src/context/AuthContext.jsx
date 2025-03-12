@@ -5,7 +5,7 @@ import {clearCredentials, setCredentials, selectCredentials} from "../reducers/a
 import { useSelector } from 'react-redux';
 
 
-const authCredentialsLocalStorageName = "authCredentials"
+const STORAGE_KEY = "authCredentials";
 
 const AuthContext = createContext(undefined);
 
@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }) => {
     }, [isLoadingLogin, isLoadingRegister])
 
     useEffect(() => {
-        const savedCredentials = localStorage.getItem(authCredentialsLocalStorageName);
+        const savedCredentials = localStorage.getItem(STORAGE_KEY);
         if (savedCredentials) {
             try {
                 const parsedCredentials = JSON.parse(savedCredentials);
@@ -53,9 +53,9 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         if (credentials.username && credentials.password && credentials.userId) {
-            localStorage.setItem(authCredentialsLocalStorageName, JSON.stringify(credentials));
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(credentials));
         } else {
-            localStorage.removeItem(authCredentialsLocalStorageName);
+            localStorage.removeItem(STORAGE_KEY);
         }
     }, [credentials]);
 
@@ -76,7 +76,7 @@ export const AuthProvider = ({ children }) => {
 
     const logout = () => {
         dispatch(clearCredentials());
-        localStorage.removeItem(authCredentialsLocalStorageName);
+        localStorage.removeItem(STORAGE_KEY);
         setError(null);
     };
 
