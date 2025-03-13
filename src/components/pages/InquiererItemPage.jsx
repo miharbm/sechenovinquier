@@ -3,7 +3,7 @@ import InquierDetailsTable from "../InquierItem/InquierDetailsTable.jsx";
 import InquiererDetailsHeader from "../InquierItem/InquiererDetailsHeader.jsx";
 import Paper from "@mui/material/Paper";
 
-const  InquiererItemPage = () => {
+const InquiererItemPage = () => {
     const [searchParams] = useSearchParams();
     const passNum = searchParams.get('passnum');
     const userId = searchParams.get('userId');
