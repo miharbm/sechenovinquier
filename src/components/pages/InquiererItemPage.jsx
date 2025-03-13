@@ -10,7 +10,7 @@ const  InquiererItemPage = () => {
     const quizId = searchParams.get('quizId');
 
     return (
-        <Paper elevation={0} style={{ padding: '16px', marginTop: '2rem', marginLeft: '3rem' }}>
+        <Paper elevation={0} style={{ padding: '16px', marginTop: '2rem' }}>
             <InquiererDetailsHeader userId={userId} passNum={passNum} quizId={quizId} />
             <InquierDetailsTable userId={userId} passNum={passNum} quizId={quizId} />
         </Paper>
