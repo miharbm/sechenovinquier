@@ -40,7 +40,8 @@ const AppHeader = ({ doctorId, doctorUsername }) => {
                     }}
                 >
                     Система опросник
-                </Typography>                <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', flexGrow: 2 }}>
+                </Typography>
+                <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', flexGrow: 2 }}>
                     <Typography variant="h6" sx={{ flexGrow: 1 }}>
                         <Link to="/">Главная</Link>
                         <Box width={20} display="inline-block" />
