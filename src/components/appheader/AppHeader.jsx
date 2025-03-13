@@ -25,9 +25,12 @@ const AppHeader = ({ doctorId, doctorUsername }) => {
         logout();
     };
 
-    const toggleDrawer = (open) => () => {
-        setMenuOpen(open);
-    };
+    const openDrawer = () => setMenuOpen(true)
+    const closeDrawer = () => setMenuOpen(false)
+
+    const handleLinkClick = () => {
+        closeDrawer();
+    }
 
     return (
         <AppBar position="static">
@@ -58,29 +61,29 @@ const AppHeader = ({ doctorId, doctorUsername }) => {
                     </IconButton>
                 </Box>
                 <Box sx={{ display: { xs: 'block', md: 'none' } }}>
-                    <IconButton color="inherit" onClick={toggleDrawer(true)}>
+                    <IconButton color="inherit" onClick={openDrawer}>
                         <MenuIcon />
                     </IconButton>
                 </Box>
             </Toolbar>
 
-            <Drawer anchor="right" open={menuOpen} onClose={toggleDrawer(false)}>
+            <Drawer anchor="right" open={menuOpen} onClose={closeDrawer}>
                 <List sx={{ width: 250 }}>
-                    <ListItem button component={Link} to="/">
+                    <ListItem button component={Link} to="/" onClick={handleLinkClick}>
                         <ListItemText primary="Главная" />
                     </ListItem>
-                    <ListItem button component={Link} to="/patient-registration">
+                    <ListItem button component={Link} to="/patient-registration" onClick={handleLinkClick}>
                         <ListItemText primary="Регистрация пациента" />
                     </ListItem>
                     <Divider />
                     <ListItem>
                         <ListItemText primary={userData?.first_name ? `${userData.first_name} ${userData.last_name}` : doctorUsername} />
                     </ListItem>
-                    <ListItem button>
+                    <ListItem button onClick={handleLinkClick}>
                         <AccountCircleIcon sx={{ marginRight: 1 }} />
                         <ListItemText primary="Профиль" />
                     </ListItem>
-                    <ListItem button onClick={handleClickLogout}>
+                    <ListItem button onClick={handleClickLogout} >
                         <ExitToAppIcon sx={{ marginRight: 1 }} />
                         <ListItemText primary="Выход" />
                     </ListItem>
