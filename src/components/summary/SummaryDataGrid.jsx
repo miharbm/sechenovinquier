@@ -11,14 +11,10 @@ import Box from "@mui/material/Box";
 import RefreshIcon from '@mui/icons-material/Refresh';
 import IconButton from "@mui/material/IconButton";
 import { useState, useEffect } from "react";
+import {getInfoColor, getResultStatus} from "../../util/util.js";
 
 const STORAGE_KEY = "summaryTableState";
 
-const getResultStatus = (isFailed, score) => {
-    if (isFailed) return "Положительный";
-    if (score > 0) return "С подозрением";
-    return "Отрицательный";
-};
 
 const SummaryTable = () => {
     const { data, isLoading, refetch, isFetching } = useGetUsersResultsQuery(undefined, { skip: false });
@@ -71,7 +67,7 @@ const SummaryTable = () => {
             headerName: "Результат",
             flex: 2,
             renderCell: (params) => (
-                <span style={{ color: params.value === "Отрицательный" ? "red" : params.value === "С подозрением" ? "orange" : "green" }}>
+                <span style={{ color: getInfoColor(params.value) }}>
                     {params.value}
                 </span>
             ),
