@@ -3,6 +3,7 @@ import PatientInfo from "../patientinfo/PatientInfo.jsx";
 import PatientStatisticChart from "../PatientStatisticChart/PatientStatisticChart.jsx";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
 
 const PatientPage = () => {
     const [searchParams] = useSearchParams();
@@ -11,10 +12,14 @@ const PatientPage = () => {
 
     return (
         <Container>
-            <Box style={{ padding: 32}} display={"flex"} gap={"30px"}>
-                <PatientInfo patientId={userId} />
-                <PatientStatisticChart/>
-            </Box>
+            <Grid container spacing={2} mt={2}>
+                <Grid item xs={12} sm={12} md={3}>
+                    <PatientInfo patientId={userId} />
+                </Grid>
+                <Grid item xs={12} sm={12} md={9}>
+                    <PatientStatisticChart/>
+                </Grid>
+            </Grid>
         </Container>
     )
 }
