@@ -36,10 +36,16 @@ const PatientStatisticChart = () => {
         return (
             <div key={`${date}`} className={"chart__column"}>
                 <Box>
-                    <Typography variant="body2" color="textPrimary" sx={{fontSize: "10px"}}>
+                    <Typography variant="body2"
+                                color="textPrimary"
+                                sx={{fontSize: "10px", lineHeight: 1, textAlign: "center"}}
+                    >
                         {day}
                     </Typography>
-                    <Typography variant="body2" color="textSecondary" sx={{fontSize: "10px"}}>
+                    <Typography variant="body2"
+                                color="textSecondary"
+                                sx={{fontSize: "10px", lineHeight: 1, textAlign: "center"}}
+                    >
                         {month}
                     </Typography>
                 </Box>
@@ -61,7 +67,7 @@ const PatientStatisticChart = () => {
     }, [renderData]);
 
     return (
-        <Paper sx={{padding:'20px'}}>
+        <Paper sx={{padding:'20px', paddingTop: "10px"}}>
             <Typography variant={"h6"}>Статистика опросов</Typography>
             <Divider/>
             <div className={classNames("chart", {"chart__no-scroll": !hasScroll})}
