@@ -11,6 +11,7 @@ import {useAuth} from "../../context/AuthContext.jsx";
 import InquiererItemPage from "../pages/InquiererItemPage.jsx";
 import PatientPage from "../pages/PatientPage.jsx";
 import NotFoundPage from "../pages/NotFoundPage.jsx";
+import PatientsListPage from "../pages/PatientsListPage.jsx";
 
 
 const  App = () => {
@@ -30,6 +31,7 @@ const  App = () => {
                         <Route path={"/"} element={<ProtectedRoute> <MainPage/> </ProtectedRoute>}/>
                         <Route path={"/inquirer"} element={<ProtectedRoute> <InquiererItemPage/> </ProtectedRoute>}/>
                         <Route path={"/patient"} element={<ProtectedRoute> <PatientPage/> </ProtectedRoute>}/>
+                        <Route path={"/patients"} element={<ProtectedRoute> <PatientsListPage/> </ProtectedRoute>}/>
                         <Route path={"*"} element={<ProtectedRoute> <NotFoundPage/> </ProtectedRoute>} />
                     </Routes>
                 </div>

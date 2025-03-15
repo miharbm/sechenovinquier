@@ -15,11 +15,28 @@ import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import { useAuth } from '../../context/AuthContext.jsx';
 import { useGetUserInfoQuery } from '../../api/api.js';
+import Grid from "@mui/material/Grid";
+
 
 const AppHeader = ({ doctorId, doctorUsername }) => {
     const { logout } = useAuth();
     const { data: userData } = useGetUserInfoQuery({ userId: doctorId });
     const [menuOpen, setMenuOpen] = useState(false);
+
+    const links = [
+        {
+            title: "Главная",
+            link: "/",
+        },
+        {
+            title: "Регистрация пациента",
+            link: "/patient-registration",
+        },
+        {
+            title: "Пациенты",
+            link: "/patients",
+        },
+    ]
 
     const handleClickLogout = () => {
         logout();
@@ -45,11 +62,17 @@ const AppHeader = ({ doctorId, doctorUsername }) => {
                     Система опросник
                 </Typography>
                 <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', flexGrow: 2 }}>
-                    <Typography variant="h6" sx={{ flexGrow: 1 }}>
-                        <Link to="/">Главная</Link>
-                        <Box width={20} display="inline-block" />
-                        <Link to="/patient-registration">Регистрация пациента</Link>
-                    </Typography>
+                    <Grid container spacing={2}>
+                        {
+                            links.map(({link, title}, index) => (
+                                <Grid item key={`link-${index}`}>
+                                    <Typography variant="h6">
+                                        <Link to={link}>{title}</Link>
+                                    </Typography>
+                                </Grid>
+                            ))
+                        }
+                    </Grid>
                     <Typography variant="h6" sx={{ marginRight: 2 }}>
                         {userData?.first_name ? `${userData.first_name} ${userData.last_name}` : doctorUsername}
                     </Typography>
@@ -69,12 +92,18 @@ const AppHeader = ({ doctorId, doctorUsername }) => {
 
             <Drawer anchor="right" open={menuOpen} onClose={closeDrawer}>
                 <List sx={{ width: 250 }}>
-                    <ListItem button component={Link} to="/" onClick={handleLinkClick}>
-                        <ListItemText primary="Главная" />
-                    </ListItem>
-                    <ListItem button component={Link} to="/patient-registration" onClick={handleLinkClick}>
-                        <ListItemText primary="Регистрация пациента" />
-                    </ListItem>
+                    {
+                        links.map(({link, title}, index) => (
+                            <ListItem component={Link}
+                                      to={link}
+                                      onClick={handleLinkClick}
+                                      key={`link_${index}`}
+                                      button
+                            >
+                                <ListItemText primary={title} />
+                            </ListItem>
+                        ))
+                    }
                     <Divider />
                     <ListItem>
                         <ListItemText primary={userData?.first_name ? `${userData.first_name} ${userData.last_name}` : doctorUsername} />
