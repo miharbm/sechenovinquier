@@ -61,7 +61,7 @@ const AppHeader = ({ doctorId, doctorUsername }) => {
                 >
                     Система опросник
                 </Typography>
-                <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', flexGrow: 2 }}>
+                <Box sx={{ display: { xs: 'none', lg: 'flex' }, alignItems: 'center', flexGrow: 2 }}>
                     <Grid container spacing={2}>
                         {
                             links.map(({link, title}, index) => (
@@ -83,7 +83,7 @@ const AppHeader = ({ doctorId, doctorUsername }) => {
                         <ExitToAppIcon />
                     </IconButton>
                 </Box>
-                <Box sx={{ display: { xs: 'block', md: 'none' } }}>
+                <Box sx={{ display: { xs: 'block', lg: 'none' } }}>
                     <IconButton color="inherit" onClick={openDrawer}>
                         <MenuIcon />
                     </IconButton>
