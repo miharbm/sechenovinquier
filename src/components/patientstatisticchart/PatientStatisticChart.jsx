@@ -1,361 +1,19 @@
 import Paper from "@mui/material/Paper";
-
-const data = {
-    "user_results": [
-        {
-            "user_id": "7fe9e51c-35e1-4371-9d99-cf809ea19ab9",
-            "first_name": "misha",
-            "last_name": "petrov",
-            "quiz_id": 1,
-            "user_score": 0,
-            "is_failed": false,
-            "pass_num": 1,
-            "pass_time": "2025-03-02T13:51:03.996434+03:00"
-        },
-        {
-            "user_id": "7fe9e51c-35e1-4371-9d99-cf809ea19ab9",
-            "first_name": "misha",
-            "last_name": "petrov",
-            "quiz_id": 2,
-            "user_score": 0,
-            "is_failed": false,
-            "pass_num": 1,
-            "pass_time": "2025-03-02T13:51:12.994551+03:00"
-        },
-        {
-            "user_id": "7fe9e51c-35e1-4371-9d99-cf809ea19ab9",
-            "first_name": "misha",
-            "last_name": "petrov",
-            "quiz_id": 3,
-            "user_score": 1,
-            "is_failed": true,
-            "pass_num": 1,
-            "pass_time": "2025-03-02T13:51:23.908662+03:00"
-        },
-        {
-            "user_id": "7fe9e51c-35e1-4371-9d99-cf809ea19ab9",
-            "first_name": "misha",
-            "last_name": "petrov",
-            "quiz_id": 3,
-            "user_score": 5,
-            "is_failed": false,
-            "pass_num": 2,
-            "pass_time": "2025-03-02T13:51:35.70422+03:00"
-        },
-        {
-            "user_id": "7fe9e51c-35e1-4371-9d99-cf809ea19ab9",
-            "first_name": "misha",
-            "last_name": "petrov",
-            "quiz_id": 3,
-            "user_score": 3,
-            "is_failed": true,
-            "pass_num": 3,
-            "pass_time": "2025-03-09T12:34:59.561584+03:00"
-        },
-        {
-            "user_id": "7fe9e51c-35e1-4371-9d99-cf809ea19ab9",
-            "first_name": "misha",
-            "last_name": "petrov",
-            "quiz_id": 3,
-            "user_score": 3,
-            "is_failed": true,
-            "pass_num": 3,
-            "pass_time": "2025-03-09T12:35:10.416649+03:00"
-        },
-        {
-            "user_id": "7fe9e51c-35e1-4371-9d99-cf809ea19ab9",
-            "first_name": "misha",
-            "last_name": "petrov",
-            "quiz_id": 2,
-            "user_score": 0,
-            "is_failed": false,
-            "pass_num": 2,
-            "pass_time": "2025-03-09T12:44:25.918202+03:00"
-        },
-        {
-            "user_id": "7fe9e51c-35e1-4371-9d99-cf809ea19ab9",
-            "first_name": "misha",
-            "last_name": "petrov",
-            "quiz_id": 3,
-            "user_score": 2,
-            "is_failed": true,
-            "pass_num": 4,
-            "pass_time": "2025-03-09T12:44:33.589759+03:00"
-        },
-        {
-            "user_id": "7fe9e51c-35e1-4371-9d99-cf809ea19ab9",
-            "first_name": "misha",
-            "last_name": "petrov",
-            "quiz_id": 3,
-            "user_score": 1,
-            "is_failed": true,
-            "pass_num": 11,
-            "pass_time": "2025-03-09T12:57:06.959614+03:00"
-        },
-        {
-            "user_id": "7fe9e51c-35e1-4371-9d99-cf809ea19ab9",
-            "first_name": "misha",
-            "last_name": "petrov",
-            "quiz_id": 1,
-            "user_score": 0,
-            "is_failed": false,
-            "pass_num": 3,
-            "pass_time": "2025-03-09T12:57:16.440261+03:00"
-        },
-        {
-            "user_id": "7fe9e51c-35e1-4371-9d99-cf809ea19ab9",
-            "first_name": "misha",
-            "last_name": "petrov",
-            "quiz_id": 3,
-            "user_score": 2,
-            "is_failed": true,
-            "pass_num": 12,
-            "pass_time": "2025-03-09T12:59:46.969304+03:00"
-        },
-        {
-            "user_id": "7fe9e51c-35e1-4371-9d99-cf809ea19ab9",
-            "first_name": "misha",
-            "last_name": "petrov",
-            "quiz_id": 2,
-            "user_score": 0,
-            "is_failed": false,
-            "pass_num": 4,
-            "pass_time": "2025-03-09T13:12:26.858728+03:00"
-        },
-        {
-            "user_id": "7fe9e51c-35e1-4371-9d99-cf809ea19ab9",
-            "first_name": "misha",
-            "last_name": "petrov",
-            "quiz_id": 3,
-            "user_score": 1,
-            "is_failed": true,
-            "pass_num": 13,
-            "pass_time": "2025-03-09T13:24:55.961614+03:00"
-        },
-        {
-            "user_id": "7fe9e51c-35e1-4371-9d99-cf809ea19ab9",
-            "first_name": "misha",
-            "last_name": "petrov",
-            "quiz_id": 3,
-            "user_score": 2,
-            "is_failed": true,
-            "pass_num": 14,
-            "pass_time": "2025-03-09T13:25:42.566342+03:00"
-        },
-        {
-            "user_id": "7fe9e51c-35e1-4371-9d99-cf809ea19ab9",
-            "first_name": "misha",
-            "last_name": "petrov",
-            "quiz_id": 3,
-            "user_score": 5,
-            "is_failed": false,
-            "pass_num": 15,
-            "pass_time": "2025-03-09T13:26:12.621904+03:00"
-        },
-        {
-            "user_id": "7fe9e51c-35e1-4371-9d99-cf809ea19ab9",
-            "first_name": "misha",
-            "last_name": "petrov",
-            "quiz_id": 3,
-            "user_score": 4,
-            "is_failed": true,
-            "pass_num": 16,
-            "pass_time": "2025-03-09T13:26:28.555889+03:00"
-        },
-        {
-            "user_id": "7fe9e51c-35e1-4371-9d99-cf809ea19ab9",
-            "first_name": "misha",
-            "last_name": "petrov",
-            "quiz_id": 3,
-            "user_score": 2,
-            "is_failed": true,
-            "pass_num": 17,
-            "pass_time": "2025-03-09T13:27:52.380559+03:00"
-        },
-        {
-            "user_id": "7fe9e51c-35e1-4371-9d99-cf809ea19ab9",
-            "first_name": "misha",
-            "last_name": "petrov",
-            "quiz_id": 2,
-            "user_score": 0,
-            "is_failed": false,
-            "pass_num": 5,
-            "pass_time": "2025-03-09T13:33:24.461447+03:00"
-        },
-        {
-            "user_id": "7fe9e51c-35e1-4371-9d99-cf809ea19ab9",
-            "first_name": "misha",
-            "last_name": "petrov",
-            "quiz_id": 3,
-            "user_score": 2,
-            "is_failed": true,
-            "pass_num": 18,
-            "pass_time": "2025-03-09T13:40:40.820261+03:00"
-        },
-        {
-            "user_id": "7fe9e51c-35e1-4371-9d99-cf809ea19ab9",
-            "first_name": "misha",
-            "last_name": "petrov",
-            "quiz_id": 1,
-            "user_score": 6,
-            "is_failed": true,
-            "pass_num": 4,
-            "pass_time": "2025-03-10T19:42:29.698346652Z"
-        },
-        {
-            "user_id": "7fe9e51c-35e1-4371-9d99-cf809ea19ab9",
-            "first_name": "misha",
-            "last_name": "petrov",
-            "quiz_id": 1,
-            "user_score": 6,
-            "is_failed": true,
-            "pass_num": 5,
-            "pass_time": "2025-03-11T19:09:21.157590225Z"
-        },
-        {
-            "user_id": "7fe9e51c-35e1-4371-9d99-cf809ea19ab9",
-            "first_name": "misha",
-            "last_name": "petrov",
-            "quiz_id": 3,
-            "user_score": 5,
-            "is_failed": false,
-            "pass_num": 19,
-            "pass_time": "2025-03-11T19:09:56.794643987Z"
-        },
-        {
-            "user_id": "7fe9e51c-35e1-4371-9d99-cf809ea19ab9",
-            "first_name": "misha",
-            "last_name": "petrov",
-            "quiz_id": 3,
-            "user_score": 1,
-            "is_failed": true,
-            "pass_num": 20,
-            "pass_time": "2025-03-12T11:48:47.565698519Z"
-        },
-        {
-            "user_id": "7fe9e51c-35e1-4371-9d99-cf809ea19ab9",
-            "first_name": "misha",
-            "last_name": "petrov",
-            "quiz_id": 2,
-            "user_score": 0,
-            "is_failed": false,
-            "pass_num": 6,
-            "pass_time": "2025-03-12T11:49:00.740562463Z"
-        },
-        {
-            "user_id": "7fe9e51c-35e1-4371-9d99-cf809ea19ab9",
-            "first_name": "misha",
-            "last_name": "petrov",
-            "quiz_id": 1,
-            "user_score": 3,
-            "is_failed": false,
-            "pass_num": 6,
-            "pass_time": "2025-03-12T12:46:17.843453918Z"
-        },
-        {
-            "user_id": "7fe9e51c-35e1-4371-9d99-cf809ea19ab9",
-            "first_name": "misha",
-            "last_name": "petrov",
-            "quiz_id": 2,
-            "user_score": 0,
-            "is_failed": false,
-            "pass_num": 7,
-            "pass_time": "2025-03-12T12:54:56.620996642Z"
-        },
-        {
-            "user_id": "7fe9e51c-35e1-4371-9d99-cf809ea19ab9",
-            "first_name": "misha",
-            "last_name": "petrov",
-            "quiz_id": 3,
-            "user_score": 2,
-            "is_failed": true,
-            "pass_num": 21,
-            "pass_time": "2025-03-12T12:55:27.523104837Z"
-        },
-        {
-            "user_id": "d56b8f17-5211-4fb3-8638-8ab8d700fa47",
-            "first_name": "rbmtest2",
-            "last_name": "rbmtest2",
-            "quiz_id": 2,
-            "user_score": 0,
-            "is_failed": false,
-            "pass_num": 1,
-            "pass_time": "2025-03-12T13:08:03.500023485Z"
-        },
-        {
-            "user_id": "d56b8f17-5211-4fb3-8638-8ab8d700fa47",
-            "first_name": "rbmtest2",
-            "last_name": "rbmtest2",
-            "quiz_id": 3,
-            "user_score": 2,
-            "is_failed": true,
-            "pass_num": 1,
-            "pass_time": "2025-03-12T13:08:13.246962664Z"
-        },
-        {
-            "user_id": "d56b8f17-5211-4fb3-8638-8ab8d700fa47",
-            "first_name": "rbmtest2",
-            "last_name": "rbmtest2",
-            "quiz_id": 1,
-            "user_score": 4,
-            "is_failed": true,
-            "pass_num": 1,
-            "pass_time": "2025-03-12T13:08:21.325525108Z"
-        },
-        {
-            "user_id": "d56b8f17-5211-4fb3-8638-8ab8d700fa47",
-            "first_name": "rbmtest2",
-            "last_name": "rbmtest2",
-            "quiz_id": 2,
-            "user_score": 0,
-            "is_failed": false,
-            "pass_num": 2,
-            "pass_time": "2025-03-12T14:27:57.061166859Z"
-        },
-        {
-            "user_id": "d56b8f17-5211-4fb3-8638-8ab8d700fa47",
-            "first_name": "rbmtest2",
-            "last_name": "rbmtest2",
-            "quiz_id": 3,
-            "user_score": 2,
-            "is_failed": true,
-            "pass_num": 2,
-            "pass_time": "2025-03-12T14:28:17.527651401Z"
-        },
-        {
-            "user_id": "d56b8f17-5211-4fb3-8638-8ab8d700fa47",
-            "first_name": "rbmtest2",
-            "last_name": "rbmtest2",
-            "quiz_id": 1,
-            "user_score": 7,
-            "is_failed": true,
-            "pass_num": 2,
-            "pass_time": "2025-03-12T14:28:35.831898506Z"
-        },
-        {
-            "user_id": "d56b8f17-5211-4fb3-8638-8ab8d700fa47",
-            "first_name": "rbmtest2",
-            "last_name": "rbmtest2",
-            "quiz_id": 1,
-            "user_score": 10,
-            "is_failed": true,
-            "pass_num": 2,
-            "pass_time": "2025-03-12T14:28:36.192294711Z"
-        }
-    ]
-}
-
 import "./patientstaticchart.scss"
 import ChartItem from "./PatientStatisticChartItem.jsx";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
-
+// import data from "./testdata.json"
+import data from "./generated_quiz_results.json"
+import {useEffect, useRef, useState} from "react";
+import classNames from "classnames";
 
 
 const PatientStatisticChart = () => {
-
+    const chartRef = useRef(null);
     const userResults = data.user_results;
+    const [hasScroll, setHasScroll] = useState(false);
 
     const groupByDate = userResults.reduce((acc, result) => {
         const date = new Date(result.pass_time).toISOString().split("T")[0];
@@ -369,8 +27,9 @@ const PatientStatisticChart = () => {
         return acc;
     }, {})
 
+    const sortedDates = Object.keys(groupByDate).sort((a, b) => new Date(a) - new Date(b));
 
-    const renderData = Object.keys(groupByDate).map((date, ) => {
+    const renderData = sortedDates.map((date, ) => {
         const dateAndMonth = date.split("-").slice(1, 3);
         const day = dateAndMonth[1];
         const month = dateAndMonth[0];
@@ -384,7 +43,6 @@ const PatientStatisticChart = () => {
                         {month}
                     </Typography>
                 </Box>
-
                 {
                     groupByDate[date].map((item, i) => (
                         <ChartItem key={`${date}-${i}`} data={item}/>
@@ -394,11 +52,21 @@ const PatientStatisticChart = () => {
         )
     })
 
+    useEffect(() => {
+        if (chartRef.current) {
+            chartRef.current.scrollLeft = chartRef.current.scrollWidth;
+            const hasHorizontalScroll = chartRef.current.scrollWidth > chartRef.current.clientWidth;
+            setHasScroll(hasHorizontalScroll);
+        }
+    }, [renderData]);
+
     return (
-        <Paper sx={{padding:'10px'}}>
+        <Paper sx={{padding:'20px'}}>
             <Typography variant={"h6"}>Статистика опросов</Typography>
             <Divider/>
-            <div className="chart">
+            <div className={classNames("chart", {"chart__no-scroll": !hasScroll})}
+                 ref={chartRef}
+            >
                 {renderData}
             </div>
         </Paper>

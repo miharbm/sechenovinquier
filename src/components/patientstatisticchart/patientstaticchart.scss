@@ -3,6 +3,21 @@
     flex-direction: row;
     gap: 2px;
     margin-top: 10px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    box-shadow: inset 10px 0 10px -10px rgba(0, 0, 0, 0.20),
+                inset -10px 0 10px -10px rgba(0, 0, 0, 0.20);
+    padding: 5px 7px 10px;
+    &__no-scroll {
+        box-shadow: none;
+    }
+    &::-webkit-scrollbar {
+        height: 8px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+    }
     &__column {
         display: flex;
         flex-direction: column;
