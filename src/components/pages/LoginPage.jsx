@@ -1,8 +1,11 @@
 import Login from "../loginandregister/Login.jsx";
+import Container from "@mui/material/Container";
 
 const loginPage = () => {
     return (
-        <Login/>
+        <Container maxWidth="sm" sx={{pt: "25svh"}}>
+            <Login/>
+        </Container>
     )
 }
 

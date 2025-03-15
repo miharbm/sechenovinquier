@@ -1,6 +1,5 @@
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
@@ -72,117 +71,115 @@ const PatientRegistrationForm = () => {
     };
 
     return (
-        <Container>
-            <Paper sx={{ mt: 4, padding: "20px" }}>
-                <Typography variant="h4" gutterBottom color="textPrimary" >
-                    Регистрация пациента
-                </Typography>
-                <form onSubmit={handleSubmit}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                            <TextField
-                                required
-                                fullWidth
-                                id="username"
-                                name="username"
-                                label="Логин"
-                                value={formData.username}
-                                onChange={handleChange}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                required
-                                fullWidth
-                                id="last_name"
-                                name="last_name"
-                                label="Фамилия"
-                                value={formData.last_name}
-                                onChange={handleChange}
-                            />
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <TextField
-                                required
-                                fullWidth
-                                id="first_name"
-                                name="first_name"
-                                label="Имя"
-                                value={formData.first_name}
-                                onChange={handleChange}
-                            />
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <TextField
-                                fullWidth
-                                id="middle_name"
-                                name="middle_name"
-                                label="Отчество"
-                                value={formData.middle_name}
-                                onChange={handleChange}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                required
-                                fullWidth
-                                id="phone"
-                                name="phone"
-                                label="Телефон"
-                                type="tel"
-                                value={formData.phone}
-                                onChange={handleChange}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                required
-                                fullWidth
-                                id="email"
-                                name="email"
-                                label="Email"
-                                type="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                            />
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <TextField
-                                required
-                                fullWidth
-                                id="password"
-                                name="password"
-                                label="Пароль"
-                                type="password"
-                                value={formData.password}
-                                onChange={handleChange}
-                            />
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <TextField
-                                required
-                                fullWidth
-                                id="password_confirm"
-                                name="password_confirm"
-                                label="Подтвердите пароль"
-                                type="password"
-                                value={formData.password_confirm}
-                                onChange={handleChange}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Button type="submit"
-                                    variant="contained"
-                                    sx={{ mt: "5px" }}
-                                    fullWidth
-                            >
-                                Зарегистрировать
-                            </Button>
-                        </Grid>
+        <Paper sx={{ mt: 4, padding: "20px" }}>
+            <Typography variant="h4" gutterBottom color="textPrimary" >
+                Регистрация пациента
+            </Typography>
+            <form onSubmit={handleSubmit}>
+                <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                        <TextField
+                            required
+                            fullWidth
+                            id="username"
+                            name="username"
+                            label="Логин"
+                            value={formData.username}
+                            onChange={handleChange}
+                        />
                     </Grid>
-                </form>
-            </Paper>
-        </Container>
+                    <Grid item xs={12}>
+                        <TextField
+                            required
+                            fullWidth
+                            id="last_name"
+                            name="last_name"
+                            label="Фамилия"
+                            value={formData.last_name}
+                            onChange={handleChange}
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <TextField
+                            required
+                            fullWidth
+                            id="first_name"
+                            name="first_name"
+                            label="Имя"
+                            value={formData.first_name}
+                            onChange={handleChange}
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <TextField
+                            fullWidth
+                            id="middle_name"
+                            name="middle_name"
+                            label="Отчество"
+                            value={formData.middle_name}
+                            onChange={handleChange}
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField
+                            required
+                            fullWidth
+                            id="phone"
+                            name="phone"
+                            label="Телефон"
+                            type="tel"
+                            value={formData.phone}
+                            onChange={handleChange}
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField
+                            required
+                            fullWidth
+                            id="email"
+                            name="email"
+                            label="Email"
+                            type="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <TextField
+                            required
+                            fullWidth
+                            id="password"
+                            name="password"
+                            label="Пароль"
+                            type="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <TextField
+                            required
+                            fullWidth
+                            id="password_confirm"
+                            name="password_confirm"
+                            label="Подтвердите пароль"
+                            type="password"
+                            value={formData.password_confirm}
+                            onChange={handleChange}
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Button type="submit"
+                                variant="contained"
+                                sx={{ mt: "5px" }}
+                                fullWidth
+                        >
+                            Зарегистрировать
+                        </Button>
+                    </Grid>
+                </Grid>
+            </form>
+        </Paper>
     );
 }
 
