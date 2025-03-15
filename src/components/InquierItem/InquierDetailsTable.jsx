@@ -24,7 +24,7 @@ const InquierDetailsTable = ({ userId, passNum, quizId }) => {
                         <TableCell><strong>Баллы</strong></TableCell>
                     </TableRow>
                 </TableHead>
-                {data && <InquiererDetailsTableBody data={data}/>}
+                {data?.responses && <InquiererDetailsTableBody data={data}/>}
                 {isLoading && <InquiererDetailsTableBodySkeleton/>}
             </Table>
         </TableContainer>
