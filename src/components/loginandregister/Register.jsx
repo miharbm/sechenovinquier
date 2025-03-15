@@ -1,52 +1,45 @@
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import { useState } from 'react';
-import {useRegisterUserMutation} from "../../api/api.js";
-import {validateEmail} from "../../util/util.js";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext.jsx";
+import { useEffect, useState } from "react";
+import { validateEmail } from "../../util/util.js";
+import Paper from "@mui/material/Paper";
 
-const PatientRegistrationForm = () => {
-    const [sendForm] = useRegisterUserMutation();
+const Register = () => {
+    const { register, isAuthenticated } = useAuth();
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
-        username: "",
         first_name: "",
         middle_name: "",
         last_name: "",
-        phone: "",
         email: "",
+        username: "",
         password: "",
         password_confirm: ""
     });
 
 
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate('/');
+        }
+    }, [isAuthenticated, navigate]);
+
+
     const handleChange = (e) => {
         const { name, value } = e.target;
 
-        // Валидация логина (только латиница + цифры)
         if (name === "username" && !/^[a-zA-Z0-9_-]*$/.test(value)) return;
-
-        // Валидация ФИО (только кириллица)
         if (["first_name", "middle_name", "last_name"].includes(name) && !/^[а-яА-ЯёЁ]*$/.test(value)) return;
 
-        // Валидация телефона с автоформатированием
-        if (name === "phone") {
-            let cleaned = value.replace(/\D/g, ""); // Удаляем всё, кроме цифр
-            if (cleaned.length > 11) cleaned = cleaned.slice(0, 11);
-
-            let formatted = "+7";
-            if (cleaned.length > 1) formatted += ` (${cleaned.slice(1, 4)}`;
-            if (cleaned.length > 4) formatted += `) ${cleaned.slice(4, 7)}`;
-            if (cleaned.length > 7) formatted += `-${cleaned.slice(7, 9)}`;
-            if (cleaned.length > 9) formatted += `-${cleaned.slice(9, 11)}`;
-
-            setFormData(prevState => ({ ...prevState, [name]: formatted }));
-            return;
-        }
-
-        setFormData(prevState => ({ ...prevState, [name]: value }));
+        setFormData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
     };
 
     const handleSubmit = async (e) => {
@@ -62,30 +55,25 @@ const PatientRegistrationForm = () => {
             return;
         }
 
-        try {
-            await sendForm(formData).unwrap();
-            alert("Пациент успешно зарегистрирован!");
-        } catch (error) {
-            console.error("Ошибка регистрации:", error);
-            alert("Ошибка при регистрации пациента");
-        }
+        await register(formData);
     };
 
+
     return (
-        <Container>
-            <Box sx={{ mt: 4 }}>
-                <Typography variant="h4" gutterBottom color="textPrimary" >
-                    Регистрация пациента
+        <Container maxWidth="sm" sx={{pt: "10svh"}} >
+            <Paper sx={{ padding: "20px" }}>
+                <Typography variant="h4" gutterBottom>
+                    Регистрация
                 </Typography>
-                <form onSubmit={handleSubmit}>
-                    <Grid container spacing={2}>
+                <form onSubmit={handleSubmit} >
+                    <Grid container spacing={2} sx={{mt: "15px"}}>
                         <Grid item xs={12}>
                             <TextField
                                 required
                                 fullWidth
                                 id="username"
                                 name="username"
-                                label="Логин"
+                                label="Имя пользователя"
                                 value={formData.username}
                                 onChange={handleChange}
                             />
@@ -114,6 +102,7 @@ const PatientRegistrationForm = () => {
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <TextField
+                                required
                                 fullWidth
                                 id="middle_name"
                                 name="middle_name"
@@ -126,22 +115,10 @@ const PatientRegistrationForm = () => {
                             <TextField
                                 required
                                 fullWidth
-                                id="phone"
-                                name="phone"
-                                label="Телефон"
-                                type="tel"
-                                value={formData.phone}
-                                onChange={handleChange}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                required
-                                fullWidth
+                                type="email"
                                 id="email"
                                 name="email"
-                                label="Email"
-                                type="email"
+                                label="Электронная почта"
                                 value={formData.email}
                                 onChange={handleChange}
                             />
@@ -150,10 +127,11 @@ const PatientRegistrationForm = () => {
                             <TextField
                                 required
                                 fullWidth
+                                type="password"
                                 id="password"
                                 name="password"
                                 label="Пароль"
-                                type="password"
+                                inputProps={{ minLength: 6 }}
                                 value={formData.password}
                                 onChange={handleChange}
                             />
@@ -162,22 +140,38 @@ const PatientRegistrationForm = () => {
                             <TextField
                                 required
                                 fullWidth
+                                type="password"
                                 id="password_confirm"
                                 name="password_confirm"
-                                label="Подтвердите пароль"
-                                type="password"
+                                label="Подтверждение пароля"
                                 value={formData.password_confirm}
                                 onChange={handleChange}
                             />
                         </Grid>
+                        <Grid item xs={12}>
+                            <Button type="submit"
+                                    variant="contained"
+                                    sx={{ mt: "5px" }}
+                                    fullWidth
+                            >
+                                Зарегистрироваться
+                            </Button>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Button variant="outlined"
+                                    color="primary"
+                                    type="button"
+                                    fullWidth
+                                    onClick={() => navigate('/login')}
+                            >
+                                Авторизоваться
+                            </Button>
+                        </Grid>
                     </Grid>
-                    <Button type="submit" variant="contained" sx={{ mt: 2 }} fullWidth={true}>
-                        Зарегистрировать
-                    </Button>
                 </form>
-            </Box>
+            </Paper>
         </Container>
     );
-}
+};
 
-export default PatientRegistrationForm;
+export default Register;

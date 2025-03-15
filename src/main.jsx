@@ -7,6 +7,7 @@ import {createTheme} from "@mui/material/styles";
 import { Provider } from 'react-redux';
 import {store} from "./store/index.js";
 import {AuthProvider} from "./context/AuthContext.jsx";
+import {CssBaseline} from "@mui/material";
 
 
 const theme = createTheme({
@@ -20,7 +21,11 @@ const theme = createTheme({
         },
         text: {
             primary: "#393939"
-        }
+        },
+        background: {
+            default: "#e8e8e8",  // Цвет основного фона
+            paper: "#ffffff",     // Цвет фона для `Paper`
+        },
     },
 });
 
@@ -29,6 +34,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Provider store={store}>
           <AuthProvider>
               <ThemeProvider theme={theme}>
+                  <CssBaseline />
                   <App />
               </ThemeProvider>
           </AuthProvider>

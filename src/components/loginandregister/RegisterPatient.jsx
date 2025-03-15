@@ -1,46 +1,52 @@
-import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import { useNavigate } from "react-router-dom";
-import "./register.scss";
-import { useAuth } from "../../context/AuthContext.jsx";
-import { useEffect, useState } from "react";
-import { validateEmail } from "../../util/util.js";
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import { useState } from 'react';
+import {useRegisterUserMutation} from "../../api/api.js";
+import {validateEmail} from "../../util/util.js";
+import Paper from "@mui/material/Paper";
 
-const Register = () => {
-    const { register, isAuthenticated } = useAuth();
-    const navigate = useNavigate();
+const PatientRegistrationForm = () => {
+    const [sendForm] = useRegisterUserMutation();
     const [formData, setFormData] = useState({
+        username: "",
         first_name: "",
         middle_name: "",
         last_name: "",
+        phone: "",
         email: "",
-        username: "",
         password: "",
         password_confirm: ""
     });
 
 
-    useEffect(() => {
-        if (isAuthenticated) {
-            navigate('/');
-        }
-    }, [isAuthenticated, navigate]);
-
-
     const handleChange = (e) => {
         const { name, value } = e.target;
 
+        // Валидация логина (только латиница + цифры)
         if (name === "username" && !/^[a-zA-Z0-9_-]*$/.test(value)) return;
+
+        // Валидация ФИО (только кириллица)
         if (["first_name", "middle_name", "last_name"].includes(name) && !/^[а-яА-ЯёЁ]*$/.test(value)) return;
 
-        setFormData(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
+        // Валидация телефона с автоформатированием
+        if (name === "phone") {
+            let cleaned = value.replace(/\D/g, ""); // Удаляем всё, кроме цифр
+            if (cleaned.length > 11) cleaned = cleaned.slice(0, 11);
+
+            let formatted = "+7";
+            if (cleaned.length > 1) formatted += ` (${cleaned.slice(1, 4)}`;
+            if (cleaned.length > 4) formatted += `) ${cleaned.slice(4, 7)}`;
+            if (cleaned.length > 7) formatted += `-${cleaned.slice(7, 9)}`;
+            if (cleaned.length > 9) formatted += `-${cleaned.slice(9, 11)}`;
+
+            setFormData(prevState => ({ ...prevState, [name]: formatted }));
+            return;
+        }
+
+        setFormData(prevState => ({ ...prevState, [name]: value }));
     };
 
     const handleSubmit = async (e) => {
@@ -56,15 +62,20 @@ const Register = () => {
             return;
         }
 
-        await register(formData);
+        try {
+            await sendForm(formData).unwrap();
+            alert("Пациент успешно зарегистрирован!");
+        } catch (error) {
+            console.error("Ошибка регистрации:", error);
+            alert("Ошибка при регистрации пациента");
+        }
     };
 
-
     return (
-        <Container maxWidth="sm" className={"register-container"}>
-            <Box sx={{ pt: 4 }}>
-                <Typography variant="h4" gutterBottom>
-                    Регистрация
+        <Container>
+            <Paper sx={{ mt: 4, padding: "20px" }}>
+                <Typography variant="h4" gutterBottom color="textPrimary" >
+                    Регистрация пациента
                 </Typography>
                 <form onSubmit={handleSubmit}>
                     <Grid container spacing={2}>
@@ -74,7 +85,7 @@ const Register = () => {
                                 fullWidth
                                 id="username"
                                 name="username"
-                                label="Имя пользователя"
+                                label="Логин"
                                 value={formData.username}
                                 onChange={handleChange}
                             />
@@ -103,7 +114,6 @@ const Register = () => {
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <TextField
-                                required
                                 fullWidth
                                 id="middle_name"
                                 name="middle_name"
@@ -116,10 +126,22 @@ const Register = () => {
                             <TextField
                                 required
                                 fullWidth
-                                type="email"
+                                id="phone"
+                                name="phone"
+                                label="Телефон"
+                                type="tel"
+                                value={formData.phone}
+                                onChange={handleChange}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                required
+                                fullWidth
                                 id="email"
                                 name="email"
-                                label="Электронная почта"
+                                label="Email"
+                                type="email"
                                 value={formData.email}
                                 onChange={handleChange}
                             />
@@ -128,11 +150,10 @@ const Register = () => {
                             <TextField
                                 required
                                 fullWidth
-                                type="password"
                                 id="password"
                                 name="password"
                                 label="Пароль"
-                                inputProps={{ minLength: 6 }}
+                                type="password"
                                 value={formData.password}
                                 onChange={handleChange}
                             />
@@ -141,33 +162,28 @@ const Register = () => {
                             <TextField
                                 required
                                 fullWidth
-                                type="password"
                                 id="password_confirm"
                                 name="password_confirm"
-                                label="Подтверждение пароля"
+                                label="Подтвердите пароль"
+                                type="password"
                                 value={formData.password_confirm}
                                 onChange={handleChange}
                             />
                         </Grid>
+                        <Grid item xs={12}>
+                            <Button type="submit"
+                                    variant="contained"
+                                    sx={{ mt: "5px" }}
+                                    fullWidth
+                            >
+                                Зарегистрировать
+                            </Button>
+                        </Grid>
                     </Grid>
-                    <Button type="submit"
-                            variant="contained"
-                            sx={{ mt: 2 }}
-                            fullWidth>
-                        Зарегистрироваться
-                    </Button>
-                    <Button variant="outlined"
-                            color="primary"
-                            type="button"
-                            fullWidth
-                            onClick={() => navigate('/login')}
-                            sx={{ mt: 2 }}>
-                        Авторизоваться
-                    </Button>
                 </form>
-            </Box>
+            </Paper>
         </Container>
     );
-};
+}
 
-export default Register;
+export default PatientRegistrationForm;

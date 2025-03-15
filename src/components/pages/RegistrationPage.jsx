@@ -1,4 +1,4 @@
-import Register from "../register/Register.jsx";
+import Register from "../loginandregister/Register.jsx";
 
 const RegistrationPage = () => {
     return (

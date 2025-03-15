@@ -1,4 +1,4 @@
-import RegisterPatient from "../register/RegisterPatient.jsx";
+import RegisterPatient from "../loginandregister/RegisterPatient.jsx";
 
 const PatientRegistrationPage = () => {
     return (
