@@ -60,7 +60,7 @@ const Register = () => {
 
 
     return (
-        <Container maxWidth="sm" sx={{pt: "10svh"}} >
+        <Container maxWidth="sm" sx={{pt: {md: "10svh", xs: "20px"}}} >
             <Paper sx={{ padding: "20px" }}>
                 <Typography variant="h4" gutterBottom>
                     Регистрация
