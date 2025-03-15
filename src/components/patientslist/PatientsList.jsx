@@ -1,6 +1,10 @@
+import Paper from "@mui/material/Paper";
+
 const PatientsList = () => {
     return (
-        <div>list</div>
+        <Paper elevation={0} style={{ padding: '16px', marginTop: '2rem' }}>
+            <div>list</div>
+        </Paper>
     )
 }
 
