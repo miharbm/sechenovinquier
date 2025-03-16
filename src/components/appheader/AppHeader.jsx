@@ -16,6 +16,9 @@ import Divider from '@mui/material/Divider';
 import { useAuth } from '../../context/AuthContext.jsx';
 import { useGetUserInfoQuery } from '../../api/api.js';
 import Grid from "@mui/material/Grid";
+// import {ReactComponent as  IconLogo} from "../../assets/icon.svg"
+import IconLogo from "../../assets/icon.svg"
+import Logo from "../logo/Logo.jsx";
 
 
 const AppHeader = ({ doctorId, doctorUsername }) => {
@@ -52,15 +55,9 @@ const AppHeader = ({ doctorId, doctorUsername }) => {
     return (
         <AppBar position="static">
             <Toolbar>
-                <Typography
-                    variant="h4"
-                    sx={{
-                        flexGrow: 1,
-                        fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' }
-                    }}
-                >
-                    Система опросник
-                </Typography>
+                <Box sx={{flexGrow: 1}}>
+                    <Logo/>
+                </Box>
                 <Box sx={{ display: { xs: 'none', lg: 'flex' }, alignItems: 'center', flexGrow: 2 }}>
                     <Grid container spacing={2}>
                         {
