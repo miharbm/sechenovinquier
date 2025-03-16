@@ -6,6 +6,8 @@ import {useNavigate} from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
+import Logo from "../logo/Logo.jsx";
+import Box from "@mui/material/Box";
 
 
 
@@ -31,6 +33,9 @@ const Login = () => {
 
     return (
         <Paper sx={{ padding: "20px" }}>
+            <Box marginBottom={"10px"}>
+                <Logo variant={"xs"}/>
+            </Box>
             <Typography variant="h4" gutterBottom>
                 Авторизация
             </Typography>
