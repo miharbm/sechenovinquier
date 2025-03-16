@@ -125,6 +125,9 @@ const SummaryTable = () => {
                     onFilterModelChange={(model) => handleStateChange({ filterModel: model })}
                     disableSelectionOnClick
                     localeText={ruRU.components.MuiDataGrid.defaultProps.localeText}
+                    initialState={{
+                        sorting: { sortModel: tableState.sortModel },
+                    }}
                 />
             )}
         </Paper>
