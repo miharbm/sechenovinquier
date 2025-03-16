@@ -34,7 +34,7 @@ const Login = () => {
     return (
         <Paper sx={{ padding: "20px" }}>
             <Box marginBottom={"10px"}>
-                <Logo variant={"xs"}/>
+                <Logo variant={"xs"} color={"textSecondary"} />
             </Box>
             <Typography variant="h4" gutterBottom>
                 Авторизация
