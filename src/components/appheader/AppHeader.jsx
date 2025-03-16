@@ -59,7 +59,7 @@ const AppHeader = ({ doctorId, doctorUsername }) => {
                     <Logo/>
                 </Box>
                 <Box sx={{ display: { xs: 'none', lg: 'flex' }, alignItems: 'center', flexGrow: 2 }}>
-                    <Grid container spacing={2}>
+                    <Grid container spacing={3}>
                         {
                             links.map(({link, title}, index) => (
                                 <Grid item key={`link-${index}`}>
