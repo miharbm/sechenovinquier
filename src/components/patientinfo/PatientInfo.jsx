@@ -1,14 +1,14 @@
 import { Card, CardContent, CardMedia, Typography } from '@mui/material';
-import { useGetUserInfoQuery } from "../../api/api.js";
 import { useState } from 'react';
 import LightBox from "../lightbox/LightBox.jsx";
 import PatientInfoSkeleton from "./PatientInfoSkeleton.jsx";
 import defaultAvatar from "../../assets/default_avatar.png";
+import {useGetPatientInfoQuery} from "../../api/adminApi.js";
 const apiUrl = import.meta.env.VITE_API_URL
 
 
 const PatientInfo = ({ patientId }) => {
-    const { data, isLoading, isError } = useGetUserInfoQuery({ userId: patientId });
+    const { data, isLoading, isError } = useGetPatientInfoQuery({ userId: patientId });
 
     const [openLightbox, setOpenLightbox] = useState(false);
     const [selectedImage, setSelectedImage] = useState('');

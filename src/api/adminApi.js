@@ -22,7 +22,13 @@ export const adminApi = createApi({
             query: () => '/patient/list',
         }),
         getPatientInfo: builder.query({
-            query: () => '/patient/info',
+            query: ({userId}) => ({
+                url:  '/patient/info',
+                method: 'GET',
+                params: {
+                    UserId: userId,
+                }
+            }),
         }),
         getQuizInfo: builder.query({
             query: () => '/quiz/info',
