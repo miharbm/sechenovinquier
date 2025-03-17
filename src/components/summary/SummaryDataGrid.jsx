@@ -1,7 +1,6 @@
 import { DataGrid } from '@mui/x-data-grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import { useGetUsersResultsQuery } from "../../api/api.js";
 import dayjs from "dayjs";
 import { CircularProgress, Link } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
@@ -12,12 +11,13 @@ import RefreshIcon from '@mui/icons-material/Refresh';
 import IconButton from "@mui/material/IconButton";
 import { useState, useEffect } from "react";
 import {getInfoColor, getResultStatus} from "../../util/util.js";
+import {useGetPatientResultsQuery} from "../../api/adminApi.js";
 
 const STORAGE_KEY = "summaryTableState";
 
 
 const SummaryTable = () => {
-    const { data, isLoading, refetch, isFetching } = useGetUsersResultsQuery(undefined, { skip: false });
+    const { data, isLoading, refetch, isFetching } = useGetPatientResultsQuery(undefined, { skip: false });
 
     // Загружаем состояние из localStorage или используем дефолтное
     const [tableState, setTableState] = useState(() => {
