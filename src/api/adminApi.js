@@ -12,11 +12,17 @@ export const adminApi = createApi({
     }),
     tagTypes: ['Admin'],
     endpoints: (builder) => ({
-        getUsersResult: builder.query({
+        getPatientResults: builder.query({
             query: () => '/patient/results',
         }),
-        getUserResult: builder.query({
-            query: () => '/patient/result',
+        getPatientResult: builder.query({
+            query: ({patientId}) => ({
+                url: '/patient/result',
+                method: 'GET',
+                params: {
+                    UserId: patientId,
+                }
+            }),
         }),
         getPatientList: builder.query({
             query: () => '/patient/list',
@@ -37,8 +43,8 @@ export const adminApi = createApi({
 });
 
 export const {
-    useGetUsersResultQuery,
-    useGetUserResultQuery,
+    useGetPatientResultsQuery,
+    useGetPatientResultQuery,
     useGetPatientListQuery,
     useGetPatientInfoQuery,
     useGetQuizInfoQuery,

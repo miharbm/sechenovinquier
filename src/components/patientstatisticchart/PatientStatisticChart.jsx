@@ -4,15 +4,15 @@ import ChartItem from "./PatientStatisticChartItem.jsx";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
-// import data from "./testdata.json"
-import data from "./generated_quiz_results.json"
 import {useEffect, useRef, useState} from "react";
 import classNames from "classnames";
+import {useGetPatientResultQuery} from "../../api/adminApi.js";
 
 
-const PatientStatisticChart = () => {
+const PatientStatisticChart = ({patientId}) => {
+    const {data} = useGetPatientResultQuery({patientId})
     const chartRef = useRef(null);
-    const userResults = data.user_results;
+    const userResults = data?.user_results || [];
     const [hasScroll, setHasScroll] = useState(false);
 
     const groupByDate = userResults.reduce((acc, result) => {

@@ -16,7 +16,7 @@ const PatientPage = () => {
                     <PatientInfo patientId={userId} />
                 </Grid>
                 <Grid item xs={12} sm={12} md={9}>
-                    <PatientStatisticChart/>
+                    <PatientStatisticChart patientId={userId}/>
                 </Grid>
             </Grid>
         </Container>
