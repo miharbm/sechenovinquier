@@ -17,7 +17,6 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { useAuth } from '../../context/AuthContext.jsx';
 import { useGetUserInfoQuery } from '../../api/api.js';
-import Grid from "@mui/material/Grid";
 import Logo from "../logo/Logo.jsx";
 import {ListItemButton} from "@mui/material";
 
