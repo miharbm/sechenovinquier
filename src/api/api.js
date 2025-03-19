@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import authHeader from "./authHeader.js";
+import {TAG_PATIENTS} from "./tags.js";
 
 const baseUrl = import.meta.env.VITE_API_URL
 
@@ -35,6 +36,7 @@ export const api = createApi({
                 method: 'POST',
                 body: data,
             }),
+            invalidatesTags: [TAG_PATIENTS]
         }),
         getUserInfo: builder.query({
             query: ({userId}) => ({
