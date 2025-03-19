@@ -17,7 +17,7 @@ const Logo = ({ variant, color }) => {
                 }}
             />
             <Typography
-                variant="h4"
+                variant="h1"
                 sx={{
                     flexGrow: 1,
                     fontSize: isXs ? '1.5rem' : { xs: '1.5rem', sm: '2rem', md: '2.5rem' },

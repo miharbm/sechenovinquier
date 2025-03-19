@@ -27,6 +27,11 @@ const theme = createTheme({
             paper: "#ffffff",     // Цвет фона для `Paper`
         },
     },
+    typography: {
+        h1: {
+            fontFamily: '"Oswald", sans-serif',
+        },
+    }
 });
 
 ReactDOM.createRoot(document.getElementById('root')).render(
