@@ -46,7 +46,12 @@ const AppHeader = ({ doctorId, doctorUsername }) => {
                 <Box sx={{ display: { xs: 'none', lg: 'flex' }, alignItems: 'center', flexGrow: 2, justifyContent: "space-between" }}>
                     <Tabs value={location.pathname} textColor="inherit" indicatorColor="secondary">
                         {links.map(({ link, title }) => (
-                            <Tab key={link} label={title} component={Link} to={link} value={link} />
+                            <Tab key={link}
+                                 label={title}
+                                 component={Link}
+                                 to={link}
+                                 value={link}
+                            />
                         ))}
                     </Tabs>
                     <Box sx={{display: "flex", alignItems: "center"}}>
@@ -71,7 +76,12 @@ const AppHeader = ({ doctorId, doctorUsername }) => {
             <Drawer anchor="right" open={menuOpen} onClose={closeDrawer}>
                 <List sx={{ width: 250 }}>
                     {links.map(({ link, title }) => (
-                        <ListItemButton key={link} to={link} onClick={handleLinkClick} selected={location.pathname === link}>
+                        <ListItemButton key={link}
+                                        to={link}
+                                        onClick={handleLinkClick}
+                                        selected={location.pathname === link}
+                                        component={Link}
+                        >
                             <ListItemText primary={title} />
                         </ListItemButton>
                     ))}
