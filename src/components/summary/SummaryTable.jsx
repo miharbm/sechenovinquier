@@ -5,7 +5,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import { useGetUsersResultsQuery } from "../../api/api.js";
+import { useGetUsersResultsQuery } from "../../api/userApi.js";
 import SummaryTableBody from "./SummaryTableBody.jsx";
 import SummaryTableBodySkeleton from "./SummaryTableBodySkeleton.jsx";
 

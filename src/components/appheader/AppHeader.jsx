@@ -16,7 +16,7 @@ import Divider from '@mui/material/Divider';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { useAuth } from '../../context/AuthContext.jsx';
-import { useGetUserInfoQuery } from '../../api/api.js';
+import { useGetUserInfoQuery } from '../../api/userApi.js';
 import Logo from "../logo/Logo.jsx";
 import {ListItemButton} from "@mui/material";
 

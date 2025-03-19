@@ -1,5 +1,5 @@
 import Typography from "@mui/material/Typography";
-import {useGetUserInfoQuery} from "../../api/api.js";
+import {useGetUserInfoQuery} from "../../api/userApi.js";
 
 const InquiererDetailsHeader = ({userId, passNum, quizId}) => {
     const {data} = useGetUserInfoQuery({userId})

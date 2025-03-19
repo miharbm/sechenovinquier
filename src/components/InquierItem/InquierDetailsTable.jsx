@@ -1,5 +1,5 @@
 import Typography from '@mui/material/Typography';
-import { useGetInquierItemQuery } from "../../api/api.js";
+import { useGetInquierItemQuery } from "../../api/userApi.js";
 import Table from '@mui/material/Table';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
