@@ -3,12 +3,12 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
-import {useRegisterUserMutation} from "../../api/api.js";
 import {validateEmail} from "../../util/util.js";
 import Paper from "@mui/material/Paper";
+import {useRegisterPatientMutation} from "../../api/authApi.js";
 
 const PatientRegistrationForm = () => {
-    const [sendForm] = useRegisterUserMutation();
+    const [sendForm] = useRegisterPatientMutation();
     const [formData, setFormData] = useState({
         username: "",
         first_name: "",
