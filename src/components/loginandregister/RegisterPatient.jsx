@@ -99,7 +99,7 @@ const PatientRegistrationForm = () => {
     return (
         <Paper sx={{ mt: 4, padding: "20px" }}>
             {isLoading && <LinearProgress />}
-            <Typography variant="h4" gutterBottom color="textPrimary" >
+            <Typography variant="h5" gutterBottom color={"textSecondary"} sx={{marginBottom: 2}}>
                 Регистрация пациента
             </Typography>
             <form onSubmit={handleSubmit}>

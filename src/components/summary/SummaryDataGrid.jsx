@@ -106,7 +106,7 @@ const SummaryTable = () => {
         <Paper style={{ marginTop: "2rem", padding: "16px", position: "relative" }}>
             {isFetching && <LinearProgress sx={{position: "absolute", width: "100%", top: 0, left: 0}} />}
             <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
-                <Typography variant="h5" gutterBottom>
+                <Typography variant="h5" color={"textSecondary"} gutterBottom>
                     Результаты тестирований
                 </Typography>
                 <IconButton onClick={handleRefresh} color="primary">
