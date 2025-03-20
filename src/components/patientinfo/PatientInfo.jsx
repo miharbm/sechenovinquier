@@ -66,7 +66,7 @@ const PatientInfo = ({ patientId }) => {
                     />
                     <CardContent>
                         <Typography variant="h6">{last_name}</Typography>
-                        <Typography variant="h6" sx={{lineHeight: "100%"}}>
+                        <Typography variant="h6" sx={{marginTop: 0}}>
                             {`${first_name} ${middle_name}`}
                         </Typography>
                         <Box height={10}/>
