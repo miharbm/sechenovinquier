@@ -11,7 +11,8 @@ const ChartItem = ({data}) => {
         user_score,
         is_failed,
         pass_num,
-        pass_time
+        pass_time,
+        patient_info,
     } = data || {};
 
     const navigate = useNavigate();
@@ -24,7 +25,7 @@ const ChartItem = ({data}) => {
 
 
     const handleClick = () => {
-        navigate(`/inquirer?userId=${user_id}&passnum=${pass_num}&quizId=${quiz_id}`);
+        navigate(`/inquirer?userId=${patient_info.user_id}&passnum=${pass_num}&quizId=${quiz_id}`);
     }
 
     return (

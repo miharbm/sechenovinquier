@@ -92,9 +92,9 @@ const SummaryTable = () => {
         ? data.user_results.map((result, index) => ({
             id: index + 1,
             date: dayjs(result.pass_time).format("DD.MM.YYYY HH:mm"),
-            patient: `${result.last_name} ${result.first_name}`,
+            patient: `${result.patient_info.last_name} ${result.patient_info.first_name}`,
             result: getResultStatus(result.is_failed, result.user_score),
-            userId: result.user_id,
+            userId: result.patient_info.user_id,
             passNum: result.pass_num,
             quizId: result.quiz_id,
         }))
