@@ -26,6 +26,13 @@ const PatientRegistrationForm = () => {
     const [formData, setFormData] = useState(initialFormData);
 
     useEffect(() => {
+        if (isSuccess) {
+            enqueueSnackbar("Пациент зарегистрирован", { variant: "success" });
+            setFormData(initialFormData);
+        }
+    }, [isSuccess])
+
+    useEffect(() => {
         const showError = (message) => {
             enqueueSnackbar(message, { variant: "error" });
             console.error(message);

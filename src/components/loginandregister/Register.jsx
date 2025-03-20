@@ -79,7 +79,6 @@ const Register = () => {
             return;
         }
 
-        
         await register(formData);
     };
 
