@@ -4,7 +4,7 @@ import PatientsList from "../patientslist/PatientsList.jsx";
 const PatientsListPage = () => {
 
     return (
-        <Container>
+        <Container maxWidth="md">
             <PatientsList/>
         </Container>
     )
