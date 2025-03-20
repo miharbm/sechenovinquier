@@ -8,6 +8,7 @@ const ChartItem = ({data}) => {
         first_name,
         last_name,
         quiz_id,
+        quiz_name,
         user_score,
         is_failed,
         pass_num,
@@ -33,7 +34,7 @@ const ChartItem = ({data}) => {
             <div>
                 <div><strong>Дата:</strong> { date }</div>
                 <div><strong>Статус:</strong> {status}</div>
-                <div><strong>Quiz ID:</strong> {quiz_id}</div>
+                <div><strong>Наз. опроса:</strong> {quiz_name}</div>
             </div>
         }
                  placement="top"
