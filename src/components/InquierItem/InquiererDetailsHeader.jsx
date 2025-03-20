@@ -1,14 +1,21 @@
 import Typography from "@mui/material/Typography";
-import {useGetUserInfoQuery} from "../../api/userApi.js";
+import {useGetQuizzesQuery} from "../../api/quizApi.js";
+import Box from "@mui/material/Box";
 
-const InquiererDetailsHeader = ({userId, passNum, quizId}) => {
-    const {data} = useGetUserInfoQuery({userId})
+const InquiererDetailsHeader = ({passNum, quizId}) => {
+    const {data: quizzes} = useGetQuizzesQuery()
 
+    const quizName = quizzes?.list.filter(quiz => quiz.quiz_id === Number(quizId))[0]?.name
 
     return (
-        <Typography variant="h5" gutterBottom>
-            Детали исследования № {passNum} типа {quizId} пациента {data?.last_name} {data?.first_name}
-        </Typography>
+        <Box display="flex" justifyContent="space-between" alignItems="center" padding={"0 12px"} flexWrap={"wrap"}>
+            <Typography variant="h6" color={"textSecondary"} gutterBottom>
+                {quizName}
+            </Typography>
+            <Typography variant="body2" color={"primary"} gutterBottom>
+                № {passNum}
+            </Typography>
+        </Box>
     )
 }
 

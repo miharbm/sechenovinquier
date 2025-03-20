@@ -3,6 +3,7 @@ import {authApi} from "../api/authApi.js";
 import authReducer from '../reducers/authSlice';
 import {userApi} from "../api/userApi.js";
 import {adminApi} from "../api/adminApi.js";
+import {quizApi} from "../api/quizApi.js";
 
 
 export const store = configureStore({
@@ -10,8 +11,9 @@ export const store = configureStore({
         [authApi.reducerPath]: authApi.reducer,
         [userApi.reducerPath]: userApi.reducer,
         [adminApi.reducerPath]: adminApi.reducer,
+        [quizApi.reducerPath]: quizApi.reducer,
         auth: authReducer
     },
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(authApi.middleware, userApi.middleware, adminApi.middleware),
+        getDefaultMiddleware().concat(authApi.middleware, userApi.middleware, adminApi.middleware, quizApi.middleware),
 });
