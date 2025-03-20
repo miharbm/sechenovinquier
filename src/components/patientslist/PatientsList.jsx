@@ -5,8 +5,8 @@ import {
     Box,
     IconButton,
     List,
-    ListItem,
     ListItemAvatar,
+    ListItemButton,
     ListItemText,
     Paper,
     TextField,
@@ -60,7 +60,7 @@ const PatientsList = () => {
 
             <List>
                 {sortedPatients.map((patient) => (
-                    <ListItem
+                    <ListItemButton
                         key={patient.user_id}
                         component={RouterLink}
                         to={`/patient?userId=${patient.user_id}`}
@@ -72,7 +72,7 @@ const PatientsList = () => {
                             />
                         </ListItemAvatar>
                         <ListItemText primary={`${patient.first_name} ${patient.last_name}`} />
-                    </ListItem>
+                    </ListItemButton>
                 ))}
             </List>
         </Paper>
