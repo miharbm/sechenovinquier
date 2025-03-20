@@ -4,7 +4,12 @@ import LightBox from "../lightbox/LightBox.jsx";
 import PatientInfoSkeleton from "./PatientInfoSkeleton.jsx";
 import defaultAvatar from "../../assets/default_avatar.png";
 import {useGetPatientInfoQuery} from "../../api/adminApi.js";
+import Box from "@mui/material/Box";
 const apiUrl = import.meta.env.VITE_API_URL
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import IconButton from "@mui/material/IconButton";
+import Tooltip from "@mui/material/Tooltip";
+import {enqueueSnackbar} from "notistack";
 
 
 const PatientInfo = ({ patientId }) => {
@@ -23,13 +28,21 @@ const PatientInfo = ({ patientId }) => {
         setOpenLightbox(false);
     };
 
+    const handleCopy = async (text) => {
+        try {
+            await navigator.clipboard.writeText(text);
+            enqueueSnackbar("Номер скопирован", { variant: "success" });
+        } catch (err) {
+            console.error("Ошибка копирования", err);
+        }
+    };
+
     if (isError) return <Typography>Ошибка при загрузке данных пациента.</Typography>;
 
     const {
         first_name,
         middle_name,
         last_name,
-        snils,
         email,
         phone,
         avatar
@@ -52,18 +65,38 @@ const PatientInfo = ({ patientId }) => {
                         onError={() => setAvatarSrc(defaultAvatar)}
                     />
                     <CardContent>
-                        <Typography variant="h6">{`${last_name} ${first_name} ${middle_name}`}</Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            <strong>СНИЛС:</strong> {snils}
+                        <Typography variant="h6">{last_name}</Typography>
+                        <Typography variant="h6" sx={{lineHeight: "100%"}}>
+                            {`${first_name} ${middle_name}`}
                         </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            <strong>Email:</strong> {email}
-                        </Typography>
-                        {phone && (
+                        <Box height={10}/>
+                        {email && (
                             <Typography variant="body2" color="text.secondary">
-                                <strong>Телефон:</strong> {phone}
+                                <strong>Email:</strong> {email}
                             </Typography>
                         )}
+                        <Typography variant="body2" color="text.secondary" sx={{display: "inline"}}>
+                            <strong>Телефон: </strong>
+                        </Typography>
+                        {phone && <>
+                            <Typography
+                                variant="body2"
+                                color="text.secondary"
+                                component="a"
+                                href={`tel:${phone}`}
+                                sx={{textDecoration: "none", userSelect: "all"}}
+                            >
+                                {phone}
+                            </Typography>
+                            <Tooltip title="Скопировать">
+                                <IconButton onClick={() => handleCopy(phone)}
+                                            size="small"
+                                            sx={{ padding: "0.3 0.5" }}
+                                >
+                                    <ContentCopyIcon fontSize="small" sx={{ fontSize: 13 }} />
+                                </IconButton>
+                            </Tooltip>
+                        </>}
                     </CardContent>
                 </Card>
             )}
