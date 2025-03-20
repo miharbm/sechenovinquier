@@ -2,24 +2,46 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import {validateEmail} from "../../util/util.js";
 import Paper from "@mui/material/Paper";
 import {useRegisterPatientMutation} from "../../api/authApi.js";
+import {enqueueSnackbar} from "notistack";
+
+const initialFormData = {
+    username: "",
+    first_name: "",
+    middle_name: "",
+    last_name: "",
+    phone: "",
+    email: "",
+    password: "",
+    password_confirm: ""
+}
 
 const PatientRegistrationForm = () => {
-    const [sendForm] = useRegisterPatientMutation();
-    const [formData, setFormData] = useState({
-        username: "",
-        first_name: "",
-        middle_name: "",
-        last_name: "",
-        phone: "",
-        email: "",
-        password: "",
-        password_confirm: ""
-    });
+    const [sendForm, {error, isSuccess}] = useRegisterPatientMutation();
+    const [formError, setFormError] = useState(null);
+    const [formData, setFormData] = useState(initialFormData);
 
+    useEffect(() => {
+        if (formError) {
+            enqueueSnackbar(formError, {variant: "error"})
+            console.error(formError)
+        }
+        if (error) {
+            enqueueSnackbar(error, {variant: "error"})
+            console.error(error)
+        }
+        setFormError(null)
+    }, [formError, error])
+
+    useEffect(() => {
+        if (isSuccess) {
+            enqueueSnackbar("Пациент зарегестрирован", {variant: "success"});
+            setFormData(initialFormData);
+        }
+    }, [isSuccess])
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -52,22 +74,16 @@ const PatientRegistrationForm = () => {
         e.preventDefault();
 
         if (!validateEmail(formData.email)) {
-            alert("Некорректный email!");
+            setFormError("Некорректный email")
             return;
         }
 
         if (formData.password !== formData.password_confirm) {
-            alert("Пароли не совпадают!");
+            setFormError("Пароли не совпадают")
             return;
         }
 
-        try {
-            await sendForm(formData).unwrap();
-            alert("Пациент успешно зарегистрирован!");
-        } catch (error) {
-            console.error("Ошибка регистрации:", error);
-            alert("Ошибка при регистрации пациента");
-        }
+        await sendForm(formData)
     };
 
     return (

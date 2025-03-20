@@ -37,6 +37,7 @@ const Register = () => {
         if (error) {
             enqueueSnackbar(error, {variant: "error"})
         }
+        setFormError(null)
     }, [error, formError]);
 
 
