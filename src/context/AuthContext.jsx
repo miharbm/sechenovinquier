@@ -22,11 +22,11 @@ export const AuthProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(true);
 
     const [loginApi, {
-        isLoadingLogin,
+        isLoading: isLoadingLogin,
     }] = useLoginMutation();
 
     const [registerApi, {
-        isLoadingRegister,
+        isLoading: isLoadingRegister,
     }] = useRegisterAdminMutation();
 
 
@@ -35,6 +35,7 @@ export const AuthProvider = ({ children }) => {
     }, [credentials]);
 
     useEffect(() => {
+        console.log("isLoadingRegister || isLoadingLogin", isLoadingRegister || isLoadingLogin)
         setIsLoading(isLoadingRegister || isLoadingLogin)
     }, [isLoadingLogin, isLoadingRegister])
 
@@ -101,6 +102,9 @@ export const AuthProvider = ({ children }) => {
             switch (error.status) {
                 case 400:
                     setError("Ошибка регистрации");
+                    break;
+                case "FETCH_ERROR":
+                    setError("Ошибка сети. Нет подключения");
                     break;
                 default:
                     setError(JSON.stringify(error));

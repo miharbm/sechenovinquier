@@ -9,6 +9,7 @@ import Grid from "@mui/material/Grid";
 import Logo from "../logo/Logo.jsx";
 import Box from "@mui/material/Box";
 import {useSnackbar} from "notistack";
+import {LinearProgress} from "@mui/material";
 
 
 
@@ -39,9 +40,10 @@ const Login = () => {
         await login({username, password})
     }
 
-
+    console.log("isLoading", isLoading)
     return (
-        <Paper sx={{ padding: "20px" }}>
+        <Paper sx={{ padding: "20px", position: "relative" }}>
+            {isLoading && <LinearProgress sx={{position: "absolute", width: "100%", top: 0, left: 0}} />}
             <Box marginBottom={"10px"}>
                 <Logo variant={"xs"} color={"textSecondary"} />
             </Box>

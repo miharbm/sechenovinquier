@@ -7,6 +7,7 @@ import {validateEmail} from "../../util/util.js";
 import Paper from "@mui/material/Paper";
 import {useRegisterPatientMutation} from "../../api/authApi.js";
 import {enqueueSnackbar} from "notistack";
+import {Backdrop, LinearProgress} from "@mui/material";
 
 const initialFormData = {
     username: "",
@@ -20,7 +21,7 @@ const initialFormData = {
 }
 
 const PatientRegistrationForm = () => {
-    const [sendForm, {error, isSuccess}] = useRegisterPatientMutation();
+    const [sendForm, {error, isSuccess, isLoading}] = useRegisterPatientMutation();
     const [formError, setFormError] = useState(null);
     const [formData, setFormData] = useState(initialFormData);
 
@@ -88,6 +89,7 @@ const PatientRegistrationForm = () => {
 
     return (
         <Paper sx={{ mt: 4, padding: "20px" }}>
+            {isLoading && <LinearProgress />}
             <Typography variant="h4" gutterBottom color="textPrimary" >
                 Регистрация пациента
             </Typography>

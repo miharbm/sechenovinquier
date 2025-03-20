@@ -8,9 +8,10 @@ import { useEffect, useState } from "react";
 import { validateEmail } from "../../util/util.js";
 import Paper from "@mui/material/Paper";
 import {enqueueSnackbar} from "notistack";
+import {LinearProgress} from "@mui/material";
 
 const Register = () => {
-    const { register, isAuthenticated, error } = useAuth();
+    const { register, isAuthenticated, error, isLoading } = useAuth();
     const [formError, setFormError] = useState(null);
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
@@ -33,9 +34,19 @@ const Register = () => {
     useEffect(() => {
         if (formError) {
             enqueueSnackbar(formError, {variant: "error"})
+            console.error(formError)
         }
         if (error) {
-            enqueueSnackbar(error, {variant: "error"})
+            switch (error.status) {
+                case 400:
+                    enqueueSnackbar("Ошибка регистрации", {variant: "error"})
+                    break;
+                case "FETCH_ERROR":
+                    enqueueSnackbar("Ошибка сети. Нет подключения", {variant: "error"})
+                    break;
+                default:
+                    enqueueSnackbar(error, {variant: "error"})
+            }
         }
         setFormError(null)
     }, [error, formError]);
@@ -73,7 +84,8 @@ const Register = () => {
 
 
     return (
-        <Paper sx={{ padding: "20px" }}>
+        <Paper sx={{ padding: "20px", position: "relative" }}>
+            {isLoading && <LinearProgress sx={{position: "absolute", width: "100%", top: 0, left: 0}} />}
             <Typography variant="h4" gutterBottom>
                 Регистрация
             </Typography>
