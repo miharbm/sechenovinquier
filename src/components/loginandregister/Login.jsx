@@ -8,22 +8,31 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Logo from "../logo/Logo.jsx";
 import Box from "@mui/material/Box";
+import {useSnackbar} from "notistack";
 
 
 
 const Login = () => {
+    const { enqueueSnackbar } = useSnackbar();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    const {login, isLoading, isAuthenticated} = useAuth()
+    const {login, isLoading, isAuthenticated, error} = useAuth()
     const navigate = useNavigate();
 
-
+    console.log("error", error);
     useEffect(() => {
         if (isAuthenticated) {
             navigate('/');
         }
     }, [isAuthenticated, navigate]);
+
+    useEffect(() => {
+        if (error) {
+            enqueueSnackbar(error, {variant: "error"})
+        }
+    }, [enqueueSnackbar, error]);
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();

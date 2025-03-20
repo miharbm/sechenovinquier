@@ -69,7 +69,16 @@ export const AuthProvider = ({ children }) => {
 
             setError(null);
         } catch (error) {
-            setError(error);
+            switch (error.status) {
+                case 400:
+                    setError("Ошибка авторизации. Неверный логин или пароль");
+                    break;
+                case "FETCH_ERROR":
+                    setError("Ошибка сети. Нет подключения");
+                    break;
+                default:
+                    setError(JSON.stringify(error));
+            }
             console.error("Ошибка входа:", error);
         }
     };
@@ -89,7 +98,14 @@ export const AuthProvider = ({ children }) => {
                 password: formData.password,
             });
         } catch (error) {
-            setError(error);
+            switch (error.status) {
+                case 400:
+                    setError("Ошибка регистрации");
+                    break;
+                default:
+                    setError(JSON.stringify(error));
+            }
+
             console.error("Ошибка регистрации:", error);
         }
     }

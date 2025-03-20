@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import {store} from "./store/index.js";
 import {AuthProvider} from "./context/AuthContext.jsx";
 import {CssBaseline} from "@mui/material";
+import { SnackbarProvider } from 'notistack';
 
 
 const theme = createTheme({
@@ -40,7 +41,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <AuthProvider>
               <ThemeProvider theme={theme}>
                   <CssBaseline />
-                  <App />
+                  <SnackbarProvider maxSnack={4}>
+                      <App />
+                  </SnackbarProvider>
               </ThemeProvider>
           </AuthProvider>
       </Provider>

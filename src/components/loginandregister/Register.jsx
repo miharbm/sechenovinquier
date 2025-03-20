@@ -7,9 +7,11 @@ import { useAuth } from "../../context/AuthContext.jsx";
 import { useEffect, useState } from "react";
 import { validateEmail } from "../../util/util.js";
 import Paper from "@mui/material/Paper";
+import {enqueueSnackbar} from "notistack";
 
 const Register = () => {
-    const { register, isAuthenticated } = useAuth();
+    const { register, isAuthenticated, error } = useAuth();
+    const [formError, setFormError] = useState(null);
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         first_name: "",
@@ -28,6 +30,15 @@ const Register = () => {
         }
     }, [isAuthenticated, navigate]);
 
+    useEffect(() => {
+        if (formError) {
+            enqueueSnackbar(formError, {variant: "error"})
+        }
+        if (error) {
+            enqueueSnackbar(error, {variant: "error"})
+        }
+    }, [error, formError]);
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -43,17 +54,19 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setFormError(null)
 
         if (!validateEmail(formData.email)) {
-            alert("Некорректный email!");
+            setFormError("Некорректный email")
             return;
         }
 
         if (formData.password !== formData.password_confirm) {
-            alert("Пароли не совпадают!");
+            setFormError("Пароли не совпадают")
             return;
         }
 
+        
         await register(formData);
     };
 
