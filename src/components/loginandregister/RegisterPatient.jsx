@@ -41,10 +41,10 @@ const PatientRegistrationForm = () => {
                 400: "Ошибка регистрации пациента",
                 "FETCH_ERROR": "Ошибка сети. Нет подключения",
             };
-
+            console.log(errorMessages[error.status] || String(error));
             showError(errorMessages[error.status] || String(error));
         }
-    }, [isSuccess])
+    }, [error, formError, isSuccess])
 
     const handleChange = (e) => {
         const { name, value } = e.target;
