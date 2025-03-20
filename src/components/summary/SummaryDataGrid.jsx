@@ -2,7 +2,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import dayjs from "dayjs";
-import { CircularProgress, Link } from "@mui/material";
+import {CircularProgress, LinearProgress, Link} from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import SummaryTableBodySkeleton from "./SummaryTableBodySkeleton.jsx";
 import { ruRU } from '@mui/x-data-grid/locales';
@@ -101,7 +101,8 @@ const SummaryTable = () => {
         : [];
 
     return (
-        <Paper style={{ marginTop: "2rem", padding: "16px" }}>
+        <Paper style={{ marginTop: "2rem", padding: "16px", position: "relative" }}>
+            {isFetching && <LinearProgress sx={{position: "absolute", width: "100%", top: 0, left: 0}} />}
             <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
                 <Typography variant="h5" gutterBottom>
                     Результаты тестирований
