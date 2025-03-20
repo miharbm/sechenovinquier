@@ -72,6 +72,7 @@ const SummaryTable = () => {
                 </span>
             ),
         },
+        { field: "quizName", headerName: "Название опроса", flex: 2, sortable: true},
         {
             field: "details",
             headerName: "Детали",
@@ -97,6 +98,7 @@ const SummaryTable = () => {
             userId: result.patient_info.user_id,
             passNum: result.pass_num,
             quizId: result.quiz_id,
+            quizName: result.quiz_name
         }))
         : [];
 
