@@ -7,7 +7,7 @@ import {validateEmail} from "../../util/util.js";
 import Paper from "@mui/material/Paper";
 import {useRegisterPatientMutation} from "../../api/authApi.js";
 import {enqueueSnackbar} from "notistack";
-import {Backdrop, LinearProgress} from "@mui/material";
+import {LinearProgress} from "@mui/material";
 
 const initialFormData = {
     username: "",
@@ -26,21 +26,23 @@ const PatientRegistrationForm = () => {
     const [formData, setFormData] = useState(initialFormData);
 
     useEffect(() => {
-        if (formError) {
-            enqueueSnackbar(formError, {variant: "error"})
-            console.error(formError)
-        }
-        if (error) {
-            enqueueSnackbar(error, {variant: "error"})
-            console.error(error)
-        }
-        setFormError(null)
-    }, [formError, error])
+        const showError = (message) => {
+            enqueueSnackbar(message, { variant: "error" });
+            console.error(message);
+        };
 
-    useEffect(() => {
-        if (isSuccess) {
-            enqueueSnackbar("Пациент зарегестрирован", {variant: "success"});
-            setFormData(initialFormData);
+        if (formError) {
+            showError(formError);
+            setFormError(null);
+        }
+
+        if (error) {
+            const errorMessages = {
+                400: "Ошибка регистрации пациента",
+                "FETCH_ERROR": "Ошибка сети. Нет подключения",
+            };
+
+            showError(errorMessages[error.status] || String(error));
         }
     }, [isSuccess])
 

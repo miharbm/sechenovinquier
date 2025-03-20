@@ -32,23 +32,24 @@ const Register = () => {
     }, [isAuthenticated, navigate]);
 
     useEffect(() => {
+        const showError = (message) => {
+            enqueueSnackbar(message, { variant: "error" });
+            console.error(message);
+        };
+
         if (formError) {
-            enqueueSnackbar(formError, {variant: "error"})
-            console.error(formError)
+            showError(formError);
+            setFormError(null);
         }
+
         if (error) {
-            switch (error.status) {
-                case 400:
-                    enqueueSnackbar("Ошибка регистрации", {variant: "error"})
-                    break;
-                case "FETCH_ERROR":
-                    enqueueSnackbar("Ошибка сети. Нет подключения", {variant: "error"})
-                    break;
-                default:
-                    enqueueSnackbar(error, {variant: "error"})
-            }
+            const errorMessages = {
+                400: "Ошибка регистрации",
+                "FETCH_ERROR": "Ошибка сети. Нет подключения",
+            };
+
+            showError(errorMessages[error.status] || String(error));
         }
-        setFormError(null)
     }, [error, formError]);
 
 
