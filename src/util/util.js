@@ -5,17 +5,21 @@ export const validateEmail = (email) => {
     return emailRegex.test(email);
 };
 
+export const RESULT_POSITIVE = "Положительный"
+export const RESULT_NEGATIVE = "Отрицательный"
+export const RESULT_SUSPICIOUS = "С подозрением"
+
 export const getResultStatus = (isFailed, score) => {
-    if (isFailed) return "Положительный";
-    if (score > 0) return "С подозрением";
-    return "Отрицательный";
+    if (isFailed) return RESULT_NEGATIVE;
+    if (score > 0) return RESULT_SUSPICIOUS;
+    return RESULT_POSITIVE;
 };
 
 export const getInfoColor = (status) => {
     const statuses = {
-        "Отрицательный" : infoColors.bad,
-        "С подозрением" : infoColors.warning,
-        "Положительный" : infoColors.ok,
+        [RESULT_NEGATIVE] : infoColors.bad,
+        [RESULT_SUSPICIOUS] : infoColors.warning,
+        [RESULT_POSITIVE] : infoColors.ok,
     }
 
     return statuses[status]
