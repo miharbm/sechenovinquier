@@ -8,8 +8,7 @@ import {store} from "./store/index.js";
 import {AuthProvider} from "./context/AuthContext.jsx";
 import {CssBaseline} from "@mui/material";
 import { SnackbarProvider } from 'notistack';
-import theme, {infoColors} from "./styles/theme.js"
-import CustomSnackbar from "./components/CustomSnackbar/CustomSnackbar.jsx";
+import theme, {StyledMaterialDesignContent} from "./styles/theme.js"
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -21,9 +20,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                   <SnackbarProvider maxSnack={4}
                                     anchorOrigin={{vertical: 'top', horizontal: 'right'}}
                                     Components={{
-                                        success: (props) => <CustomSnackbar {...props} color={infoColors.ok} />,
-                                        warning: (props) => <CustomSnackbar {...props} color={infoColors.warning} />,
-                                        error: (props) => <CustomSnackbar {...props} color={infoColors.bad} />,
+                                        success: StyledMaterialDesignContent,
+                                        error: StyledMaterialDesignContent,
                                     }}
                   >
                       <App />

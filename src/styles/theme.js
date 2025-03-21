@@ -1,4 +1,6 @@
 import {createTheme} from "@mui/material/styles";
+import {styled} from "@mui/system";
+import {MaterialDesignContent} from "notistack";
 
 const theme = createTheme({
     palette: {
@@ -33,5 +35,18 @@ export const infoColors = {
     warning: "#ff9800",
     bad: "#f54242",
 }
+
+export const StyledMaterialDesignContent = styled(MaterialDesignContent)(() => ({
+    '&.notistack-MuiContent-success': {
+        backgroundColor: infoColors.ok,
+    },
+    '&.notistack-MuiContent-warning': {
+        backgroundColor: infoColors.warning,
+    },
+    '&.notistack-MuiContent-error': {
+        backgroundColor: infoColors.bad,
+    },
+}));
+
 
 export default theme;
