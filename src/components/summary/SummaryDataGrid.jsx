@@ -62,6 +62,7 @@ const SummaryTable = () => {
                 </Link>
             ),
         },
+        { field: "quizName", headerName: "Название опроса", flex: 2, sortable: true},
         {
             field: "result",
             headerName: "Результат",
@@ -72,7 +73,6 @@ const SummaryTable = () => {
                 </span>
             ),
         },
-        { field: "quizName", headerName: "Название опроса", flex: 2, sortable: true},
         {
             field: "details",
             headerName: "Детали",

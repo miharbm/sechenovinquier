@@ -1,3 +1,5 @@
+import {infoColors} from "../styles/theme.js";
+
 export const validateEmail = (email) => {
     const emailRegex = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
     return emailRegex.test(email);
@@ -11,9 +13,9 @@ export const getResultStatus = (isFailed, score) => {
 
 export const getInfoColor = (status) => {
     const statuses = {
-        "Отрицательный" : "red",
-        "С подозрением" : "orange",
-        "Положительный" : "green"
+        "Отрицательный" : infoColors.bad,
+        "С подозрением" : infoColors.warning,
+        "Положительный" : infoColors.ok,
     }
 
     return statuses[status]
