@@ -13,7 +13,7 @@ import {
     Typography
 } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
-import SortIcon from "@mui/icons-material/Sort";
+import SortIcon from '@mui/icons-material/SortByAlpha';
 const apiUrl = import.meta.env.VITE_API_URL
 
 
@@ -59,7 +59,7 @@ const PatientsList = () => {
             </Box>
 
             <List>
-                {sortedPatients.map((patient) => (
+                {sortedPatients?.map((patient) => (
                     <ListItemButton
                         key={patient.user_id}
                         component={RouterLink}
