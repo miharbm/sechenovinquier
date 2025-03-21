@@ -35,7 +35,6 @@ export const AuthProvider = ({ children }) => {
     }, [credentials]);
 
     useEffect(() => {
-        console.log("isLoadingRegister || isLoadingLogin", isLoadingRegister || isLoadingLogin)
         setIsLoading(isLoadingRegister || isLoadingLogin)
     }, [isLoadingLogin, isLoadingRegister])
 

@@ -40,7 +40,7 @@ const Login = () => {
         await login({username, password})
     }
 
-    console.log("isLoading", isLoading)
+
     return (
         <Paper sx={{ padding: "20px", position: "relative" }}>
             {isLoading && <LinearProgress sx={{position: "absolute", width: "100%", top: 0, left: 0}} />}
