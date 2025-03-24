@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { useGetPatientListQuery } from "../../api/adminApi.js";
 import {
     Avatar,
@@ -15,14 +15,28 @@ import {
 import { Link as RouterLink } from "react-router-dom";
 import SortIcon from '@mui/icons-material/SortByAlpha';
 import PatientsListSkeleton from "./PatientsListSkeleton.jsx";
+import {errorMessages} from "../../util/util.js";
+import {enqueueSnackbar} from "notistack";
 const apiUrl = import.meta.env.VITE_API_URL
 
 
 const PatientsList = () => {
-    const { data, isLoading, isFetching } = useGetPatientListQuery();
+    const { data, isLoading, isFetching, error } = useGetPatientListQuery();
     const [searchQuery, setSearchQuery] = useState("");
     const [sortAsc, setSortAsc] = useState(true);
 
+
+    useEffect(() => {
+        if (error) {
+            const errorMessagesLocal = {
+                ...errorMessages,
+                400: "Ошибка получения данных"
+            }
+
+            enqueueSnackbar(errorMessagesLocal[error?.status] || String(error), { variant: "error" });
+            console.error(error)
+        }
+    }, [error]);
 
     const avatarUrl = (url) => (
         url ? `${apiUrl}/static/public/avatars/${url}` : null

@@ -9,15 +9,16 @@ import Box from "@mui/material/Box";
 import RefreshIcon from '@mui/icons-material/Refresh';
 import IconButton from "@mui/material/IconButton";
 import { useState, useEffect } from "react";
-import {getInfoColor, getResultStatus} from "../../util/util.js";
+import {errorMessages, getInfoColor, getResultStatus} from "../../util/util.js";
 import {useGetPatientResultsQuery} from "../../api/adminApi.js";
 import SummaryDataGridSkeleton from "./SummaryDataGridSkeleton.jsx";
+import {enqueueSnackbar} from "notistack";
 
 const STORAGE_KEY = "summaryTableState";
 
 
 const SummaryTable = () => {
-    const { data, isLoading, refetch, isFetching } = useGetPatientResultsQuery(undefined, { skip: false });
+    const { data, isLoading, refetch, isFetching, error } = useGetPatientResultsQuery(undefined, { skip: false });
 
     // Загружаем состояние из localStorage или используем дефолтное
     const [tableState, setTableState] = useState(() => {
@@ -31,6 +32,19 @@ const SummaryTable = () => {
                 filterModel: { items: [] },
             };
     });
+
+
+    useEffect(() => {
+        if (error) {
+            const errorMessagesLocal = {
+                ...errorMessages,
+                400: "Ошибка получения данных"
+            }
+
+            enqueueSnackbar(errorMessagesLocal[error?.status] || String(error), { variant: "error" });
+            console.error(error)
+        }
+    }, [error]);
 
     useEffect(() => {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(tableState));

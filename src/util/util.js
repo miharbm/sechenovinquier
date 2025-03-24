@@ -32,3 +32,8 @@ export const getInfoColor = (status) => {
 
     return statuses[status]
 }
+
+export const errorMessages = {
+    400: "Ошибка регистрации пациента",
+    "FETCH_ERROR": "Ошибка сети. Нет подключения",
+};
