@@ -10,7 +10,7 @@ export const validateName = (value) => {
 }
 
 export const validateUsername = (username) => {
-    return /^[a-zA-Z0-9_-]*$/.test(username)
+    return /^[a-z0-9_-]*$/.test(username)
 }
 
 export const RESULT_POSITIVE = "Положительный"
