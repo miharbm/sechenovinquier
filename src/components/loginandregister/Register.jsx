@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.jsx";
 import { useEffect, useState } from "react";
-import { validateEmail } from "../../util/util.js";
+import {validateEmail, validateName, validateUsername} from "../../util/util.js";
 import Paper from "@mui/material/Paper";
 import {enqueueSnackbar} from "notistack";
 import {LinearProgress} from "@mui/material";
@@ -56,8 +56,8 @@ const Register = () => {
     const handleChange = (e) => {
         const { name, value } = e.target;
 
-        if (name === "username" && !/^[a-zA-Z0-9_-]*$/.test(value)) return;
-        if (["first_name", "middle_name", "last_name"].includes(name) && !/^[а-яА-ЯёЁ]*$/.test(value)) return;
+        if (name === "username" && !validateUsername(value)) return;
+        if (["first_name", "middle_name", "last_name"].includes(name) && !validateName(value)) return;
 
         setFormData(prevState => ({
             ...prevState,

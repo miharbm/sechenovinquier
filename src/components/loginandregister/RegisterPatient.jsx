@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import {useEffect, useState} from 'react';
-import {validateEmail} from "../../util/util.js";
+import {validateEmail, validateName, validateUsername} from "../../util/util.js";
 import Paper from "@mui/material/Paper";
 import {useRegisterPatientMutation} from "../../api/authApi.js";
 import {enqueueSnackbar} from "notistack";
@@ -56,13 +56,10 @@ const PatientRegistrationForm = () => {
     const handleChange = (e) => {
         const { name, value } = e.target;
 
-        // Валидация логина (только латиница + цифры)
-        if (name === "username" && !/^[a-zA-Z0-9_-]*$/.test(value)) return;
+        if (name === "username" && !validateUsername(value)) return;
 
-        // Валидация ФИО (только кириллица)
-        if (["first_name", "middle_name", "last_name"].includes(name) && !/^[а-яА-ЯёЁ]*$/.test(value)) return;
+        if (["first_name", "middle_name", "last_name"].includes(name) && !validateName(value)) return;
 
-        // Валидация телефона с автоформатированием
         if (name === "phone") {
             let cleaned = value.replace(/\D/g, ""); // Удаляем всё, кроме цифр
             if (cleaned.length > 11) cleaned = cleaned.slice(0, 11);

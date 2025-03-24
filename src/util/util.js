@@ -5,6 +5,14 @@ export const validateEmail = (email) => {
     return emailRegex.test(email);
 };
 
+export const validateName = (value) => {
+    return /^[а-яА-ЯёЁ]*$/.test(value)
+}
+
+export const validateUsername = (username) => {
+    return /^[a-zA-Z0-9_-]*$/.test(username)
+}
+
 export const RESULT_POSITIVE = "Положительный"
 export const RESULT_NEGATIVE = "Отрицательный"
 export const RESULT_SUSPICIOUS = "С подозрением"
