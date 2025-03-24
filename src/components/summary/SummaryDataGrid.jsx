@@ -4,7 +4,6 @@ import Typography from '@mui/material/Typography';
 import dayjs from "dayjs";
 import {CircularProgress, LinearProgress, Link} from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
-import SummaryTableBodySkeleton from "./SummaryTableBodySkeleton.jsx";
 import { ruRU } from '@mui/x-data-grid/locales';
 import Box from "@mui/material/Box";
 import RefreshIcon from '@mui/icons-material/Refresh';
@@ -52,22 +51,24 @@ const SummaryTable = () => {
     };
 
     const columns = [
-        { field: "date", headerName: "Дата", flex: 2, sortable: true },
+        { field: "date", headerName: "Дата", flex: 2, sortable: true, minWidth: 135 },
         {
             field: "patient",
             headerName: "Имя пациента",
             flex: 2,
+            minWidth: 120,
             renderCell: (params) => (
                 <Link to={`/patient?userId=${params.row.userId}`} component={RouterLink}>
                     {params.row.patient}
                 </Link>
             ),
         },
-        { field: "quizName", headerName: "Название опроса", flex: 2, sortable: true},
+        { field: "quizName", headerName: "Название опроса", flex: 2, sortable: true, minWidth: 200},
         {
             field: "result",
             headerName: "Результат",
             flex: 2,
+            minWidth: 135,
             renderCell: (params) => (
                 <span style={{ color: getInfoColor(params.value) }}>
                     {params.value}
@@ -78,6 +79,7 @@ const SummaryTable = () => {
             field: "details",
             headerName: "Детали",
             flex: 1,
+            minWidth: 100,
             disableColumnFilter: true,
             disableColumnMenu: true,
             filterable: false,
