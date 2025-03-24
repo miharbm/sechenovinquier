@@ -12,6 +12,7 @@ import IconButton from "@mui/material/IconButton";
 import { useState, useEffect } from "react";
 import {getInfoColor, getResultStatus} from "../../util/util.js";
 import {useGetPatientResultsQuery} from "../../api/adminApi.js";
+import SummaryDataGridSkeleton from "./SummaryDataGridSkeleton.jsx";
 
 const STORAGE_KEY = "summaryTableState";
 
@@ -114,7 +115,7 @@ const SummaryTable = () => {
                 </IconButton>
             </Box>
 
-            {isLoading && <SummaryTableBodySkeleton />}
+            {isLoading && <SummaryDataGridSkeleton />}
             {rows.length > 0 && (
                 <DataGrid
                     rows={rows}
