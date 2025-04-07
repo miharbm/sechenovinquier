@@ -12,30 +12,28 @@ import InquiererItemPage from "../pages/InquiererItemPage.jsx";
 import PatientPage from "../pages/PatientPage.jsx";
 import NotFoundPage from "../pages/NotFoundPage.jsx";
 import PatientsListPage from "../pages/PatientsListPage.jsx";
+import MainLayout from "../layouts/MainLayout.jsx";
 
 
 const  App = () => {
-    const { isAuthenticated, username, userId } = useAuth();
-
 
     return (
         <Router>
-            <main className={"app"}>
-                <div className={"content"}>
-                    {isAuthenticated && <AppHeader doctorUsername={username} doctorId={userId}/>}
-                    <Routes>
-                        <Route path={"/auth"} element={<LoginPage/>}/>
-                        <Route path={"/login"} element={<LoginPage/>}/>
-                        <Route path={"/registration"} element={<RegistrationPage/>}/>
-                        <Route path={"/patient-registration"} element={<ProtectedRoute> <PatientRegistrationPage/> </ProtectedRoute>}/>
-                        <Route path={"/"} element={<ProtectedRoute> <MainPage/> </ProtectedRoute>}/>
-                        <Route path={"/inquirer"} element={<ProtectedRoute> <InquiererItemPage/> </ProtectedRoute>}/>
-                        <Route path={"/patient"} element={<ProtectedRoute> <PatientPage/> </ProtectedRoute>}/>
-                        <Route path={"/patients"} element={<ProtectedRoute> <PatientsListPage/> </ProtectedRoute>}/>
-                        <Route path={"*"} element={<ProtectedRoute> <NotFoundPage/> </ProtectedRoute>} />
-                    </Routes>
-                </div>
-            </main>
+            <Routes>
+                <Route path="/" element={<ProtectedRoute><MainLayout/></ProtectedRoute>}>
+                    <Route index element={<MainPage />} />
+                    <Route path="inquirer" element={<InquiererItemPage />} />
+                    <Route path="patient" element={<PatientPage />} />
+                    <Route path="patients" element={<PatientsListPage />} />
+                    <Route path="patient-registration" element={<PatientRegistrationPage />} />
+                    <Route path="*" element={<NotFoundPage />} />
+                </Route>
+
+                <Route path="/auth" element={<LoginPage />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/registration" element={<RegistrationPage />} />
+            </Routes>
+
         </Router>
     )
 }
