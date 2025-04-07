@@ -1,5 +1,4 @@
 import './app.scss'
-import AppHeader from "../appheader/AppHeader.jsx";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import "../../styles/index.scss"
 import MainPage from "../pages/MainPage.jsx";
@@ -7,7 +6,6 @@ import LoginPage from "../pages/LoginPage.jsx";
 import PatientRegistrationPage from "../pages/PatientRegistrationPage.jsx";
 import RegistrationPage from "../pages/RegistrationPage.jsx";
 import ProtectedRoute from "../../protectedroute/ProtectedRoute.jsx";
-import {useAuth} from "../../context/AuthContext.jsx";
 import InquiererItemPage from "../pages/InquiererItemPage.jsx";
 import PatientPage from "../pages/PatientPage.jsx";
 import NotFoundPage from "../pages/NotFoundPage.jsx";
