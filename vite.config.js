@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import svgr from "vite-plugin-svgr";
+import {VitePWA} from "vite-plugin-pwa";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -8,6 +9,44 @@ export default defineConfig({
       react(),
       svgr({
         exportAsDefault: true, // Включает экспорт по умолчанию
+      }),
+      VitePWA({
+          registerType: 'autoUpdate',
+          includeAssets: [
+              'favicon/apple-touch-icon.png',
+              'favicon/favicon-32x32.png',
+              'favicon/favicon-16x16.png',
+              'favicon/favicon.svg'
+          ],
+          manifest: {
+              name: 'ЧекАп: моё здоровье',
+              short_name: 'ЧекАп',
+              description: 'Прогрессивное веб-приложение для отслеживания здоровья.',
+              start_url: '/',
+              scope: '/',
+              display: 'standalone',
+              background_color: '#ffffff',
+              theme_color: '#ffffff',
+              orientation: 'portrait',
+              icons: [
+                  {
+                      src: '/favicon/android-chrome-192x192.png',
+                      sizes: '192x192',
+                      type: 'image/png'
+                  },
+                  {
+                      src: '/favicon/android-chrome-512x512.png',
+                      sizes: '512x512',
+                      type: 'image/png'
+                  },
+                  {
+                      src: '/favicon/android-chrome-512x512.png',
+                      sizes: '512x512',
+                      type: 'image/png',
+                      purpose: 'maskable'
+                  }
+              ]
+          }
       })
   ],
 })
