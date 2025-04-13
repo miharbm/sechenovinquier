@@ -13,6 +13,11 @@ import {errorMessages, getInfoColor, getResultStatus} from "../../util/util.js";
 import {useGetPatientResultsQuery} from "../../api/adminApi.js";
 import SummaryDataGridSkeleton from "./SummaryDataGridSkeleton.jsx";
 import {enqueueSnackbar} from "notistack";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+
+import "./summary.scss"
+import ViewedCell from "./cells/ViewedCell.jsx";
 
 const STORAGE_KEY = "summaryTableState";
 
@@ -90,6 +95,15 @@ const SummaryTable = () => {
             ),
         },
         {
+            field: "isViewed",
+            headerName: "Просмотрено",
+            flex: 1,
+            minWidth: 120,
+            sortable: false,
+            filterable: true,
+            renderCell: (params) => <ViewedCell isViewed={params.value} rowValues={params.row}/>
+        },
+        {
             field: "details",
             headerName: "Детали",
             flex: 1,
@@ -115,7 +129,8 @@ const SummaryTable = () => {
             userId: result.userId,
             passNum: result.passNum,
             quizId: result.quizId,
-            quizName: result.quizName
+            quizName: result.quizName,
+            isViewed: result.isViewed,
         }))
         : [];
 
@@ -143,11 +158,14 @@ const SummaryTable = () => {
                     onPaginationModelChange={(model) => handleStateChange({ paginationModel: model })}
                     onSortingModelChange={(model) => handleStateChange({ sortingModel: model })}
                     onFilterModelChange={(model) => handleStateChange({ filterModel: model })}
-                    disableSelectionOnClick
+                    // disableSelectionOnClick
                     localeText={ruRU.components.MuiDataGrid.defaultProps.localeText}
                     initialState={{
                         sorting: { sortModel: tableState.sortModel },
                     }}
+                    getRowClassName={(params) =>
+                        params.row.isViewed === false ? 'unviewed-row' : ''
+                    }
                 />
             )}
         </Paper>

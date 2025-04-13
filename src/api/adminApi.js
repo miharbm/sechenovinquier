@@ -4,6 +4,7 @@ import {TAG_PATIENTS} from "./tags.js";
 
 const baseUrl = import.meta.env.VITE_API_URL
 
+const RESULTS_TAG = "results"
 
 export const adminApi = createApi({
     reducerPath: 'adminApi',
@@ -11,7 +12,7 @@ export const adminApi = createApi({
         baseUrl: baseUrl + "/admin",
         prepareHeaders: authHeader
     }),
-    tagTypes: ["Patients"],
+    tagTypes: [RESULTS_TAG],
     endpoints: (builder) => ({
         getPatientResults: builder.query({
             query: () => '/patient/results',
@@ -20,16 +21,29 @@ export const adminApi = createApi({
                     quizId: result.quiz_id,
                     quizName: result.quiz_name,
                     userScore: result.user_score,
-                    isFailed: result.is_failed,
+                    isFailed: Boolean(result.is_failed),
                     passNum: result.pass_num,
                     passTime: result.pass_time,
-                    isViewed: result.is_viewed,
+                    isViewed: Boolean(result.is_viewed),
                     patientFirstName: result.patient_info.first_name,
                     patientLastName: result.patient_info.last_name,
                     userId: result.patient_info.user_id,
                     userAvatarUrl: result.patient_info.avatar_url,
                 }))
-            }
+            },
+            providesTags: [RESULTS_TAG]
+        }),
+        markResultAsViewed:builder.mutation({
+            query: ({patientId, quizId, passNum}) => ({
+                url: '/patient/results/mark_as_viewed',
+                method: "PATCH",
+                body: {
+                    "patient_id": patientId,
+                    "quiz_id": quizId,
+                    "pass_num": passNum,
+                }
+            }),
+            invalidatesTags: [RESULTS_TAG]
         }),
         getPatientResult: builder.query({
             query: ({patientId}) => ({
@@ -65,4 +79,5 @@ export const {
     useGetPatientListQuery,
     useGetPatientInfoQuery,
     useGetQuizInfoQuery,
+    useMarkResultAsViewedMutation,
 } = adminApi;
