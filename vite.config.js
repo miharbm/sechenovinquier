@@ -40,7 +40,7 @@ export default defineConfig({
                       type: 'image/png'
                   },
                   {
-                      src: '/favicon/android-chrome-512x512.png',
+                      src: '/favicon/favicon-masked-512x512.png',
                       sizes: '512x512',
                       type: 'image/png',
                       purpose: 'maskable'
