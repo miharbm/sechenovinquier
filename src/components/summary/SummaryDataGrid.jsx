@@ -18,7 +18,7 @@ const STORAGE_KEY = "summaryTableState";
 
 
 const SummaryTable = () => {
-    const { data, isLoading, refetch, isFetching, error } = useGetPatientResultsQuery(undefined, { skip: false });
+    const { data: results, isLoading, refetch, isFetching, error } = useGetPatientResultsQuery(undefined, { skip: false });
 
     // Загружаем состояние из localStorage или используем дефолтное
     const [tableState, setTableState] = useState(() => {
@@ -106,16 +106,16 @@ const SummaryTable = () => {
         },
     ];
 
-    const rows = data
-        ? data.user_results.map((result, index) => ({
+    const rows = results
+        ? results.map((result, index) => ({
             id: index + 1,
-            date: dayjs(result.pass_time).format("DD.MM.YYYY HH:mm"),
-            patient: `${result.patient_info.last_name} ${result.patient_info.first_name}`,
-            result: getResultStatus(result.is_failed, result.user_score),
-            userId: result.patient_info.user_id,
-            passNum: result.pass_num,
-            quizId: result.quiz_id,
-            quizName: result.quiz_name
+            date: dayjs(result.passTime).format("DD.MM.YYYY HH:mm"),
+            patient: `${result.patientLastName} ${result.patientFirstName}`,
+            result: getResultStatus(result.isFailed, result.userScore),
+            userId: result.userId,
+            passNum: result.passNum,
+            quizId: result.quizId,
+            quizName: result.quizName
         }))
         : [];
 

@@ -15,6 +15,21 @@ export const adminApi = createApi({
     endpoints: (builder) => ({
         getPatientResults: builder.query({
             query: () => '/patient/results',
+            transformResponse: (response) => {
+                return response.user_results.map((result) => ({
+                    quizId: result.quiz_id,
+                    quizName: result.quiz_name,
+                    userScore: result.user_score,
+                    isFailed: result.is_failed,
+                    passNum: result.pass_num,
+                    passTime: result.pass_time,
+                    isViewed: result.is_viewed,
+                    patientFirstName: result.patient_info.first_name,
+                    patientLastName: result.patient_info.last_name,
+                    userId: result.patient_info.user_id,
+                    userAvatarUrl: result.patient_info.avatar_url,
+                }))
+            }
         }),
         getPatientResult: builder.query({
             query: ({patientId}) => ({
