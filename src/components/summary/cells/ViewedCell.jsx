@@ -3,6 +3,8 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff.js";
 import IconButton from "@mui/material/IconButton";
 import {useMarkResultAsViewedMutation} from "../../../api/adminApi.js";
 import Tooltip from "@mui/material/Tooltip";
+import {infoColors} from "../../../styles/theme.js";
+import Box from "@mui/material/Box";
 
 const ViewedCell = ({isViewed, rowValues}) => {
     const {userId, passNum, quizId} = rowValues;
@@ -17,19 +19,22 @@ const ViewedCell = ({isViewed, rowValues}) => {
         })
     }
 
-    return isViewed ? (
-        <Tooltip title="Отменить просмотр">
-            <IconButton onClick={handleView(false)}>
-                <VisibilityIcon style={{ color: "#4caf50" }} />
-            </IconButton>
-        </Tooltip>
-        ) : (
-        <Tooltip title="Сделать просмотренным">
-            <IconButton onClick={handleView(true)}>
-                <VisibilityOffIcon style={{ color: "#9e9e9e" }} />
-            </IconButton>
-        </Tooltip>
-
+    return (
+        <Box display="flex" justifyContent="center" mr={"25px"}>
+            {isViewed ? (
+                <Tooltip title="Отменить просмотр">
+                    <IconButton onClick={handleView(false)}>
+                        <VisibilityIcon style={{color: infoColors.ok}}/>
+                    </IconButton>
+                </Tooltip>
+            ) : (
+                <Tooltip title="Сделать просмотренным">
+                    <IconButton onClick={handleView(true)}>
+                        <VisibilityOffIcon style={{color: "#9e9e9e"}}/>
+                    </IconButton>
+                </Tooltip>
+            )}
+        </Box>
     )
 }
 
