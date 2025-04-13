@@ -34,13 +34,14 @@ export const adminApi = createApi({
             providesTags: [RESULTS_TAG]
         }),
         markResultAsViewed:builder.mutation({
-            query: ({patientId, quizId, passNum}) => ({
+            query: ({patientId, quizId, passNum, isViewed}) => ({
                 url: '/patient/results/mark_as_viewed',
                 method: "PATCH",
                 body: {
                     "patient_id": patientId,
                     "quiz_id": quizId,
                     "pass_num": passNum,
+                    "is_viewed": isViewed
                 }
             }),
             invalidatesTags: [RESULTS_TAG]

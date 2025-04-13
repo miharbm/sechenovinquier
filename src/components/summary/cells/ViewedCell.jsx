@@ -8,22 +8,24 @@ const ViewedCell = ({isViewed, rowValues}) => {
     const {userId, passNum, quizId} = rowValues;
     const [markAsViewed] = useMarkResultAsViewedMutation()
 
-    const handleView = () => {
-        console.log("Viewed")
+    const handleView = (isViewed) => () => {
         markAsViewed({
             patientId: userId,
             passNum: passNum,
             quizId: quizId,
+            isViewed: isViewed
         })
     }
 
     return isViewed ? (
-        <IconButton>
-            <VisibilityIcon style={{ color: "#4caf50" }} />
-        </IconButton>
+        <Tooltip title="Отменить просмотр">
+            <IconButton onClick={handleView(false)}>
+                <VisibilityIcon style={{ color: "#4caf50" }} />
+            </IconButton>
+        </Tooltip>
         ) : (
         <Tooltip title="Сделать просмотренным">
-            <IconButton onClick={handleView}>
+            <IconButton onClick={handleView(true)}>
                 <VisibilityOffIcon style={{ color: "#9e9e9e" }} />
             </IconButton>
         </Tooltip>
