@@ -5,8 +5,6 @@ import {clearCredentials, setCredentials, selectCredentials} from "../reducers/a
 import { useSelector } from 'react-redux';
 
 
-const STORAGE_KEY = "authCredentials";
-
 const AuthContext = createContext(undefined);
 
 export const DOCTOR_ROLE = "doctorRole"
@@ -44,7 +42,7 @@ export const AuthProvider = ({ children }) => {
 
 
     const login = async ({username, password}) => {
-
+        setError(null);
         try {
             const response = await loginApi({ username, password }).unwrap();
 
@@ -77,7 +75,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     const register = async (formData) => {
-
+        setError(null);
         try {
             await registerApi(formData).unwrap();
             await login({
@@ -88,6 +86,9 @@ export const AuthProvider = ({ children }) => {
             switch (error.status) {
                 case 400:
                     setError("Ошибка регистрации");
+                    break;
+                case 409:
+                    setError("Такой пользователь уже существует");
                     break;
                 case "FETCH_ERROR":
                     setError("Ошибка сети. Нет подключения");
@@ -111,6 +112,7 @@ export const AuthProvider = ({ children }) => {
             isLoading,
             username: credentials.username,
             doctorId: credentials.userId,
+            role: credentials.role,
         }}>
             {children}
         </AuthContext.Provider>

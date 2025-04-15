@@ -39,6 +39,10 @@ export const authApi = createApi({
                     password,
                 },
             }),
+            transformResponse: (response) => ({
+                userId: response.data.userId,
+                isAdmin: response.data.isAdmin,
+            })
         }),
         logout: builder.mutation({
             query: () => ({
