@@ -46,7 +46,18 @@ export default defineConfig({
                       purpose: 'maskable'
                   }
               ]
-          }
+          },
+          workbox: {
+              runtimeCaching: [
+                  {
+                      urlPattern: /^https:\/\/.*\.(?:png|jpg|jpeg|svg|gif|woff|woff2|ttf|otf|json)$/,
+                      handler: 'CacheFirst',
+                      options: {
+                          cacheName: 'assets-cache',
+                      },
+                  },
+              ],
+          },
       })
   ],
 })
