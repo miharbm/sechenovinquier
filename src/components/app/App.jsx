@@ -1,35 +1,25 @@
-import './app.scss'
-import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import {BrowserRouter as Router, Navigate, Route, Routes} from "react-router-dom";
 import "../../styles/index.scss"
-import MainPage from "../pages/MainPage.jsx";
 import LoginPage from "../pages/LoginPage.jsx";
-import PatientRegistrationPage from "../pages/PatientRegistrationPage.jsx";
 import RegistrationPage from "../pages/RegistrationPage.jsx";
-import ProtectedRoute from "../../protectedroute/ProtectedRoute.jsx";
-import InquiererItemPage from "../pages/InquiererItemPage.jsx";
-import PatientPage from "../pages/PatientPage.jsx";
-import NotFoundPage from "../pages/NotFoundPage.jsx";
-import PatientsListPage from "../pages/PatientsListPage.jsx";
-import MainLayout from "../layouts/MainLayout.jsx";
+import DoctorRouter from "../routers/DoctorRouter.jsx";
+import {DOCTOR_ROLE, PATIENT_ROLE, useAuth} from "../../context/AuthContext.jsx";
+import PatientRouter from "../routers/PatientRouter.jsx";
 
 
 const  App = () => {
+    const {role} = useAuth()
 
     return (
         <Router>
             <Routes>
-                <Route path="/" element={<ProtectedRoute><MainLayout/></ProtectedRoute>}>
-                    <Route index element={<MainPage />} />
-                    <Route path="inquirer" element={<InquiererItemPage />} />
-                    <Route path="patient" element={<PatientPage />} />
-                    <Route path="patients" element={<PatientsListPage />} />
-                    <Route path="patient-registration" element={<PatientRegistrationPage />} />
-                    <Route path="*" element={<NotFoundPage />} />
-                </Route>
+                {role === DOCTOR_ROLE && <Route path="/*" element={<DoctorRouter />} />}
+                {role === PATIENT_ROLE && <Route path="/*" element={<PatientRouter />} />}
 
                 <Route path="/auth" element={<LoginPage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/registration" element={<RegistrationPage />} />
+                <Route path="*" element={<Navigate to={role ? "/" : "/login"} replace />} />
             </Routes>
 
         </Router>
