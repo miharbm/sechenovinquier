@@ -9,6 +9,9 @@ const STORAGE_KEY = "authCredentials";
 
 const AuthContext = createContext(undefined);
 
+export const DOCTOR_ROLE = "doctorRole"
+export const PATIENT_ROLE = "doctorRole"
+
 export const useAuth = () => {
     return useContext(AuthContext);
 };
@@ -38,26 +41,6 @@ export const AuthProvider = ({ children }) => {
         setIsLoading(isLoadingRegister || isLoadingLogin)
     }, [isLoadingLogin, isLoadingRegister])
 
-    useEffect(() => {
-        const savedCredentials = localStorage.getItem(STORAGE_KEY);
-        if (savedCredentials) {
-            try {
-                const parsedCredentials = JSON.parse(savedCredentials);
-                dispatch(setCredentials(parsedCredentials));
-            } catch (error) {
-                console.error("Ошибка при парсинге данных из localStorage:", error);
-            }
-        }
-        setIsLoading(false);
-    }, [dispatch]);
-
-    useEffect(() => {
-        if (credentials.username && credentials.password && credentials.userId) {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(credentials));
-        } else {
-            localStorage.removeItem(STORAGE_KEY);
-        }
-    }, [credentials]);
 
 
     const login = async ({username, password}) => {
@@ -65,7 +48,12 @@ export const AuthProvider = ({ children }) => {
         try {
             const response = await loginApi({ username, password }).unwrap();
 
-            dispatch(setCredentials({ username, password, userId: response.userId }));
+            dispatch(setCredentials({ 
+                username,
+                password,
+                userId: response.userId, 
+                role: response.isAdmin ? DOCTOR_ROLE : PATIENT_ROLE,
+            }));
 
             setError(null);
         } catch (error) {
@@ -85,7 +73,6 @@ export const AuthProvider = ({ children }) => {
 
     const logout = () => {
         dispatch(clearCredentials());
-        localStorage.removeItem(STORAGE_KEY);
         setError(null);
     };
 
