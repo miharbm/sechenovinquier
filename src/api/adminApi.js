@@ -1,10 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import authHeader from "./authHeader.js";
-import {TAG_PATIENTS} from "./tags.js";
+import {RESULTS_TAG, TAG_PATIENTS} from "./tags.js";
 
 const baseUrl = import.meta.env.VITE_API_URL
 
-const RESULTS_TAG = "results"
 
 export const adminApi = createApi({
     reducerPath: 'adminApi',
