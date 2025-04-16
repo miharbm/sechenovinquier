@@ -1,5 +1,5 @@
 import ProtectedRoute from "../../protectedroute/ProtectedRoute.jsx";
-import MainLayout from "../layouts/MainLayout.jsx";
+import DoctorLayout from "../layouts/DoctorLayout.jsx";
 import {Route, Routes} from "react-router-dom";
 import MainPage from "../pages/MainPage.jsx";
 import InquiererItemPage from "../pages/InquiererItemPage.jsx";
@@ -12,7 +12,7 @@ const DoctorRouter = () => {
     console.log("add doctor router")
     return (
         <Routes>
-            <Route path="/" element={<ProtectedRoute><MainLayout/></ProtectedRoute>}>
+            <Route path="/" element={<ProtectedRoute><DoctorLayout/></ProtectedRoute>}>
                 <Route index element={<MainPage />} />
                 <Route path="inquirer" element={<InquiererItemPage />} />
                 <Route path="patient" element={<PatientPage />} />

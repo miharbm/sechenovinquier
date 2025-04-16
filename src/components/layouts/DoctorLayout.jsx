@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import AppHeader from "../appheader/AppHeader";
 import { useAuth } from "../../context/AuthContext";
 
-const MainLayout = () => {
+const DoctorLayout = () => {
     const { username, userId } = useAuth();
 
     return (
@@ -15,4 +15,4 @@ const MainLayout = () => {
     );
 };
 
-export default MainLayout;
+export default DoctorLayout;
