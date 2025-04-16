@@ -89,14 +89,14 @@ const AppHeader = ({ doctorId, doctorUsername }) => {
                     <ListItem>
                         <ListItemText primary={userData?.first_name ? `${userData.first_name} ${userData.last_name}` : doctorUsername} />
                     </ListItem>
-                    <ListItem button onClick={handleLinkClick}>
+                    <ListItemButton onClick={handleLinkClick}>
                         <AccountCircleIcon sx={{ marginRight: 1 }} />
                         <ListItemText primary="Профиль" />
-                    </ListItem>
-                    <ListItem button onClick={handleClickLogout}>
+                    </ListItemButton>
+                    <ListItemButton onClick={handleClickLogout}>
                         <ExitToAppIcon sx={{ marginRight: 1 }} />
                         <ListItemText primary="Выход" />
-                    </ListItem>
+                    </ListItemButton>
                 </List>
             </Drawer>
         </AppBar>
