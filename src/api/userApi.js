@@ -37,6 +37,18 @@ export const userApi = createApi({
                     UserId: userId,
                 }
             })
+        }),
+        uploadAvatar: builder.mutation({
+            query: (file) => {
+                const formData = new FormData();
+                formData.append('image', file);
+
+                return {
+                    url: "/upload-avatar",
+                    method: "POST",
+                    body: formData
+                };
+            },
         })
     }),
 });
@@ -45,4 +57,5 @@ export const {
     useGetUsersResultsQuery,
     useGetInquierItemQuery,
     useGetUserInfoQuery,
+    useUploadAvatarMutation,
 } = userApi;
