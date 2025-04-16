@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 const AuthContext = createContext(undefined);
 
 export const DOCTOR_ROLE = "doctorRole"
-export const PATIENT_ROLE = "doctorRole"
+export const PATIENT_ROLE = "patientRole"
 
 export const useAuth = () => {
     return useContext(AuthContext);

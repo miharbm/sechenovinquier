@@ -20,17 +20,12 @@ import { useGetUserInfoQuery } from '../../api/userApi.js';
 import Logo from "../logo/Logo.jsx";
 import {ListItemButton} from "@mui/material";
 
-const AppHeader = ({ doctorId, doctorUsername }) => {
+const AppHeader = ({ userId, username, links }) => {
     const { logout } = useAuth();
-    const { data: userData } = useGetUserInfoQuery({ userId: doctorId });
+    const { data: userData } = useGetUserInfoQuery({ userId: userId });
     const [menuOpen, setMenuOpen] = useState(false);
     const location = useLocation();
 
-    const links = [
-        { title: "Главная", link: "/" },
-        { title: "Регистрация пациента", link: "/patient-registration" },
-        { title: "Пациенты", link: "/patients" },
-    ];
 
     const handleClickLogout = () => logout();
     const openDrawer = () => setMenuOpen(true);
@@ -56,7 +51,7 @@ const AppHeader = ({ doctorId, doctorUsername }) => {
                     </Tabs>
                     <Box sx={{display: "flex", alignItems: "center"}}>
                         <Typography variant="h6" sx={{ marginRight: 2 }}>
-                            {userData?.first_name ? `${userData.first_name} ${userData.last_name}` : doctorUsername}
+                            {userData?.first_name ? `${userData.first_name} ${userData.last_name}` : username}
                         </Typography>
                         <IconButton color="inherit">
                             <AccountCircleIcon />
@@ -87,7 +82,7 @@ const AppHeader = ({ doctorId, doctorUsername }) => {
                     ))}
                     <Divider />
                     <ListItem>
-                        <ListItemText primary={userData?.first_name ? `${userData.first_name} ${userData.last_name}` : doctorUsername} />
+                        <ListItemText primary={userData?.first_name ? `${userData.first_name} ${userData.last_name}` : username} />
                     </ListItem>
                     <ListItemButton onClick={handleLinkClick}>
                         <AccountCircleIcon sx={{ marginRight: 1 }} />

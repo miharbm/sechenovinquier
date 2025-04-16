@@ -5,9 +5,15 @@ import { useAuth } from "../../context/AuthContext";
 const DoctorLayout = () => {
     const { username, userId } = useAuth();
 
+    const links = [
+        { title: "Главная", link: "/" },
+        { title: "Регистрация пациента", link: "/patient-registration" },
+        { title: "Пациенты", link: "/patients" },
+    ];
+
     return (
         <>
-            <AppHeader doctorUsername={username} doctorId={userId} />
+            <AppHeader username={username} userId={userId} links={links}/>
             <main>
                 <Outlet />
             </main>
