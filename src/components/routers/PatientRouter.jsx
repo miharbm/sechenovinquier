@@ -1,8 +1,8 @@
 import ProtectedRoute from "../../protectedroute/ProtectedRoute.jsx";
 import {Route, Routes} from "react-router-dom";
-import MainPage from "../pages/MainPage.jsx";
-import InquiererItemPage from "../pages/InquiererItemPage.jsx";
-import NotFoundPage from "../pages/NotFoundPage.jsx";
+import MainPage from "../pages/doctor/MainPage.jsx";
+import InquiererItemPage from "../pages/doctor/InquiererItemPage.jsx";
+import NotFoundPage from "../pages/common/NotFoundPage.jsx";
 import PatientLayout from "../layouts/PatientLayout.jsx";
 
 const PatientRouter = () => {

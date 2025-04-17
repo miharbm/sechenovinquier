@@ -1,5 +1,5 @@
-import SummaryTable from "../summary/SummaryTable.jsx";
-import SummaryDataGrid from "../summary/SummaryDataGrid.jsx";
+import SummaryTable from "../../summary/SummaryTable.jsx";
+import SummaryDataGrid from "../../summary/SummaryDataGrid.jsx";
 import Container from "@mui/material/Container";
 
 const MainPage = () => {

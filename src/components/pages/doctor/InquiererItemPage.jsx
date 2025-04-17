@@ -1,10 +1,10 @@
 import {useSearchParams} from 'react-router-dom';
-import InquierDetailsTable from "../InquierItem/InquierDetailsTable.jsx";
-import InquiererDetailsHeader from "../InquierItem/InquiererDetailsHeader.jsx";
+import InquierDetailsTable from "../../InquierItem/InquierDetailsTable.jsx";
+import InquiererDetailsHeader from "../../InquierItem/InquiererDetailsHeader.jsx";
 import Paper from "@mui/material/Paper";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-import PatientInfo from "../patientinfo/PatientInfo.jsx";
+import PatientInfo from "../../patientinfo/PatientInfo.jsx";
 
 const InquiererItemPage = () => {
     const [searchParams] = useSearchParams();

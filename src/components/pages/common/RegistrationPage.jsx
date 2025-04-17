@@ -1,4 +1,4 @@
-import Register from "../loginandregister/Register.jsx";
+import Register from "../../loginandregister/Register.jsx";
 import Container from "@mui/material/Container";
 
 const RegistrationPage = () => {

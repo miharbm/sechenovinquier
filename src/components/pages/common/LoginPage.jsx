@@ -1,4 +1,4 @@
-import Login from "../loginandregister/Login.jsx";
+import Login from "../../loginandregister/Login.jsx";
 import Container from "@mui/material/Container";
 
 const loginPage = () => {

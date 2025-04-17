@@ -1,7 +1,7 @@
 import {BrowserRouter as Router, Navigate, Route, Routes} from "react-router-dom";
 import "../../styles/index.scss"
-import LoginPage from "../pages/LoginPage.jsx";
-import RegistrationPage from "../pages/RegistrationPage.jsx";
+import LoginPage from "../pages/common/LoginPage.jsx";
+import RegistrationPage from "../pages/common/RegistrationPage.jsx";
 import DoctorRouter from "../routers/DoctorRouter.jsx";
 import {DOCTOR_ROLE, PATIENT_ROLE, useAuth} from "../../context/AuthContext.jsx";
 import PatientRouter from "../routers/PatientRouter.jsx";

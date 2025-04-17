@@ -1,6 +1,6 @@
 import {useSearchParams} from "react-router-dom";
-import PatientInfo from "../patientinfo/PatientInfo.jsx";
-import PatientStatisticChart from "../patientstatisticchart/PatientStatisticChart.jsx";
+import PatientInfo from "../../patientinfo/PatientInfo.jsx";
+import PatientStatisticChart from "../../patientstatisticchart/PatientStatisticChart.jsx";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 

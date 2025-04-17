@@ -1,4 +1,4 @@
-import RegisterPatient from "../loginandregister/RegisterPatient.jsx";
+import RegisterPatient from "../../loginandregister/RegisterPatient.jsx";
 import Container from "@mui/material/Container";
 
 const PatientRegistrationPage = () => {

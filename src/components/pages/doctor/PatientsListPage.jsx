@@ -1,5 +1,5 @@
 import Container from "@mui/material/Container";
-import PatientsList from "../patientslist/PatientsList.jsx";
+import PatientsList from "../../patientslist/PatientsList.jsx";
 
 const PatientsListPage = () => {
 
