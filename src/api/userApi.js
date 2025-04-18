@@ -12,12 +12,6 @@ export const userApi = createApi({
     }),
     tagTypes: ['UserResults'],
     endpoints: (builder) => ({
-        getUsersResults: builder.query({
-            query: () => ({
-                url: '/response/results',
-                method: 'GET',
-            }),
-        }),
         getInquierItem: builder.query({
             query: ({userId, passNum, quizId }) => ({
                 url: '/response/get',
@@ -28,6 +22,20 @@ export const userApi = createApi({
                     QuizId: quizId,
                 },
             }),
+        }),
+        saveResponse: builder.mutation({
+            query: (data) => ({
+                url: "/response/save",
+                method: "POST",
+                body: {
+                    response_ids: data.responseIds,
+                    pass_num: +data.passNum,
+                    quiz_id: +data.quizId,
+                }
+            }),
+            transformResponse: ({is_ended}) => ({
+                isEnded: is_ended,
+            })
         }),
         getUserInfo: builder.query({
             query: ({userId}) => ({
@@ -54,8 +62,8 @@ export const userApi = createApi({
 });
 
 export const {
-    useGetUsersResultsQuery,
     useGetInquierItemQuery,
+    useSaveResponseMutation,
     useGetUserInfoQuery,
     useUploadAvatarMutation,
 } = userApi;

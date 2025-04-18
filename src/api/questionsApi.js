@@ -19,6 +19,18 @@ export const questionsApi = createApi({
                     QuizId: quizId
                 }
             }),
+            transformResponse: (data) => ({
+                questionText: data.question_text,
+                imgName: data.img_name,
+                options: data.options.map(option => ({
+                    responseText: option.response_text,
+                    responseId: option.response_id,
+                    points: option.points,
+                    nextQuestionId: option.next_question_id,
+                })),
+                passNum: data.pass_num,
+                isMultipleChoice: data.is_multiple_choice,
+            })
         }),
         getQuestion: builder.query({
             query: ({quizId, questionId}) => ({
@@ -29,11 +41,22 @@ export const questionsApi = createApi({
                     QuestionId: questionId,
                 }
             }),
+            transformResponse: (data) => ({
+                questionText: data.question_text,
+                imgName: data.img_name,
+                options: data.options.map(option => ({
+                    responseText: option.response_text,
+                    responseId: option.response_id,
+                    points: option.points,
+                    nextQuestionId: option.next_question_id,
+                })),
+                isMultipleChoice: data.is_multiple_choice,
+            })
         }),
     }),
 });
 
 export const {
     useStartQuestionMutation,
-    useGetQuestionQuery,
+    useLazyGetQuestionQuery,
 } = questionsApi;
