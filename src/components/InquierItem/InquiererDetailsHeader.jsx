@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 const InquiererDetailsHeader = ({passNum, quizId}) => {
     const {data: quizzes} = useGetQuizzesQuery()
 
-    const quizName = quizzes?.list.filter(quiz => quiz.quiz_id === Number(quizId))[0]?.name
+    const quizName = quizzes?.filter(quiz => quiz.quizId === Number(quizId))[0]?.name
 
     return (
         <Box display="flex" justifyContent="space-between" alignItems="center" padding={"0 12px"} flexWrap={"wrap"}>
