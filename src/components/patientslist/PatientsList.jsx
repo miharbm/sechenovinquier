@@ -17,11 +17,10 @@ import SortIcon from '@mui/icons-material/SortByAlpha';
 import PatientsListSkeleton from "./PatientsListSkeleton.jsx";
 import {errorMessages} from "../../util/util.js";
 import {enqueueSnackbar} from "notistack";
-const apiUrl = import.meta.env.VITE_API_URL
 
 
 const PatientsList = () => {
-    const { data, isLoading, isFetching, error } = useGetPatientListQuery();
+    const { data: patients, isLoading, isFetching, error } = useGetPatientListQuery();
     const [searchQuery, setSearchQuery] = useState("");
     const [sortAsc, setSortAsc] = useState(true);
 
@@ -38,17 +37,14 @@ const PatientsList = () => {
         }
     }, [error]);
 
-    const avatarUrl = (url) => (
-        url ? `${apiUrl}/static/public/avatars/${url}` : null
-    );
 
-    const filteredPatients = data?.patients.filter(patient =>
-        `${patient.first_name} ${patient.last_name}`.toLowerCase().includes(searchQuery.toLowerCase())
+    const filteredPatients = patients?.filter(patient =>
+        `${patient.firstName} ${patient.lastName}`.toLowerCase().includes(searchQuery.toLowerCase())
     ) || [];
 
     const sortedPatients = [...filteredPatients].sort((a, b) => {
-        const nameA = a.first_name.toLowerCase();
-        const nameB = b.first_name.toLowerCase();
+        const nameA = a.firstName.toLowerCase();
+        const nameB = b.firstName.toLowerCase();
         return sortAsc ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA);
     });
 
@@ -74,21 +70,21 @@ const PatientsList = () => {
             </Box>
             {isFetching && <LinearProgress sx={{position: "absolute", width: "100%", top: 0, left: 0}} />}
             {isLoading && <PatientsListSkeleton/>}
-            {data && (
+            {patients && (
                 <List>
                     {sortedPatients?.map((patient) => (
                         <ListItemButton
-                            key={patient.user_id}
+                            key={patient.userId}
                             component={RouterLink}
-                            to={`/patient?userId=${patient.user_id}`}
+                            to={`/patient?userId=${patient.userId}`}
                             sx={{ textDecoration: "none", color: "inherit" }}
                         >
                             <ListItemAvatar>
-                                <Avatar src={avatarUrl(patient.avatar_url) }
-                                        alt={patient.first_name}
+                                <Avatar src={patient.avatarUrl}
+                                        alt={patient.firstName}
                                 />
                             </ListItemAvatar>
-                            <ListItemText primary={`${patient.first_name} ${patient.last_name}`} />
+                            <ListItemText primary={`${patient.firstName} ${patient.lastName}`} />
                         </ListItemButton>
                     ))}
                 </List>

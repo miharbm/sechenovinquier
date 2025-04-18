@@ -56,6 +56,14 @@ export const adminApi = createApi({
         }),
         getPatientList: builder.query({
             query: () => '/patient/list',
+            transformResponse: (data) => (
+                data.patients.map((patient) => ({
+                    firstName: patient.first_name,
+                    lastName: patient.last_name,
+                    userId: patient.user_id,
+                    avatarUrl: patient.avatar_url ? `${baseUrl}/static/public/avatars/${patient.avatar_url}` : null
+                }))
+            ),
             providesTags: [TAG_PATIENTS]
         }),
         getPatientInfo: builder.query({
