@@ -5,6 +5,7 @@ import Paper from "@mui/material/Paper";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import PatientInfo from "../../patientinfo/PatientInfo.jsx";
+import Divider from "@mui/material/Divider";
 
 const InquiererItemPage = () => {
     const [searchParams] = useSearchParams();
@@ -21,6 +22,7 @@ const InquiererItemPage = () => {
                 <Grid item xs={12} md={9}>
                     <Paper elevation={0} style={{ padding: '16px'}}>
                         <InquiererDetailsHeader passNum={passNum} quizId={quizId} />
+                        <Divider/>
                         <InquierDetailsTable userId={userId} passNum={passNum} quizId={quizId} />
                     </Paper>
                 </Grid>
