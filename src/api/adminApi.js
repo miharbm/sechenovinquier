@@ -74,6 +74,14 @@ export const adminApi = createApi({
                     UserId: userId,
                 }
             }),
+            transformResponse: (patient) => ({
+                firstName: patient.first_name,
+                lastName: patient.last_name,
+                middleName: patient.middle_name,
+                avatarUrl: patient.avatar ? `${baseUrl}/static/public/avatars/${patient.avatar}` : null,
+                email: patient.email,
+                phone: patient.phone
+            })
         }),
     }),
 });

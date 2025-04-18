@@ -5,7 +5,6 @@ import PatientInfoSkeleton from "./PatientInfoSkeleton.jsx";
 import defaultAvatar from "../../assets/default_avatar.png";
 import {useGetPatientInfoQuery} from "../../api/adminApi.js";
 import Box from "@mui/material/Box";
-const apiUrl = import.meta.env.VITE_API_URL
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
@@ -13,7 +12,7 @@ import {enqueueSnackbar} from "notistack";
 
 
 const PatientInfo = ({ patientId }) => {
-    const { data, isLoading, isError } = useGetPatientInfoQuery({ userId: patientId });
+    const { data: patient, isLoading, isError } = useGetPatientInfoQuery({ userId: patientId });
 
     const [openLightbox, setOpenLightbox] = useState(false);
     const [selectedImage, setSelectedImage] = useState('');
@@ -39,57 +38,47 @@ const PatientInfo = ({ patientId }) => {
 
     if (isError) return <Typography>Ошибка при загрузке данных пациента.</Typography>;
 
-    const {
-        first_name,
-        middle_name,
-        last_name,
-        email,
-        phone,
-        avatar
-    } = data || {};
-
-    const avatarUrl = avatar ? `${apiUrl}/static/public/avatars/${avatar}` : defaultAvatar;
 
     return (
         <>
             {isLoading && <PatientInfoSkeleton/>}
-            {data && (
+            {patient && (
                 <Card sx={{ maxWidth: 345 }}>
                     <CardMedia
                         component="img"
                         height="150"
-                        image={avatarSrc || avatarUrl}
-                        alt={`${first_name} ${last_name} Avatar`}
-                        onClick={() => handleClickOpen(avatarSrc || avatarUrl)}
+                        image={avatarSrc || patient.avatarUrl}
+                        alt={`${patient.firstName} ${patient.lastName} Avatar`}
+                        onClick={() => handleClickOpen(avatarSrc || patient.avatarUrl)}
                         sx={{ cursor: 'pointer' }}
                         onError={() => setAvatarSrc(defaultAvatar)}
                     />
                     <CardContent>
-                        <Typography variant="h6">{last_name}</Typography>
+                        <Typography variant="h6">{patient.lastName}</Typography>
                         <Typography variant="h6" sx={{marginTop: 0}}>
-                            {`${first_name} ${middle_name}`}
+                            {`${patient.firstName} ${patient.lastName}`}
                         </Typography>
                         <Box height={10}/>
-                        {email && (
+                        {patient?.email && (
                             <Typography variant="body2" color="text.secondary">
-                                <strong>Email:</strong> {email}
+                                <strong>Email:</strong> {patient.email}
                             </Typography>
                         )}
                         <Typography variant="body2" color="text.secondary" sx={{display: "inline"}}>
                             <strong>Телефон: </strong>
                         </Typography>
-                        {phone && <>
+                        {patient.phone && <>
                             <Typography
                                 variant="body2"
                                 color="text.secondary"
                                 component="a"
-                                href={`tel:${phone}`}
+                                href={`tel:${patient.phone}`}
                                 sx={{textDecoration: "none", userSelect: "all"}}
                             >
-                                {phone}
+                                {patient.phone}
                             </Typography>
                             <Tooltip title="Скопировать">
-                                <IconButton onClick={() => handleCopy(phone)}
+                                <IconButton onClick={() => handleCopy(patient.phone)}
                                             size="small"
                                             sx={{ padding: "0.3 0.5" }}
                                 >
