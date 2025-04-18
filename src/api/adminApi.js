@@ -67,9 +67,6 @@ export const adminApi = createApi({
                 }
             }),
         }),
-        getQuizInfo: builder.query({
-            query: () => '/quiz/info',
-        }),
     }),
 });
 
@@ -78,6 +75,5 @@ export const {
     useGetPatientResultQuery,
     useGetPatientListQuery,
     useGetPatientInfoQuery,
-    useGetQuizInfoQuery,
     useMarkResultAsViewedMutation,
 } = adminApi;
