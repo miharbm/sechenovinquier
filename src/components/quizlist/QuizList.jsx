@@ -5,11 +5,20 @@ import Box from "@mui/material/Box";
 import {Card, CardContent} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import {useNavigate} from "react-router-dom";
 
 const QuizList = () => {
+    const navigate = useNavigate();
     const {data} = useGetQuizzesQuery()
 
+    const handleClickStartQuiz = (quiz) => () => {
+        if (quiz.isAvailable) {
+            navigate(`/process-inquirer?id=${quiz.quizId}`);
+        }
+    }
+
     if (!data) return null;
+
 
     return (
         <Paper style={{ marginTop: "2rem", padding: "16px", position: "relative" }}>
@@ -18,8 +27,8 @@ const QuizList = () => {
                     Опросы
                 </Typography>
                 <Grid container spacing={2} sx={{mt: 1}}>
-                    {data.list.map((quiz) => (
-                        <Grid item xs={12} sm={6} md={4} key={quiz.quiz_id}>
+                    {data.map((quiz) => (
+                        <Grid item xs={12} sm={6} md={4} key={quiz.quizId}>
                             <Card
                                 sx={{
                                     height: '100%',
@@ -44,13 +53,10 @@ const QuizList = () => {
                                         variant="contained"
                                         fullWidth
                                         color="primary"
-                                        disabled={!quiz.is_available}
-                                        onClick={() => {
-                                            // здесь можно добавить навигацию или вызов старта
-                                            console.log(`Start quiz ${quiz.quiz_id}`);
-                                        }}
+                                        disabled={!quiz.isAvailable}
+                                        onClick={handleClickStartQuiz(quiz)}
                                     >
-                                        {quiz.is_available ? 'Пройти' : 'Недоступно'}
+                                        {quiz.isAvailable ? 'Пройти' : 'Недоступно'}
                                     </Button>
                                 </Box>
                             </Card>

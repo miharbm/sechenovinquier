@@ -13,6 +13,16 @@ export const quizApi = createApi({
     endpoints: (builder) => ({
         getQuizzes: builder.query({
             query: () => "/list",
+            transformResponse: (response) => (
+                response.list.map((item) => ({
+                    quizId: item.quiz_id,
+                    name: item.name,
+                    description: item.description,
+                    isAvailable: item.is_available,
+                    timeToPassAgain: item.time_to_pass_again,
+                    nextTimeCan: item.next_time_can,
+                }))
+            )
         }),
     }),
 });
