@@ -2,10 +2,9 @@ import {useLazyGetQuestionQuery, useStartQuestionMutation} from "../../api/quest
 import {useEffect, useState} from "react";
 import QuestionBlock from "../questionblock/QuestionBlock.jsx";
 import {useSaveResponseMutation} from "../../api/userApi.js";
-import {useNavigate} from "react-router-dom";
+import CompleteInquirer from "./CompleteInquirer.jsx";
 
 const ProcessInquirer = ({quizId}) => {
-    const navigate = useNavigate();
     const [isStartedQuiz, setIsStartedQuiz] = useState(false);
     const [isEndedQuiz, setIsEndedQuiz] = useState(false);
     const [startQuiz, {
@@ -29,11 +28,6 @@ const ProcessInquirer = ({quizId}) => {
         }
     }, [isSuccess]);
 
-    useEffect(() => {
-        if (isEndedQuiz) {
-            navigate(`/`);
-        }
-    }, [isEndedQuiz, navigate])
 
     const onAnswer = (selectedOption, selectedAnswers) => {
         saveResponse({
@@ -52,6 +46,11 @@ const ProcessInquirer = ({quizId}) => {
             }
         })
     }
+
+    if (isEndedQuiz) {
+        return <CompleteInquirer/>;
+    }
+
     if (!startQuizData) return null;
     
     return (
