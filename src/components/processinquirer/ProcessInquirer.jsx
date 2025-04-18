@@ -4,6 +4,7 @@ import QuestionBlockSingleChoice from "../questionblock/QuestionBlockSingleChoic
 import {useSaveResponseMutation} from "../../api/userApi.js";
 import CompleteInquirer from "./CompleteInquirer.jsx";
 import QuestionBlockMultiChoice from "../questionblock/QuestionBlockMultiChoice.jsx";
+import Box from "@mui/material/Box";
 
 const ProcessInquirer = ({quizId}) => {
     const [isStartedQuiz, setIsStartedQuiz] = useState(false);
@@ -55,15 +56,19 @@ const ProcessInquirer = ({quizId}) => {
     if (!startQuizData) return null;
     
     return (
-        !startQuizData.isMultipleChoice ? (
-            <QuestionBlockSingleChoice questionData={questionNonFirstData || startQuizData}
-                                       onAnswer={onAnswer}
-            />
-        ) : (
-            <QuestionBlockMultiChoice questionData={questionNonFirstData || startQuizData}
-                                      onAnswer={onAnswer}
-            />
-        )
+        <Box sx={{mt: "2rem"}}>
+            {
+                !startQuizData.isMultipleChoice ? (
+                    <QuestionBlockSingleChoice questionData={questionNonFirstData || startQuizData}
+                                               onAnswer={onAnswer}
+                    />
+                ) : (
+                    <QuestionBlockMultiChoice questionData={questionNonFirstData || startQuizData}
+                                              onAnswer={onAnswer}
+                    />
+                )
+            }
+        </Box>
     )
 }
 

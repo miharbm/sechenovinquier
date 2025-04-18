@@ -36,8 +36,9 @@ const QuestionBlockSingleChoice = ({ questionData, onAnswer }) => {
                 <CardMedia
                     component="img"
                     height="200"
-                    image={`/images/${questionData.imgName}`}
+                    image={questionData.imgName}
                     alt="question"
+                    sx={{ borderRadius: 1 }}
                 />
             )}
             <CardContent>
@@ -64,6 +65,7 @@ const QuestionBlockSingleChoice = ({ questionData, onAnswer }) => {
                         color="primary"
                         disabled={selectedOption === null}
                         onClick={handleSubmit}
+                        fullWidth
                     >
                         Ответить
                     </Button>

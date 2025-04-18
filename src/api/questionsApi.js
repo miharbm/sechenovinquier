@@ -21,7 +21,7 @@ export const questionsApi = createApi({
             }),
             transformResponse: (data) => ({
                 questionText: data.question_text,
-                imgName: data.img_name,
+                imgName: `${baseUrl}/static/public/questions/${data.img_name}`,
                 options: data.options.map(option => ({
                     responseText: option.response_text,
                     responseId: option.response_id,
@@ -43,7 +43,7 @@ export const questionsApi = createApi({
             }),
             transformResponse: (data) => ({
                 questionText: data.question_text,
-                imgName: data.img_name,
+                imgName: `${baseUrl}/static/public/questions/${data.img_name}`,
                 options: data.options.map(option => ({
                     responseText: option.response_text,
                     responseId: option.response_id,

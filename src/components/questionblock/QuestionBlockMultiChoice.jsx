@@ -41,8 +41,9 @@ const QuestionBlockMultiChoice = ({ questionData, onAnswer }) => {
                 <CardMedia
                     component="img"
                     height="200"
-                    image={`/images/${questionData.imgName}`}
+                    image={questionData.imgName}
                     alt="question"
+                    sx={{ borderRadius: 1 }}
                 />
             )}
             <CardContent>
@@ -74,6 +75,7 @@ const QuestionBlockMultiChoice = ({ questionData, onAnswer }) => {
                         color="primary"
                         disabled={selectedOptions.length === 0}
                         onClick={handleSubmit}
+                        fullWidth
                     >
                         Ответить
                     </Button>
