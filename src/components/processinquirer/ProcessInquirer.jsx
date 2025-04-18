@@ -1,8 +1,9 @@
 import {useLazyGetQuestionQuery, useStartQuestionMutation} from "../../api/questionsApi.js";
 import {useEffect, useState} from "react";
-import QuestionBlock from "../questionblock/QuestionBlock.jsx";
+import QuestionBlockSingleChoice from "../questionblock/QuestionBlockSingleChoice.jsx";
 import {useSaveResponseMutation} from "../../api/userApi.js";
 import CompleteInquirer from "./CompleteInquirer.jsx";
+import QuestionBlockMultiChoice from "../questionblock/QuestionBlockMultiChoice.jsx";
 
 const ProcessInquirer = ({quizId}) => {
     const [isStartedQuiz, setIsStartedQuiz] = useState(false);
@@ -55,9 +56,14 @@ const ProcessInquirer = ({quizId}) => {
     
     return (
         !startQuizData.isMultipleChoice ? (
-            <QuestionBlock questionData={questionNonFirstData || startQuizData}
-                           onAnswer={onAnswer} />
-        ) : (<div>ничего</div>)
+            <QuestionBlockSingleChoice questionData={questionNonFirstData || startQuizData}
+                                       onAnswer={onAnswer}
+            />
+        ) : (
+            <QuestionBlockMultiChoice questionData={questionNonFirstData || startQuizData}
+                                      onAnswer={onAnswer}
+            />
+        )
     )
 }
 

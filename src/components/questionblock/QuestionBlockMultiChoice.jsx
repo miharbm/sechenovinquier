@@ -2,31 +2,36 @@ import { useState } from 'react';
 import {
     Box,
     Typography,
-    Radio,
-    RadioGroup,
-    FormControlLabel,
     FormControl,
     FormLabel,
+    FormGroup,
+    FormControlLabel,
+    Checkbox,
     Button,
     Card,
     CardMedia,
     CardContent
 } from '@mui/material';
 
-const QuestionBlock = ({ questionData, onAnswer }) => {
-    const [selectedOption, setSelectedOption] = useState(null);
+const QuestionBlockMultiChoice = ({ questionData, onAnswer }) => {
+    const [selectedOptions, setSelectedOptions] = useState([]);
 
     const handleChange = (event) => {
-        setSelectedOption(Number(event.target.value));
+        const value = Number(event.target.value);
+        setSelectedOptions((prev) =>
+            event.target.checked
+                ? [...prev, value]
+                : prev.filter((id) => id !== value)
+        );
     };
 
     const handleSubmit = () => {
-        const selectedAnswers = questionData.options.filter(
-            (option) => option.responseId === selectedOption
+        const selectedAnswers = questionData.options.filter((option) =>
+            selectedOptions.includes(option.responseId)
         );
 
-        if (selectedOption) {
-            onAnswer([selectedOption], selectedAnswers);
+        if (selectedOptions.length > 0) {
+            onAnswer(selectedOptions, selectedAnswers);
         }
     };
 
@@ -41,28 +46,33 @@ const QuestionBlock = ({ questionData, onAnswer }) => {
                 />
             )}
             <CardContent>
-                <FormControl component="fieldset">
+                <FormControl component="fieldset" variant="standard">
                     <FormLabel component="legend">
                         <Typography variant="h6" gutterBottom>
                             {questionData.questionText}
                         </Typography>
                     </FormLabel>
-                    <RadioGroup value={selectedOption} onChange={handleChange}>
+                    <FormGroup>
                         {questionData.options.map((option) => (
                             <FormControlLabel
                                 key={option.responseId}
-                                value={option.responseId}
-                                control={<Radio />}
+                                control={
+                                    <Checkbox
+                                        checked={selectedOptions.includes(option.responseId)}
+                                        onChange={handleChange}
+                                        value={option.responseId}
+                                    />
+                                }
                                 label={option.responseText}
                             />
                         ))}
-                    </RadioGroup>
+                    </FormGroup>
                 </FormControl>
                 <Box mt={2}>
                     <Button
                         variant="contained"
                         color="primary"
-                        disabled={selectedOption === null}
+                        disabled={selectedOptions.length === 0}
                         onClick={handleSubmit}
                     >
                         Ответить
@@ -73,4 +83,4 @@ const QuestionBlock = ({ questionData, onAnswer }) => {
     );
 };
 
-export default QuestionBlock;
+export default QuestionBlockMultiChoice;
