@@ -10,7 +10,7 @@
     "version:patch": "npm version patch",
     "version:minor": "npm version minor",
     "version:major": "npm version major",
-    "build": "npm run version:patch && vite build"
+    "build": "vite build"
   },
   "peerDependencies": {
     "react": "^17.0.2 || ^18.3.1",
