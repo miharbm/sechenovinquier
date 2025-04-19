@@ -68,31 +68,43 @@ const AppHeader = ({ userId, username, links }) => {
                 </Box>
             </Toolbar>
 
-            <Drawer anchor="right" open={menuOpen} onClose={closeDrawer}>
-                <List sx={{ width: 250 }}>
-                    {links.map(({ link, title }) => (
-                        <ListItemButton key={link}
-                                        to={link}
-                                        onClick={handleLinkClick}
-                                        selected={location.pathname === link}
-                                        component={Link}
-                        >
-                            <ListItemText primary={title} />
-                        </ListItemButton>
-                    ))}
-                    <Divider />
-                    <ListItem>
-                        <ListItemText primary={userData?.first_name ? `${userData.first_name} ${userData.last_name}` : username} />
-                    </ListItem>
-                    <ListItemButton onClick={handleLinkClick}>
-                        <AccountCircleIcon sx={{ marginRight: 1 }} />
-                        <ListItemText primary="Профиль" />
-                    </ListItemButton>
-                    <ListItemButton onClick={handleClickLogout}>
-                        <ExitToAppIcon sx={{ marginRight: 1 }} />
-                        <ListItemText primary="Выход" />
-                    </ListItemButton>
-                </List>
+            <Drawer anchor="right"
+                    open={menuOpen}
+                    onClose={closeDrawer}
+            >
+                <Box display="flex" flexDirection="column" justifyContent="space-between" height={"100svh"}>
+                    <Box>
+                        <List sx={{ width: 250 }}>
+                            {links.map(({ link, title }) => (
+                                <ListItemButton key={link}
+                                                to={link}
+                                                onClick={handleLinkClick}
+                                                selected={location.pathname === link}
+                                                component={Link}
+                                >
+                                    <ListItemText primary={title} />
+                                </ListItemButton>
+                            ))}
+                            <Divider />
+                            <ListItem>
+                                <ListItemText primary={userData?.first_name ? `${userData.first_name} ${userData.last_name}` : username} />
+                            </ListItem>
+                            <ListItemButton onClick={handleLinkClick}>
+                                <AccountCircleIcon sx={{ marginRight: 1 }} />
+                                <ListItemText primary="Профиль" />
+                            </ListItemButton>
+                            <ListItemButton onClick={handleClickLogout}>
+                                <ExitToAppIcon sx={{ marginRight: 1 }} />
+                                <ListItemText primary="Выход" />
+                            </ListItemButton>
+                        </List>
+                    </Box>
+                    <Box pb={3}>
+                        <Typography variant="body2" color="textSecondary" textAlign="center">
+                            Версия: {__APP_VERSION__}
+                        </Typography>
+                    </Box>
+                </Box>
             </Drawer>
         </AppBar>
     );
