@@ -7,11 +7,16 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import InquiererDetailsTableBody from "./InquiererDetailsTableBody.jsx";
 import InquiererDetailsTableBodySkeleton from "./InquiererDetailsTableBodySkeleton.jsx";
+import ErrorBlock from "../badstatuses/ErrorBlock.jsx";
 
 const InquierDetailsTable = ({ userId, passNum, quizId }) => {
-    const { data, isLoading, error } = useGetInquierItemQuery({ userId, passNum, quizId });
+    const {
+        data,
+        isLoading,
+        error
+    } = useGetInquierItemQuery({ userId, passNum, quizId });
 
-    if (error) return <Typography>Ошибка загрузки данных</Typography>;
+    if (error) return <ErrorBlock/>;
 
     return (
         <TableContainer sx={{ mt: 2 }}>

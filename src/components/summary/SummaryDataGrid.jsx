@@ -18,6 +18,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 import "./summary.scss"
 import ViewedCell from "./cells/ViewedCell.jsx";
+import ErrorBlock from "../badstatuses/ErrorBlock.jsx";
 
 const STORAGE_KEY = "summaryTableState";
 
@@ -146,6 +147,7 @@ const SummaryTable = () => {
                 </IconButton>
             </Box>
 
+            {error && <ErrorBlock message={"Ошибка при загрузке результатов тестирований"}/>}
             {isLoading && <SummaryDataGridSkeleton />}
             {rows.length > 0 && (
                 <DataGrid

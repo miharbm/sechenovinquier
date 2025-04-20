@@ -17,6 +17,7 @@ import SortIcon from '@mui/icons-material/SortByAlpha';
 import PatientsListSkeleton from "./PatientsListSkeleton.jsx";
 import {errorMessages} from "../../util/util.js";
 import {enqueueSnackbar} from "notistack";
+import ErrorBlock from "../badstatuses/ErrorBlock.jsx";
 
 
 const PatientsList = () => {
@@ -70,6 +71,8 @@ const PatientsList = () => {
             </Box>
             {isFetching && <LinearProgress sx={{position: "absolute", width: "100%", top: 0, left: 0}} />}
             {isLoading && <PatientsListSkeleton/>}
+            {error && <ErrorBlock message={"Ошибка при загрузке списка пациентов"}/>}
+
             {patients && (
                 <List>
                     {sortedPatients?.map((patient) => (

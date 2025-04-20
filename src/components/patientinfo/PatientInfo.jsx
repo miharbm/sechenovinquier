@@ -9,6 +9,7 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import {enqueueSnackbar} from "notistack";
+import ErrorBlock from "../badstatuses/ErrorBlock.jsx";
 
 
 const PatientInfo = ({ patientId }) => {
@@ -17,6 +18,7 @@ const PatientInfo = ({ patientId }) => {
     const [openLightbox, setOpenLightbox] = useState(false);
     const [selectedImage, setSelectedImage] = useState('');
     const [avatarSrc, setAvatarSrc] = useState(null);
+    
 
     const handleClickOpen = (image) => {
         setSelectedImage(image);
@@ -36,8 +38,8 @@ const PatientInfo = ({ patientId }) => {
         }
     };
 
-    if (isError) return <Typography>Ошибка при загрузке данных пациента.</Typography>;
 
+    if (isError) return  <ErrorBlock message={"Ошибка при загрузке данных пациента"}/>;
 
     return (
         <>
