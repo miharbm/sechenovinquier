@@ -9,7 +9,7 @@ import { AuthProvider } from './context/AuthContext.jsx'
 import { CssBaseline, Button } from '@mui/material'
 import { SnackbarProvider, enqueueSnackbar } from 'notistack'
 import theme, { StyledMaterialDesignContent } from './styles/theme.js'
-import { registerSW, applyUpdate } from './serviceWorkerRegistration'
+import { registerSW, applyUpdate } from './serviceworkers'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
