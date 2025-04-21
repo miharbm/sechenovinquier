@@ -79,7 +79,7 @@ const PatientsList = () => {
                         <ListItemButton
                             key={patient.userId}
                             component={RouterLink}
-                            to={`/patient?userId=${patient.userId}`}
+                            to={`/patients/${patient.userId}`}
                             sx={{ textDecoration: "none", color: "inherit" }}
                         >
                             <ListItemAvatar>

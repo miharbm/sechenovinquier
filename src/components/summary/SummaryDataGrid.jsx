@@ -13,8 +13,6 @@ import {errorMessages, getInfoColor, getResultStatus} from "../../util/util.js";
 import {useGetPatientResultsQuery} from "../../api/adminApi.js";
 import SummaryDataGridSkeleton from "./SummaryDataGridSkeleton.jsx";
 import {enqueueSnackbar} from "notistack";
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 import "./summary.scss"
 import ViewedCell from "./cells/ViewedCell.jsx";
@@ -78,7 +76,7 @@ const SummaryTable = () => {
             flex: 2,
             minWidth: 120,
             renderCell: (params) => (
-                <Link to={`/patient?userId=${params.row.userId}`} component={RouterLink}>
+                <Link to={`/patients/${params.row.userId}`} component={RouterLink}>
                     {params.row.patient}
                 </Link>
             ),
@@ -114,7 +112,9 @@ const SummaryTable = () => {
             filterable: false,
             sortable: false,
             renderCell: (params) => (
-                <Link to={`/inquirer?userId=${params.row.userId}&passnum=${params.row.passNum}&quizId=${params.row.quizId}`} component={RouterLink}>
+                <Link to={`/patients/${params.row.userId}/inquirer?passnum=${params.row.passNum}&quizId=${params.row.quizId}`}
+                      component={RouterLink}
+                >
                     Подробнее
                 </Link>
             ),

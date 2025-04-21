@@ -1,4 +1,4 @@
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import {getInfoColor, getResultStatus} from "../../util/util.js";
 import Tooltip from "@mui/material/Tooltip";
 
@@ -17,7 +17,7 @@ const ChartItem = ({data}) => {
     } = data || {};
 
     const navigate = useNavigate();
-
+    const location = useLocation();
 
     const status = getResultStatus(is_failed, user_score);
     const color = getInfoColor(status)
@@ -26,7 +26,7 @@ const ChartItem = ({data}) => {
 
 
     const handleClick = () => {
-        navigate(`/inquirer?userId=${patient_info.user_id}&passnum=${pass_num}&quizId=${quiz_id}`);
+        navigate(`${location.pathname}/inquirer?passnum=${pass_num}&quizId=${quiz_id}`);
     }
 
     return (

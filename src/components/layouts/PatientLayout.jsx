@@ -1,21 +1,23 @@
-import { Outlet } from "react-router-dom";
-import AppHeader from "../appheader/AppHeader";
-import { useAuth } from "../../context/AuthContext";
+import {Outlet, useParams} from "react-router-dom";
+import Grid from "@mui/material/Grid";
+import PatientInfo from "../patientinfo/PatientInfo.jsx";
+import Container from "@mui/material/Container";
 
 const PatientLayout = () => {
-    const { username, userId } = useAuth();
-    const links = [
-        { title: "Главная", link: "/" },
-    ];
+    const { userId } = useParams();
 
     return (
-        <>
-            <AppHeader username={username} userId={userId} links={links} />
-            <main>
-                <Outlet />
-            </main>
-        </>
-    );
-};
+        <Container>
+            <Grid container spacing={2} mt={2}>
+                <Grid item xs={12} sm={12} md={3}>
+                    <PatientInfo patientId={userId} />
+                </Grid>
+                <Grid item xs={12} sm={12} md={9}>
+                    <Outlet/>
+                </Grid>
+            </Grid>
+        </Container>
+    )
+}
 
 export default PatientLayout;
