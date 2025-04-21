@@ -18,7 +18,7 @@ const PatientInfo = ({ patientId }) => {
     const [openLightbox, setOpenLightbox] = useState(false);
     const [selectedImage, setSelectedImage] = useState('');
     const [avatarSrc, setAvatarSrc] = useState(null);
-    
+
 
     const handleClickOpen = (image) => {
         setSelectedImage(image);
@@ -45,7 +45,7 @@ const PatientInfo = ({ patientId }) => {
         <>
             {isLoading && <PatientInfoSkeleton/>}
             {patient && (
-                <Card sx={{ maxWidth: 345 }}>
+                <Card>
                     <CardMedia
                         component="img"
                         height="150"
