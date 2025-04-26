@@ -9,8 +9,11 @@
 \contentsline {section}{\numberline {4}Выбор фреймворка и технологий}{12}{section.4}%
 \contentsline {section}{\numberline {5}Веб-приложение}{14}{section.5}%
 \contentsline {subsection}{\numberline {5.1}Аутентификация}{14}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Главная страница}{14}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Опрос}{15}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}Регистрация пациента}{16}{subsection.5.4}%
-\contentsline {section}{Заключение}{17}{section*.4}%
-\contentsline {section}{Список литературы}{18}{section*.4}%
+\contentsline {subsection}{\numberline {5.2}Регистрация врача}{14}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Главная страница}{14}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Пациенты}{15}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Пациент}{15}{subsection.5.5}%
+\contentsline {subsection}{\numberline {5.6}Опрос}{16}{subsection.5.6}%
+\contentsline {subsection}{\numberline {5.7}Регистрация пациента}{17}{subsection.5.7}%
+\contentsline {section}{Заключение}{18}{section*.4}%
+\contentsline {section}{Список литературы}{19}{section*.4}%
