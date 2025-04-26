@@ -19,5 +19,5 @@
 \contentsline {subsection}{\numberline {6.1}Главная страница}{20}{subsection.6.1}%
 \contentsline {subsection}{\numberline {6.2}Прохождения опроса}{20}{subsection.6.2}%
 \contentsline {subsection}{\numberline {6.3}Меню}{22}{subsection.6.3}%
-\contentsline {section}{Заключение}{23}{section*.4}%
-\contentsline {section}{Список литературы}{24}{section*.4}%
+\contentsline {section}{Заключение}{24}{section*.4}%
+\contentsline {section}{Список литературы}{25}{section*.4}%
