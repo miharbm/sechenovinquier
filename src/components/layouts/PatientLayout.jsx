@@ -8,8 +8,8 @@ const PatientLayout = () => {
     const { userId } = useParams();
 
     return (
-        <Container sx={{ mt: "2rem" }}>
-            <Breadcrumbs/>
+        <Container sx={{ mt: "1rem" }}>
+            <Breadcrumbs sx={{mb: "1rem"}}/>
             <Grid container spacing={2} >
                 <Grid item xs={12} sm={12} md={3}>
                     <PatientInfo patientId={userId} />

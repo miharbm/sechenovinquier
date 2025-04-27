@@ -4,8 +4,8 @@ import Breadcrumbs from "../../Breadcrumbs/Breadcrumbs.jsx";
 
 const MainPage = () => {
     return (
-        <Container maxWidth="xl" sx={{marginTop: "2rem"}}>
-            <Breadcrumbs />
+        <Container maxWidth="xl" sx={{marginTop: "1rem"}}>
+            <Breadcrumbs sx={{mb: "1rem"}}/>
             <SummaryDataGrid/>
         </Container>
     )

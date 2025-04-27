@@ -4,8 +4,8 @@ import Breadcrumbs from "../../Breadcrumbs/Breadcrumbs.jsx";
 
 const PatientRegistrationPage = () => {
     return (
-        <Container sx={{ mt: "2rem" }}>
-            <Breadcrumbs />
+        <Container sx={{ mt: "1rem" }}>
+            <Breadcrumbs sx={{mb: "1rem"}}/>
             <RegisterPatient/>
         </Container>
     )
