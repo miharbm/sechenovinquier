@@ -31,7 +31,7 @@ const QuestionBlockSingleChoice = ({ questionData, onAnswer }) => {
     };
 
     return (
-        <Card sx={{ maxWidth: 600, margin: '0 auto', p: 2 }}>
+        <Card sx={{ p: 2 }}>
             {questionData.imgName && (
                 <CardMedia
                     component="img"

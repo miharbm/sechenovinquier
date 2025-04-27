@@ -5,6 +5,7 @@ import {useSaveResponseMutation} from "../../api/userApi.js";
 import CompleteInquirer from "./CompleteInquirer.jsx";
 import QuestionBlockMultiChoice from "../questionblock/QuestionBlockMultiChoice.jsx";
 import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
 
 const ProcessInquirer = ({quizId}) => {
     const [isStartedQuiz, setIsStartedQuiz] = useState(false);
@@ -56,7 +57,7 @@ const ProcessInquirer = ({quizId}) => {
     if (!startQuizData) return null;
     
     return (
-        <Box sx={{mt: "2rem"}}>
+        <Paper sx={{overflow: "hidden"}}>
             {
                 !startQuizData.isMultipleChoice ? (
                     <QuestionBlockSingleChoice questionData={questionNonFirstData || startQuizData}
@@ -68,7 +69,7 @@ const ProcessInquirer = ({quizId}) => {
                     />
                 )
             }
-        </Box>
+        </Paper>
     )
 }
 
