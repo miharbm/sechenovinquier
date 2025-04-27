@@ -26,6 +26,10 @@ const AppHeader = ({ userId, username, links }) => {
     const [menuOpen, setMenuOpen] = useState(false);
     const location = useLocation();
 
+    const path = location.pathname;
+    const segments = path?.split("/");
+    const basePath = "/" + (segments[1] ?? "");
+
 
     const handleClickLogout = () => logout();
     const openDrawer = () => setMenuOpen(true);
@@ -39,7 +43,7 @@ const AppHeader = ({ userId, username, links }) => {
                     <Logo />
                 </Box>
                 <Box sx={{ display: { xs: 'none', lg: 'flex' }, alignItems: 'center', flexGrow: 2, justifyContent: "space-between" }}>
-                    <Tabs value={location.pathname} textColor="inherit" indicatorColor="secondary">
+                    <Tabs value={basePath} textColor="inherit" indicatorColor="secondary">
                         {links.map(({ link, title }) => (
                             <Tab key={link}
                                  label={title}
@@ -79,7 +83,7 @@ const AppHeader = ({ userId, username, links }) => {
                                 <ListItemButton key={link}
                                                 to={link}
                                                 onClick={handleLinkClick}
-                                                selected={location.pathname === link}
+                                                selected={basePath === link}
                                                 component={Link}
                                 >
                                     <ListItemText primary={title} />
