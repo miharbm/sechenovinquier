@@ -51,7 +51,7 @@ const PatientsList = () => {
 
 
     return (
-        <Paper elevation={2} sx={{ padding: 2, marginTop: 3, position: "relative" }} >
+        <Paper elevation={2} sx={{ padding: 2, position: "relative" }} >
             <Typography variant="h5" color={"textSecondary"} sx={{ marginBottom: 2 }}>
                 Список пациентов
             </Typography>
