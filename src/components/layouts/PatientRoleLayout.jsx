@@ -13,7 +13,6 @@ const PatientRoleLayout = () => {
 
     const links = navigation.map(({ title, link, isShowLink }) => (isShowLink && { title, link }));
 
-
     return (
         <NavigationListProvider navigation={navigation}>
             <AppHeader username={username} userId={userId} links={links} />
