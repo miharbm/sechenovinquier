@@ -1,7 +1,7 @@
 import {useSearchParams} from "react-router-dom";
 import Container from "@mui/material/Container";
 import ProcessInquirer from "../../processinquirer/ProcessInquirer.jsx";
-import Breadcrumbs from "../../Breadcrumbs/Breadcrumbs.jsx";
+import Breadcrumbs from "../../breadcrumbs/Breadcrumbs.jsx";
 
 const ProcessInquirerPage = () => {
     const [searchParams] = useSearchParams();

@@ -1,6 +1,6 @@
 import SummaryDataGrid from "../../summary/SummaryDataGrid.jsx";
 import Container from "@mui/material/Container";
-import Breadcrumbs from "../../Breadcrumbs/Breadcrumbs.jsx";
+import Breadcrumbs from "../../breadcrumbs/Breadcrumbs.jsx";
 
 const MainPage = () => {
     return (

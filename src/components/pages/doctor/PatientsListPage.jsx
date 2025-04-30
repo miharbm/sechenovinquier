@@ -1,6 +1,6 @@
 import Container from "@mui/material/Container";
 import PatientsList from "../../patientslist/PatientsList.jsx";
-import Breadcrumbs from "../../Breadcrumbs/Breadcrumbs.jsx";
+import Breadcrumbs from "../../breadcrumbs/Breadcrumbs.jsx";
 
 const PatientsListPage = () => {
 

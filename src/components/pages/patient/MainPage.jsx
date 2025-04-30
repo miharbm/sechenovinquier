@@ -1,6 +1,6 @@
 import Container from "@mui/material/Container";
 import QuizList from "../../quizlist/QuizList.jsx";
-import Breadcrumbs from "../../Breadcrumbs/Breadcrumbs.jsx";
+import Breadcrumbs from "../../breadcrumbs/Breadcrumbs.jsx";
 
 const MainPage = () => {
     return (

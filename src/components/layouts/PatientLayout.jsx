@@ -2,7 +2,7 @@ import {Outlet, useParams} from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import PatientInfo from "../patientinfo/PatientInfo.jsx";
 import Container from "@mui/material/Container";
-import Breadcrumbs from "../Breadcrumbs/Breadcrumbs.jsx";
+import Breadcrumbs from "../breadcrumbs/Breadcrumbs.jsx";
 
 const PatientLayout = () => {
     const { userId } = useParams();
