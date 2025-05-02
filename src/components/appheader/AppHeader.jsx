@@ -18,12 +18,14 @@ import Tab from '@mui/material/Tab';
 import { useAuth } from '../../context/AuthContext.jsx';
 import { useGetUserInfoQuery } from '../../api/userApi.js';
 import Logo from "../logo/Logo.jsx";
-import {ListItemButton} from "@mui/material";
+import {Dialog, DialogActions, DialogTitle, ListItemButton} from "@mui/material";
+import Button from "@mui/material/Button";
 
 const AppHeader = ({ userId, username, links }) => {
     const { logout } = useAuth();
     const { data: userData } = useGetUserInfoQuery({ userId: userId });
     const [menuOpen, setMenuOpen] = useState(false);
+    const [confirmOpen, setConfirmOpen] = useState(false);
     const location = useLocation();
 
     const path = location.pathname;
@@ -31,10 +33,16 @@ const AppHeader = ({ userId, username, links }) => {
     const basePath = "/" + (segments[1] ?? "");
 
 
-    const handleClickLogout = () => logout();
     const openDrawer = () => setMenuOpen(true);
     const closeDrawer = () => setMenuOpen(false);
     const handleLinkClick = () => closeDrawer();
+    const handleClickLogout = () => setConfirmOpen(true);
+    const handleCancelLogout = () => setConfirmOpen(false);
+
+    const handleConfirmLogout = () => {
+        setConfirmOpen(false);
+        logout();
+    };
 
     return (
         <AppBar position="static">
@@ -110,6 +118,21 @@ const AppHeader = ({ userId, username, links }) => {
                     </Box>
                 </Box>
             </Drawer>
+
+            <Dialog
+                open={confirmOpen}
+                onClose={handleCancelLogout}
+            >
+                <DialogTitle>Вы уверены, что хотите выйти?</DialogTitle>
+                <DialogActions>
+                    <Button onClick={handleCancelLogout} color="primary">
+                        Отмена
+                    </Button>
+                    <Button onClick={handleConfirmLogout} color="error" autoFocus>
+                        Выйти
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </AppBar>
     );
 };
