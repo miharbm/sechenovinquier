@@ -2,7 +2,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import {useAuth} from "../../context/AuthContext.jsx";
 import {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {Navigate, useNavigate} from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
@@ -12,25 +12,18 @@ import {useSnackbar} from "notistack";
 import {LinearProgress} from "@mui/material";
 
 
-
 const Login = () => {
     const { enqueueSnackbar } = useSnackbar();
+    const {login, isLoading, isAuthenticated, error} = useAuth()
+    const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    const {login, isLoading, isAuthenticated, error} = useAuth()
-    const navigate = useNavigate();
-
-    console.log("error", error);
-    useEffect(() => {
-        if (isAuthenticated) {
-            navigate('/');
-        }
-    }, [isAuthenticated, navigate]);
 
     useEffect(() => {
         if (error) {
             enqueueSnackbar(error, {variant: "error"})
+            console.log("error", error);
         }
     }, [enqueueSnackbar, error]);
 
@@ -40,6 +33,10 @@ const Login = () => {
         await login({username, password})
     }
 
+
+    if (isAuthenticated) {
+        return <Navigate to="/" replace />;
+    }
 
     return (
         <Paper sx={{ padding: "20px", position: "relative" }}>

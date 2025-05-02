@@ -2,7 +2,7 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { useNavigate } from "react-router-dom";
+import {Navigate, useNavigate} from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.jsx";
 import { useEffect, useState } from "react";
 import {validateEmail, validateName, validateUsername} from "../../util/util.js";
@@ -24,12 +24,6 @@ const Register = () => {
         password_confirm: ""
     });
 
-
-    useEffect(() => {
-        if (isAuthenticated) {
-            navigate('/');
-        }
-    }, [isAuthenticated, navigate]);
 
     useEffect(() => {
         const showError = (message) => {
@@ -82,6 +76,10 @@ const Register = () => {
         await register(formData);
     };
 
+
+    if (isAuthenticated) {
+        return <Navigate to="/" replace />;
+    }
 
     return (
         <Paper sx={{ padding: "20px", position: "relative" }}>
