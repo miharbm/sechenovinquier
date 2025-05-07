@@ -53,7 +53,7 @@ const AppHeader = ({ userId, username, links }) => {
                 <Box sx={{ display: { xs: 'none', lg: 'flex' }, alignItems: 'center', flexGrow: 2, justifyContent: "space-between" }}>
                     <Tabs value={basePath} textColor="inherit" indicatorColor="secondary">
                         {links.map(({ link, title }) => (
-                            <Tab key={link}
+                            <Tab key={`link_header_main_${link}`}
                                  label={title}
                                  component={Link}
                                  to={link}
@@ -88,7 +88,7 @@ const AppHeader = ({ userId, username, links }) => {
                     <Box>
                         <List sx={{ width: 250 }}>
                             {links.map(({ link, title }) => (
-                                <ListItemButton key={link}
+                                <ListItemButton key={`link_header_${link}`}
                                                 to={link}
                                                 onClick={handleLinkClick}
                                                 selected={basePath === link}
@@ -98,14 +98,14 @@ const AppHeader = ({ userId, username, links }) => {
                                 </ListItemButton>
                             ))}
                             <Divider />
-                            <ListItem>
+                            <ListItem key={"link_header_static_1"}>
                                 <ListItemText primary={userData?.first_name ? `${userData.first_name} ${userData.last_name}` : username} />
                             </ListItem>
-                            <ListItemButton onClick={handleLinkClick}>
+                            <ListItemButton onClick={handleLinkClick} key={"link_header_static_2"}>
                                 <AccountCircleIcon sx={{ marginRight: 1 }} />
                                 <ListItemText primary="Профиль" />
                             </ListItemButton>
-                            <ListItemButton onClick={handleClickLogout}>
+                            <ListItemButton onClick={handleClickLogout} key={"link_header_static_3"}>
                                 <ExitToAppIcon sx={{ marginRight: 1 }} />
                                 <ListItemText primary="Выход" />
                             </ListItemButton>
