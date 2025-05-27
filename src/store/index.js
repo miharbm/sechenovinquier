@@ -5,6 +5,7 @@ import {userApi} from "../api/userApi.js";
 import {adminApi} from "../api/adminApi.js";
 import {quizApi} from "../api/quizApi.js";
 import {questionsApi} from "../api/questionsApi.js";
+import {notificationsApi} from "../api/notificationsApi.js";
 
 
 export const store = configureStore({
@@ -14,8 +15,17 @@ export const store = configureStore({
         [adminApi.reducerPath]: adminApi.reducer,
         [quizApi.reducerPath]: quizApi.reducer,
         [questionsApi.reducerPath]: questionsApi.reducer,
+        [notificationsApi.reducerPath]: notificationsApi.reducer,
         auth: authReducer
     },
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(authApi.middleware, userApi.middleware, adminApi.middleware, quizApi.middleware, questionsApi.middleware,),
+        getDefaultMiddleware()
+            .concat(
+                authApi.middleware,
+                userApi.middleware,
+                adminApi.middleware,
+                quizApi.middleware,
+                questionsApi.middleware,
+                notificationsApi.middleware,
+            ),
 });

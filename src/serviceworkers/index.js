@@ -10,6 +10,7 @@ export function registerSW(onUpdateAvailable) {
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
             const swUrl = '/sw.js';
+            // const swUrl = '/src/serviceworkers/sw.js';
 
             if (isLocalhost) {
                 checkValidServiceWorker(swUrl, onUpdateAvailable);
@@ -77,3 +78,4 @@ export function applyUpdate() {
         waitingWorker.postMessage({ type: 'SKIP_WAITING' });
     }
 }
+
