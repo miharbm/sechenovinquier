@@ -1,27 +1,29 @@
 \babel@toc {russian}{}\relax 
 \contentsline {section}{Введение}{5}{section*.3}%
-\contentsline {section}{\numberline {1}Актуальность}{6}{section.1}%
-\contentsline {section}{\numberline {2}Структура опросов}{8}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Основной опрос}{8}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Контроль за приемом лекарств}{8}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Вредные привычки и физическая активность}{10}{subsection.2.3}%
-\contentsline {section}{\numberline {3}Задачи}{11}{section.3}%
-\contentsline {section}{\numberline {4}Выбор фреймворка и технологий}{12}{section.4}%
-\contentsline {subsection}{\numberline {4.1}ReactJS}{12}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Vite}{12}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Material-UI}{13}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Progressive Web App (PWA)}{13}{subsection.4.4}%
-\contentsline {section}{\numberline {5}Веб-приложение врача}{15}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Аутентификация}{15}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Регистрация врача}{15}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Главная страница}{15}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}Пациенты}{16}{subsection.5.4}%
-\contentsline {subsection}{\numberline {5.5}Пациент}{16}{subsection.5.5}%
-\contentsline {subsection}{\numberline {5.6}Опрос}{17}{subsection.5.6}%
-\contentsline {subsection}{\numberline {5.7}Регистрация пациента}{18}{subsection.5.7}%
-\contentsline {section}{\numberline {6}Веб-приложение пациента}{21}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Главная страница}{21}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Прохождения опроса}{21}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Меню}{23}{subsection.6.3}%
-\contentsline {section}{Заключение}{25}{section*.5}%
-\contentsline {section}{Список литературы}{26}{section*.5}%
+\contentsline {section}{\numberline {1}Актуальность}{7}{section.1}%
+\contentsline {section}{\numberline {2}Структура опросов}{9}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Основной опрос}{9}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Контроль за приемом лекарств}{9}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Вредные привычки и физическая активность}{11}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Задачи}{12}{section.3}%
+\contentsline {section}{\numberline {4}Выбор фреймворка и технологий}{13}{section.4}%
+\contentsline {subsection}{\numberline {4.1}ReactJS}{13}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Vite}{13}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Redux}{14}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}React Router DOM}{14}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Material-UI}{15}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.6}Progressive Web App (PWA)}{15}{subsection.4.6}%
+\contentsline {section}{\numberline {5}Веб-приложение врача}{17}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Аутентификация}{17}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Регистрация врача}{17}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Главная страница}{17}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Пациенты}{18}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Пациент}{18}{subsection.5.5}%
+\contentsline {subsection}{\numberline {5.6}Опрос}{19}{subsection.5.6}%
+\contentsline {subsection}{\numberline {5.7}Регистрация пациента}{20}{subsection.5.7}%
+\contentsline {section}{\numberline {6}Веб-приложение пациента}{23}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Главная страница}{23}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Прохождения опроса}{24}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Меню}{24}{subsection.6.3}%
+\contentsline {section}{Заключение}{27}{section*.7}%
+\contentsline {section}{Список литературы}{28}{section*.7}%
