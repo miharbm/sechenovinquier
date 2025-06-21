@@ -1,0 +1,186 @@
+strict digraph "dependency-cruiser output"{
+    rankdir="LR" splines="polyline" overlap="false" nodesep="0.16" ranksep="0.18" fontname="Helvetica-bold" fontsize="9" style="rounded,bold,filled" fillcolor="#ffffff" compound="true"
+    node [shape="box" style="rounded, filled" height="0.2" color="black" fillcolor="#ffffcc" fontcolor="black" fontname="Helvetica" fontsize="9"]
+    edge [arrowhead="normal" arrowsize="0.6" penwidth="2.0" color="#00000033" fontname="Helvetica" fontsize="9"]
+
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/api" {label="api" "src/api/adminApi.js" [label=<adminApi.js> tooltip="adminApi.js" URL="src/api/adminApi.js" ] } }
+    "src/api/adminApi.js" -> "src/api/authHeader.js"
+    "src/api/adminApi.js" -> "src/api/tags.js"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/api" {label="api" "src/api/authApi.js" [label=<authApi.js> tooltip="authApi.js" URL="src/api/authApi.js" ] } }
+    "src/api/authApi.js" -> "src/api/authHeader.js"
+    "src/api/authApi.js" -> "src/api/tags.js"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/api" {label="api" "src/api/authHeader.js" [label=<authHeader.js> tooltip="authHeader.js" URL="src/api/authHeader.js" ] } }
+    "src/api/authHeader.js" -> "src/reducers/authSlice.js"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/api" {label="api" "src/api/questionsApi.js" [label=<questionsApi.js> tooltip="questionsApi.js" URL="src/api/questionsApi.js" ] } }
+    "src/api/questionsApi.js" -> "src/api/authHeader.js"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/api" {label="api" "src/api/quizApi.js" [label=<quizApi.js> tooltip="quizApi.js" URL="src/api/quizApi.js" ] } }
+    "src/api/quizApi.js" -> "src/api/authHeader.js"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/api" {label="api" "src/api/tags.js" [label=<tags.js> tooltip="tags.js" URL="src/api/tags.js" ] } }
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/api" {label="api" "src/api/userApi.js" [label=<userApi.js> tooltip="userApi.js" URL="src/api/userApi.js" ] } }
+    "src/api/userApi.js" -> "src/api/authHeader.js"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/assets" {label="assets" "src/assets/default_avatar.png" [label=<default_avatar.png> tooltip="default_avatar.png" URL="src/assets/default_avatar.png" ] } }
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/assets" {label="assets" "src/assets/icon.svg" [label=<icon.svg> tooltip="icon.svg" URL="src/assets/icon.svg" ] } }
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/InquierItem" {label="InquierItem" "src/components/InquierItem/InquierDetailsTable.jsx" [label=<InquierDetailsTable.jsx> tooltip="InquierDetailsTable.jsx" URL="src/components/InquierItem/InquierDetailsTable.jsx" fillcolor="#ffff77"] } } }
+    "src/components/InquierItem/InquierDetailsTable.jsx" -> "src/api/userApi.js"
+    "src/components/InquierItem/InquierDetailsTable.jsx" -> "src/components/badstatuses/ErrorBlock.jsx"
+    "src/components/InquierItem/InquierDetailsTable.jsx" -> "src/components/InquierItem/InquiererDetailsTableBody.jsx"
+    "src/components/InquierItem/InquierDetailsTable.jsx" -> "src/components/InquierItem/InquiererDetailsTableBodySkeleton.jsx"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/InquierItem" {label="InquierItem" "src/components/InquierItem/InquiererDetailsHeader.jsx" [label=<InquiererDetailsHeader.jsx> tooltip="InquiererDetailsHeader.jsx" URL="src/components/InquierItem/InquiererDetailsHeader.jsx" fillcolor="#ffff77"] } } }
+    "src/components/InquierItem/InquiererDetailsHeader.jsx" -> "src/api/quizApi.js"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/InquierItem" {label="InquierItem" "src/components/InquierItem/InquiererDetailsTableBody.jsx" [label=<InquiererDetailsTableBody.jsx> tooltip="InquiererDetailsTableBody.jsx" URL="src/components/InquierItem/InquiererDetailsTableBody.jsx" fillcolor="#ffff77"] } } }
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/InquierItem" {label="InquierItem" "src/components/InquierItem/InquiererDetailsTableBodySkeleton.jsx" [label=<InquiererDetailsTableBodySkeleton.jsx> tooltip="InquiererDetailsTableBodySkeleton.jsx" URL="src/components/InquierItem/InquiererDetailsTableBodySkeleton.jsx" fillcolor="#ffff77"] } } }
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/app" {label="app" "src/components/app/App.jsx" [label=<App.jsx> tooltip="App.jsx" URL="src/components/app/App.jsx" fillcolor="#ffff77"] } } }
+    "src/components/app/App.jsx" -> "src/context/AuthContext.jsx"
+    "src/components/app/App.jsx" -> "src/styles/index.scss"
+    "src/components/app/App.jsx" -> "src/components/fallback/Fallback.jsx"
+    "src/components/app/App.jsx" -> "src/components/pages/common/LoginPage.jsx"
+    "src/components/app/App.jsx" -> "src/components/pages/common/RegistrationPage.jsx"
+    "src/components/app/App.jsx" -> "src/components/routers/DoctorRouter.jsx" [style="dashed"]
+    "src/components/app/App.jsx" -> "src/components/routers/PatientRouter.jsx" [style="dashed"]
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/appheader" {label="appheader" "src/components/appheader/AppHeader.jsx" [label=<AppHeader.jsx> tooltip="AppHeader.jsx" URL="src/components/appheader/AppHeader.jsx" fillcolor="#ffff77"] } } }
+    "src/components/appheader/AppHeader.jsx" -> "src/api/userApi.js"
+    "src/components/appheader/AppHeader.jsx" -> "src/context/AuthContext.jsx"
+    "src/components/appheader/AppHeader.jsx" -> "src/components/logo/Logo.jsx"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/badstatuses" {label="badstatuses" "src/components/badstatuses/ErrorBlock.jsx" [label=<ErrorBlock.jsx> tooltip="ErrorBlock.jsx" URL="src/components/badstatuses/ErrorBlock.jsx" fillcolor="#ffff77"] } } }
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/badstatuses" {label="badstatuses" "src/components/badstatuses/NoData.jsx" [label=<NoData.jsx> tooltip="no-orphans" URL="src/components/badstatuses/NoData.jsx" fillcolor="#ccffcc" fontcolor="orange" color="orange"] } } }
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/breadcrumbs" {label="breadcrumbs" "src/components/breadcrumbs/Breadcrumbs.jsx" [label=<Breadcrumbs.jsx> tooltip="Breadcrumbs.jsx" URL="src/components/breadcrumbs/Breadcrumbs.jsx" fillcolor="#ffff77"] } } }
+    "src/components/breadcrumbs/Breadcrumbs.jsx" -> "src/context/NavigationListContext.jsx"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/fallback" {label="fallback" "src/components/fallback/Fallback.jsx" [label=<Fallback.jsx> tooltip="Fallback.jsx" URL="src/components/fallback/Fallback.jsx" fillcolor="#ffff77"] } } }
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/layouts" {label="layouts" "src/components/layouts/DoctorRoleLayout.jsx" [label=<DoctorRoleLayout.jsx> tooltip="DoctorRoleLayout.jsx" URL="src/components/layouts/DoctorRoleLayout.jsx" fillcolor="#ffff77"] } } }
+    "src/components/layouts/DoctorRoleLayout.jsx" -> "src/context/AuthContext.jsx"
+    "src/components/layouts/DoctorRoleLayout.jsx" -> "src/context/NavigationListContext.jsx"
+    "src/components/layouts/DoctorRoleLayout.jsx" -> "src/components/appheader/AppHeader.jsx"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/layouts" {label="layouts" "src/components/layouts/PatientLayout.jsx" [label=<PatientLayout.jsx> tooltip="PatientLayout.jsx" URL="src/components/layouts/PatientLayout.jsx" fillcolor="#ffff77"] } } }
+    "src/components/layouts/PatientLayout.jsx" -> "src/components/breadcrumbs/Breadcrumbs.jsx"
+    "src/components/layouts/PatientLayout.jsx" -> "src/components/patientinfo/PatientInfo.jsx"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/layouts" {label="layouts" "src/components/layouts/PatientRoleLayout.jsx" [label=<PatientRoleLayout.jsx> tooltip="PatientRoleLayout.jsx" URL="src/components/layouts/PatientRoleLayout.jsx" fillcolor="#ffff77"] } } }
+    "src/components/layouts/PatientRoleLayout.jsx" -> "src/context/AuthContext.jsx"
+    "src/components/layouts/PatientRoleLayout.jsx" -> "src/context/NavigationListContext.jsx"
+    "src/components/layouts/PatientRoleLayout.jsx" -> "src/components/appheader/AppHeader.jsx"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/layouts" {label="layouts" "src/components/layouts/PatientsLayout.jsx" [label=<PatientsLayout.jsx> tooltip="PatientsLayout.jsx" URL="src/components/layouts/PatientsLayout.jsx" fillcolor="#ffff77"] } } }
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/lightbox" {label="lightbox" "src/components/lightbox/LightBox.jsx" [label=<LightBox.jsx> tooltip="LightBox.jsx" URL="src/components/lightbox/LightBox.jsx" fillcolor="#ffff77"] } } }
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/loginandregister" {label="loginandregister" "src/components/loginandregister/Login.jsx" [label=<Login.jsx> tooltip="Login.jsx" URL="src/components/loginandregister/Login.jsx" fillcolor="#ffff77"] } } }
+    "src/components/loginandregister/Login.jsx" -> "src/context/AuthContext.jsx"
+    "src/components/loginandregister/Login.jsx" -> "src/components/logo/Logo.jsx"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/loginandregister" {label="loginandregister" "src/components/loginandregister/Register.jsx" [label=<Register.jsx> tooltip="Register.jsx" URL="src/components/loginandregister/Register.jsx" fillcolor="#ffff77"] } } }
+    "src/components/loginandregister/Register.jsx" -> "src/context/AuthContext.jsx"
+    "src/components/loginandregister/Register.jsx" -> "src/util/util.js"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/loginandregister" {label="loginandregister" "src/components/loginandregister/RegisterPatient.jsx" [label=<RegisterPatient.jsx> tooltip="RegisterPatient.jsx" URL="src/components/loginandregister/RegisterPatient.jsx" fillcolor="#ffff77"] } } }
+    "src/components/loginandregister/RegisterPatient.jsx" -> "src/api/authApi.js"
+    "src/components/loginandregister/RegisterPatient.jsx" -> "src/util/util.js"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/logo" {label="logo" "src/components/logo/Logo.jsx" [label=<Logo.jsx> tooltip="Logo.jsx" URL="src/components/logo/Logo.jsx" fillcolor="#ffff77"] } } }
+    "src/components/logo/Logo.jsx" -> "src/assets/icon.svg"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/pages" {label="pages" subgraph "cluster_src/components/pages/common" {label="common" "src/components/pages/common/LoginPage.jsx" [label=<LoginPage.jsx> tooltip="LoginPage.jsx" URL="src/components/pages/common/LoginPage.jsx" fillcolor="#ffff77"] } } } }
+    "src/components/pages/common/LoginPage.jsx" -> "src/components/loginandregister/Login.jsx"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/pages" {label="pages" subgraph "cluster_src/components/pages/common" {label="common" "src/components/pages/common/NotFoundPage.jsx" [label=<NotFoundPage.jsx> tooltip="NotFoundPage.jsx" URL="src/components/pages/common/NotFoundPage.jsx" fillcolor="#ffff77"] } } } }
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/pages" {label="pages" subgraph "cluster_src/components/pages/common" {label="common" "src/components/pages/common/RegistrationPage.jsx" [label=<RegistrationPage.jsx> tooltip="RegistrationPage.jsx" URL="src/components/pages/common/RegistrationPage.jsx" fillcolor="#ffff77"] } } } }
+    "src/components/pages/common/RegistrationPage.jsx" -> "src/components/loginandregister/Register.jsx"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/pages" {label="pages" subgraph "cluster_src/components/pages/doctor" {label="doctor" "src/components/pages/doctor/InquiererItemPage.jsx" [label=<InquiererItemPage.jsx> tooltip="InquiererItemPage.jsx" URL="src/components/pages/doctor/InquiererItemPage.jsx" fillcolor="#ffff77"] } } } }
+    "src/components/pages/doctor/InquiererItemPage.jsx" -> "src/components/InquierItem/InquierDetailsTable.jsx"
+    "src/components/pages/doctor/InquiererItemPage.jsx" -> "src/components/InquierItem/InquiererDetailsHeader.jsx"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/pages" {label="pages" subgraph "cluster_src/components/pages/doctor" {label="doctor" "src/components/pages/doctor/MainPage.jsx" [label=<MainPage.jsx> tooltip="MainPage.jsx" URL="src/components/pages/doctor/MainPage.jsx" fillcolor="#ffff77"] } } } }
+    "src/components/pages/doctor/MainPage.jsx" -> "src/components/breadcrumbs/Breadcrumbs.jsx"
+    "src/components/pages/doctor/MainPage.jsx" -> "src/components/summary/SummaryDataGrid.jsx"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/pages" {label="pages" subgraph "cluster_src/components/pages/doctor" {label="doctor" "src/components/pages/doctor/PatientPage.jsx" [label=<PatientPage.jsx> tooltip="PatientPage.jsx" URL="src/components/pages/doctor/PatientPage.jsx" fillcolor="#ffff77"] } } } }
+    "src/components/pages/doctor/PatientPage.jsx" -> "src/components/patientstatisticchart/PatientStatisticChart.jsx"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/pages" {label="pages" subgraph "cluster_src/components/pages/doctor" {label="doctor" "src/components/pages/doctor/PatientRegistrationPage.jsx" [label=<PatientRegistrationPage.jsx> tooltip="PatientRegistrationPage.jsx" URL="src/components/pages/doctor/PatientRegistrationPage.jsx" fillcolor="#ffff77"] } } } }
+    "src/components/pages/doctor/PatientRegistrationPage.jsx" -> "src/components/breadcrumbs/Breadcrumbs.jsx"
+    "src/components/pages/doctor/PatientRegistrationPage.jsx" -> "src/components/loginandregister/RegisterPatient.jsx"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/pages" {label="pages" subgraph "cluster_src/components/pages/doctor" {label="doctor" "src/components/pages/doctor/PatientsListPage.jsx" [label=<PatientsListPage.jsx> tooltip="PatientsListPage.jsx" URL="src/components/pages/doctor/PatientsListPage.jsx" fillcolor="#ffff77"] } } } }
+    "src/components/pages/doctor/PatientsListPage.jsx" -> "src/components/breadcrumbs/Breadcrumbs.jsx"
+    "src/components/pages/doctor/PatientsListPage.jsx" -> "src/components/patientslist/PatientsList.jsx"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/pages" {label="pages" subgraph "cluster_src/components/pages/patient" {label="patient" "src/components/pages/patient/MainPage.jsx" [label=<MainPage.jsx> tooltip="MainPage.jsx" URL="src/components/pages/patient/MainPage.jsx" fillcolor="#ffff77"] } } } }
+    "src/components/pages/patient/MainPage.jsx" -> "src/components/breadcrumbs/Breadcrumbs.jsx"
+    "src/components/pages/patient/MainPage.jsx" -> "src/components/quizlist/QuizList.jsx"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/pages" {label="pages" subgraph "cluster_src/components/pages/patient" {label="patient" "src/components/pages/patient/ProcessInquirerPage.jsx" [label=<ProcessInquirerPage.jsx> tooltip="ProcessInquirerPage.jsx" URL="src/components/pages/patient/ProcessInquirerPage.jsx" fillcolor="#ffff77"] } } } }
+    "src/components/pages/patient/ProcessInquirerPage.jsx" -> "src/components/breadcrumbs/Breadcrumbs.jsx"
+    "src/components/pages/patient/ProcessInquirerPage.jsx" -> "src/components/processinquirer/ProcessInquirer.jsx"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/patientinfo" {label="patientinfo" "src/components/patientinfo/PatientInfo.jsx" [label=<PatientInfo.jsx> tooltip="PatientInfo.jsx" URL="src/components/patientinfo/PatientInfo.jsx" fillcolor="#ffff77"] } } }
+    "src/components/patientinfo/PatientInfo.jsx" -> "src/api/adminApi.js"
+    "src/components/patientinfo/PatientInfo.jsx" -> "src/assets/default_avatar.png"
+    "src/components/patientinfo/PatientInfo.jsx" -> "src/components/badstatuses/ErrorBlock.jsx"
+    "src/components/patientinfo/PatientInfo.jsx" -> "src/components/lightbox/LightBox.jsx"
+    "src/components/patientinfo/PatientInfo.jsx" -> "src/components/patientinfo/PatientInfoSkeleton.jsx"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/patientinfo" {label="patientinfo" "src/components/patientinfo/PatientInfoSkeleton.jsx" [label=<PatientInfoSkeleton.jsx> tooltip="PatientInfoSkeleton.jsx" URL="src/components/patientinfo/PatientInfoSkeleton.jsx" fillcolor="#ffff77"] } } }
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/patientslist" {label="patientslist" "src/components/patientslist/PatientsList.jsx" [label=<PatientsList.jsx> tooltip="PatientsList.jsx" URL="src/components/patientslist/PatientsList.jsx" fillcolor="#ffff77"] } } }
+    "src/components/patientslist/PatientsList.jsx" -> "src/api/adminApi.js"
+    "src/components/patientslist/PatientsList.jsx" -> "src/util/util.js"
+    "src/components/patientslist/PatientsList.jsx" -> "src/components/badstatuses/ErrorBlock.jsx"
+    "src/components/patientslist/PatientsList.jsx" -> "src/components/patientslist/PatientsListSkeleton.jsx"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/patientslist" {label="patientslist" "src/components/patientslist/PatientsListSkeleton.jsx" [label=<PatientsListSkeleton.jsx> tooltip="PatientsListSkeleton.jsx" URL="src/components/patientslist/PatientsListSkeleton.jsx" fillcolor="#ffff77"] } } }
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/patientstatisticchart" {label="patientstatisticchart" "src/components/patientstatisticchart/PatientStatisticChart.jsx" [label=<PatientStatisticChart.jsx> tooltip="PatientStatisticChart.jsx" URL="src/components/patientstatisticchart/PatientStatisticChart.jsx" fillcolor="#ffff77"] } } }
+    "src/components/patientstatisticchart/PatientStatisticChart.jsx" -> "src/api/adminApi.js"
+    "src/components/patientstatisticchart/PatientStatisticChart.jsx" -> "src/components/patientstatisticchart/patientstaticchart.scss"
+    "src/components/patientstatisticchart/PatientStatisticChart.jsx" -> "src/components/patientstatisticchart/PatientStatisticChartItem.jsx"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/patientstatisticchart" {label="patientstatisticchart" "src/components/patientstatisticchart/PatientStatisticChartItem.jsx" [label=<PatientStatisticChartItem.jsx> tooltip="PatientStatisticChartItem.jsx" URL="src/components/patientstatisticchart/PatientStatisticChartItem.jsx" fillcolor="#ffff77"] } } }
+    "src/components/patientstatisticchart/PatientStatisticChartItem.jsx" -> "src/util/util.js"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/patientstatisticchart" {label="patientstatisticchart" "src/components/patientstatisticchart/patientstaticchart.scss" [label=<patientstaticchart.scss> tooltip="patientstaticchart.scss" URL="src/components/patientstatisticchart/patientstaticchart.scss" ] } } }
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/processinquirer" {label="processinquirer" "src/components/processinquirer/CompleteInquirer.jsx" [label=<CompleteInquirer.jsx> tooltip="CompleteInquirer.jsx" URL="src/components/processinquirer/CompleteInquirer.jsx" fillcolor="#ffff77"] } } }
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/processinquirer" {label="processinquirer" "src/components/processinquirer/ProcessInquirer.jsx" [label=<ProcessInquirer.jsx> tooltip="ProcessInquirer.jsx" URL="src/components/processinquirer/ProcessInquirer.jsx" fillcolor="#ffff77"] } } }
+    "src/components/processinquirer/ProcessInquirer.jsx" -> "src/api/questionsApi.js"
+    "src/components/processinquirer/ProcessInquirer.jsx" -> "src/api/userApi.js"
+    "src/components/processinquirer/ProcessInquirer.jsx" -> "src/components/questionblock/QuestionBlockMultiChoice.jsx"
+    "src/components/processinquirer/ProcessInquirer.jsx" -> "src/components/questionblock/QuestionBlockSingleChoice.jsx"
+    "src/components/processinquirer/ProcessInquirer.jsx" -> "src/components/processinquirer/CompleteInquirer.jsx"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/questionblock" {label="questionblock" "src/components/questionblock/QuestionBlockMultiChoice.jsx" [label=<QuestionBlockMultiChoice.jsx> tooltip="QuestionBlockMultiChoice.jsx" URL="src/components/questionblock/QuestionBlockMultiChoice.jsx" fillcolor="#ffff77"] } } }
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/questionblock" {label="questionblock" "src/components/questionblock/QuestionBlockSingleChoice.jsx" [label=<QuestionBlockSingleChoice.jsx> tooltip="QuestionBlockSingleChoice.jsx" URL="src/components/questionblock/QuestionBlockSingleChoice.jsx" fillcolor="#ffff77"] } } }
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/quizlist" {label="quizlist" "src/components/quizlist/QuizList.jsx" [label=<QuizList.jsx> tooltip="QuizList.jsx" URL="src/components/quizlist/QuizList.jsx" fillcolor="#ffff77"] } } }
+    "src/components/quizlist/QuizList.jsx" -> "src/api/quizApi.js"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/routers" {label="routers" "src/components/routers/DoctorRouter.jsx" [label=<DoctorRouter.jsx> tooltip="DoctorRouter.jsx" URL="src/components/routers/DoctorRouter.jsx" fillcolor="#ffff77"] } } }
+    "src/components/routers/DoctorRouter.jsx" -> "src/protectedroute/ProtectedRoute.jsx"
+    "src/components/routers/DoctorRouter.jsx" -> "src/components/layouts/DoctorRoleLayout.jsx"
+    "src/components/routers/DoctorRouter.jsx" -> "src/components/layouts/PatientLayout.jsx"
+    "src/components/routers/DoctorRouter.jsx" -> "src/components/layouts/PatientsLayout.jsx"
+    "src/components/routers/DoctorRouter.jsx" -> "src/components/pages/common/NotFoundPage.jsx"
+    "src/components/routers/DoctorRouter.jsx" -> "src/components/pages/doctor/InquiererItemPage.jsx"
+    "src/components/routers/DoctorRouter.jsx" -> "src/components/pages/doctor/MainPage.jsx"
+    "src/components/routers/DoctorRouter.jsx" -> "src/components/pages/doctor/PatientPage.jsx"
+    "src/components/routers/DoctorRouter.jsx" -> "src/components/pages/doctor/PatientRegistrationPage.jsx"
+    "src/components/routers/DoctorRouter.jsx" -> "src/components/pages/doctor/PatientsListPage.jsx"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/routers" {label="routers" "src/components/routers/PatientRouter.jsx" [label=<PatientRouter.jsx> tooltip="PatientRouter.jsx" URL="src/components/routers/PatientRouter.jsx" fillcolor="#ffff77"] } } }
+    "src/components/routers/PatientRouter.jsx" -> "src/protectedroute/ProtectedRoute.jsx"
+    "src/components/routers/PatientRouter.jsx" -> "src/components/layouts/PatientRoleLayout.jsx"
+    "src/components/routers/PatientRouter.jsx" -> "src/components/pages/common/NotFoundPage.jsx"
+    "src/components/routers/PatientRouter.jsx" -> "src/components/pages/patient/MainPage.jsx"
+    "src/components/routers/PatientRouter.jsx" -> "src/components/pages/patient/ProcessInquirerPage.jsx"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/summary" {label="summary" "src/components/summary/SummaryDataGrid.jsx" [label=<SummaryDataGrid.jsx> tooltip="SummaryDataGrid.jsx" URL="src/components/summary/SummaryDataGrid.jsx" fillcolor="#ffff77"] } } }
+    "src/components/summary/SummaryDataGrid.jsx" -> "src/api/adminApi.js"
+    "src/components/summary/SummaryDataGrid.jsx" -> "src/util/util.js"
+    "src/components/summary/SummaryDataGrid.jsx" -> "src/components/badstatuses/ErrorBlock.jsx"
+    "src/components/summary/SummaryDataGrid.jsx" -> "src/components/summary/cells/ViewedCell.jsx"
+    "src/components/summary/SummaryDataGrid.jsx" -> "src/components/summary/summary.scss"
+    "src/components/summary/SummaryDataGrid.jsx" -> "src/components/summary/SummaryDataGridSkeleton.jsx"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/summary" {label="summary" "src/components/summary/SummaryDataGridSkeleton.jsx" [label=<SummaryDataGridSkeleton.jsx> tooltip="SummaryDataGridSkeleton.jsx" URL="src/components/summary/SummaryDataGridSkeleton.jsx" fillcolor="#ffff77"] } } }
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/summary" {label="summary" subgraph "cluster_src/components/summary/cells" {label="cells" "src/components/summary/cells/ViewedCell.jsx" [label=<ViewedCell.jsx> tooltip="ViewedCell.jsx" URL="src/components/summary/cells/ViewedCell.jsx" fillcolor="#ffff77"] } } } }
+    "src/components/summary/cells/ViewedCell.jsx" -> "src/api/adminApi.js"
+    "src/components/summary/cells/ViewedCell.jsx" -> "src/styles/theme.js"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/components" {label="components" subgraph "cluster_src/components/summary" {label="summary" "src/components/summary/summary.scss" [label=<summary.scss> tooltip="summary.scss" URL="src/components/summary/summary.scss" ] } } }
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/context" {label="context" "src/context/AuthContext.jsx" [label=<AuthContext.jsx> tooltip="AuthContext.jsx" URL="src/context/AuthContext.jsx" fillcolor="#ffff77"] } }
+    "src/context/AuthContext.jsx" -> "src/api/authApi.js"
+    "src/context/AuthContext.jsx" -> "src/reducers/authSlice.js"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/context" {label="context" "src/context/NavigationListContext.jsx" [label=<NavigationListContext.jsx> tooltip="NavigationListContext.jsx" URL="src/context/NavigationListContext.jsx" fillcolor="#ffff77"] } }
+    subgraph "cluster_src" {label="src" "src/index.css" [label=<index.css> tooltip="index.css" URL="src/index.css" ] }
+    subgraph "cluster_src" {label="src" "src/main.jsx" [label=<main.jsx> tooltip="main.jsx" URL="src/main.jsx" fillcolor="#ffff77"] }
+    "src/main.jsx" -> "src/components/app/App.jsx"
+    "src/main.jsx" -> "src/context/AuthContext.jsx"
+    "src/main.jsx" -> "src/index.css"
+    "src/main.jsx" -> "src/serviceworkers/index.js"
+    "src/main.jsx" -> "src/store/index.js"
+    "src/main.jsx" -> "src/styles/theme.js"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/protectedroute" {label="protectedroute" "src/protectedroute/ProtectedRoute.jsx" [label=<ProtectedRoute.jsx> tooltip="ProtectedRoute.jsx" URL="src/protectedroute/ProtectedRoute.jsx" fillcolor="#ffff77"] } }
+    "src/protectedroute/ProtectedRoute.jsx" -> "src/components/fallback/Fallback.jsx"
+    "src/protectedroute/ProtectedRoute.jsx" -> "src/context/AuthContext.jsx"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/reducers" {label="reducers" "src/reducers/authSlice.js" [label=<authSlice.js> tooltip="authSlice.js" URL="src/reducers/authSlice.js" ] } }
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/serviceworkers" {label="serviceworkers" "src/serviceworkers/index.js" [label=<index.js> tooltip="index.js" URL="src/serviceworkers/index.js" ] } }
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/store" {label="store" "src/store/index.js" [label=<index.js> tooltip="index.js" URL="src/store/index.js" ] } }
+    "src/store/index.js" -> "src/api/adminApi.js"
+    "src/store/index.js" -> "src/api/authApi.js"
+    "src/store/index.js" -> "src/api/questionsApi.js"
+    "src/store/index.js" -> "src/api/quizApi.js"
+    "src/store/index.js" -> "src/api/userApi.js"
+    "src/store/index.js" -> "src/reducers/authSlice.js"
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/styles" {label="styles" "src/styles/index.scss" [label=<index.scss> tooltip="index.scss" URL="src/styles/index.scss" ] } }
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/styles" {label="styles" "src/styles/theme.js" [label=<theme.js> tooltip="theme.js" URL="src/styles/theme.js" ] } }
+    subgraph "cluster_src" {label="src" subgraph "cluster_src/util" {label="util" "src/util/util.js" [label=<util.js> tooltip="util.js" URL="src/util/util.js" ] } }
+    "src/util/util.js" -> "src/styles/theme.js"
+}
