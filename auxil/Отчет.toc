@@ -1,30 +1,38 @@
 \babel@toc {russian}{}\relax 
-\contentsline {section}{Введение}{6}{section*.3}%
-\contentsline {section}{\numberline {1}Актуальность}{8}{section.1}%
-\contentsline {section}{\numberline {2}Структура опросов}{10}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Основной опрос}{10}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Контроль за приемом лекарств}{10}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Вредные привычки и физическая активность}{12}{subsection.2.3}%
-\contentsline {section}{\numberline {3}Задачи}{13}{section.3}%
-\contentsline {section}{\numberline {4}Выбор фреймворка и технологий}{14}{section.4}%
-\contentsline {subsection}{\numberline {4.1}ReactJS}{14}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Vite}{14}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Redux}{15}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}React Router DOM}{15}{subsection.4.4}%
-\contentsline {subsection}{\numberline {4.5}Material-UI}{16}{subsection.4.5}%
-\contentsline {subsection}{\numberline {4.6}Progressive Web App (PWA)}{16}{subsection.4.6}%
-\contentsline {section}{\numberline {5}Веб-приложение врача}{18}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Аутентификация}{18}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Регистрация врача}{18}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Главная страница}{18}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}Пациенты}{19}{subsection.5.4}%
-\contentsline {subsection}{\numberline {5.5}Пациент}{19}{subsection.5.5}%
-\contentsline {subsection}{\numberline {5.6}Опрос}{20}{subsection.5.6}%
-\contentsline {subsection}{\numberline {5.7}Регистрация пациента}{21}{subsection.5.7}%
-\contentsline {section}{\numberline {6}Веб-приложение пациента}{24}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Главная страница}{24}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Прохождения опроса}{25}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Меню}{25}{subsection.6.3}%
-\contentsline {subsection}{\numberline {6.4}PUSH-уведомления}{25}{subsection.6.4}%
-\contentsline {section}{Заключение}{28}{section*.7}%
-\contentsline {section}{Список литературы}{29}{section*.7}%
+\contentsline {chapter}{Введение}{5}{chapter*.2}%
+\contentsline {chapter}{\numberline {1}Актуальность}{6}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Структура опросов}{8}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Базовый опрос}{8}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Контроль приёма медикаментов}{8}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Образ жизни: вредные привычки и активность}{9}{section.2.3}%
+\contentsline {chapter}{\numberline {3}Задачи}{11}{chapter.3}%
+\contentsline {chapter}{\numberline {4}Проблемы нативной разработки iOS-приложений}{12}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Общие проблемы}{12}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Проблемы в современной России}{12}{section.4.2}%
+\contentsline {chapter}{\numberline {5}Выбор фреймворка и технологий}{14}{chapter.5}%
+\contentsline {section}{\numberline {5.1}ReactJS}{14}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Vite}{14}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Redux}{15}{section.5.3}%
+\contentsline {section}{\numberline {5.4}React Router DOM}{15}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Material-UI}{16}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Progressive Web App (PWA)}{16}{section.5.6}%
+\contentsline {subsection}{\numberline {5.6.1}Поддержка PWA и push-уведомлений на iOS}{17}{subsection.5.6.1}%
+\contentsline {chapter}{\numberline {6}Веб-приложение врача}{19}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Аутентификация}{19}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Регистрация врача}{19}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Главная страница}{19}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Пациенты}{20}{section.6.4}%
+\contentsline {section}{\numberline {6.5}Пациент}{20}{section.6.5}%
+\contentsline {section}{\numberline {6.6}Опрос}{21}{section.6.6}%
+\contentsline {section}{\numberline {6.7}Регистрация пациента}{22}{section.6.7}%
+\contentsline {chapter}{\numberline {7}Веб-приложение пациента}{25}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Главная страница}{25}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Прохождения опроса}{25}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Меню}{25}{section.7.3}%
+\contentsline {section}{\numberline {7.4}PUSH-уведомления}{28}{section.7.4}%
+\contentsline {chapter}{\numberline {8}Оптимизация кода}{29}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Code Splitting с использованием React Router DOM}{29}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Сжатие Gzip}{29}{section.8.2}%
+\contentsline {section}{\numberline {8.3}Кэширование и контроль версий}{30}{section.8.3}%
+\contentsline {chapter}{Заключение}{31}{chapter*.3}%
+\contentsline {chapter}{Список литературы}{32}{chapter*.3}%

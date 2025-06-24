@@ -1,24 +1,62 @@
-\usepackage{hyperref}
-\usepackage[left=2cm,right=1cm,top=1cm,bottom=1.5cm]{geometry}
-\usepackage[utf8]{inputenc}
-\usepackage[english,russian]{babel}
-\usepackage{graphicx}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{cite}
-\usepackage{indentfirst}
-\usepackage{multicol}
-\usepackage{cmap}
-\usepackage{array}
-\usepackage{varwidth}
-\usepackage[T1]{fontenc}
-\usepackage[section]{placeins}
+\documentclass[a4paper,12pt]{extreport}
 
+% --- Шрифты и кодировка ---
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}         % для поддержки UTF-8 (если не XeLaTeX)
+\usepackage[english,russian]{babel}
+
+% --- Основные пакеты ---
+\usepackage{graphicx}
+\usepackage[usenames]{color}
+\usepackage{cite}
+\usepackage{amssymb,amsmath,latexsym,enumerate}
+\usepackage{array,longtable,lscape}
+\usepackage{indentfirst}
+\usepackage{titlesec}
+\usepackage{subfigure,epsfig}
+\usepackage{caption2}
+\usepackage[onehalfspacing]{setspace}
+\usepackage{geometry}
+\usepackage{hyperref}              % <--- добавили гиперссылки
+\usepackage{url}                   % <--- если нужно использовать \url отдельно
+\usepackage{cmap}                  % улучшенная поддержка поиска и копирования в PDF
+\usepackage{placeins}              % запрет выноса float'ов за секции
+\usepackage{varwidth}              % для блоков переменной ширины
+
+% --- Геометрия страницы ---
+\geometry{
+    left=3cm,
+    right=1.5cm,
+    top=2cm,
+    bottom=2cm
+}
+
+% --- Пользовательский тип столбца таблиц V{Xcm} ---
+\newcolumntype{V}[1]{>{\centering\arraybackslash}m{#1}}
+
+%% --- Настройки заголовков ---
+%\titleformat{\chapter}[block]{\Large\bfseries}{\Large\thechapter.}{0.5em}{}[\vspace*{-1cm}]
+%\titleformat{\section}{\large\bfseries}{{\thesection}}{0.5em}{}
+%\titleformat{\section}[runin]{\normalfont\bfseries}{\thesubsection}{0.5ex}{}
+
+% --- Настройки заголовков ---
+\titleformat{\chapter}[block]{\Large\bfseries}{\Large\thechapter.}{0.5em}{}[\vspace*{-1cm}]
+\titleformat{\section}{\large\bfseries}{\thesection}{0.5em}{}
+\titleformat{\subsection}{\normalfont\bfseries}{\thesubsection}{0.5ex}{}
+
+
+% --- Нумерация формул по главам ---
+\numberwithin{equation}{chapter}
+
+% --- Библиография без квадратных скобок ---
+\makeatletter
+\renewcommand{\@biblabel}[1]{#1.}
+\makeatother
+
+% --- Межстрочный интервал ---
+\renewcommand{\baselinestretch}{1.5}
+
+% --- Общая настройка ---
 \sloppy
 
-\geometry{top=2cm}
-\geometry{bottom=2cm}
-\geometry{left=2.5cm}
-\geometry{right=2.5cm}
-
-\renewcommand{\baselinestretch}{1.5}
+\usepackage{textcomp}
